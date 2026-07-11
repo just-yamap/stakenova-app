@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- SN-BUILD v23 : SKR purged from novaSOL (USDC only), Dust/Star classes, option A keep-on-win -->
+<!-- SN-BUILD v25 : panels hug the tab bar (dead gap removed) -->
 
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>StakeNova · Staking Mission Control</title>
@@ -101,7 +101,7 @@ header{border-bottom:1px solid var(--jet);background:var(--black);position:stick
 .seg-toggle .seg.on{background:var(--azure);color:#000;font-weight:700}
 
 /* ===== compact how-it-works strip ===== */
-.hiw{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+.hiw{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
   border:1px solid var(--jet);padding:8px 18px;margin-top:10px}
 .hiw-title{font-size:12px;letter-spacing:.6px;white-space:nowrap}
 .hiw-step{display:flex;align-items:center;gap:10px;min-width:0}
@@ -276,7 +276,7 @@ header{border-bottom:1px solid var(--jet);background:var(--black);position:stick
 
 /* ===== nUSD product ===== */
 .section{padding:80px 0;border-bottom:1px solid var(--jet)}
-.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:22px;flex-wrap:wrap}
 .sec-h{font-size:44px;line-height:52px;letter-spacing:1.6px;text-transform:uppercase;color:var(--moon);font-weight:400;margin-top:12px}
 .sec-h .grow{color:var(--azure)}
 .nusd-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:0;border:1px solid var(--jet)}
@@ -596,16 +596,16 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
 <!-- ===== compact how-it-works strip ===== -->
 <div class="wrap"><div class="hiw">
   <span class="hiw-title uc"><span class="b">[ </span><span class="az">How it works</span><span class="b"> ]</span></span>
-  <span class="hiw-step"><span class="hiw-n">01</span><span class="hiw-t"><b>Deposit</b> SOL or USDC — stay liquid, non-custodial</span></span>
+  <span class="hiw-step"><span class="hiw-n">01</span><span class="hiw-t"><b>Deposit</b> SOL or USDC — non-custodial</span></span>
   <span class="hiw-arrow">→</span>
-  <span class="hiw-step"><span class="hiw-n">02</span><span class="hiw-t"><b>Earn</b> verifiable yield + <span class="az">✦ Stardust</span> while your stake remains</span></span>
+  <span class="hiw-step"><span class="hiw-n">02</span><span class="hiw-t"><b>Earn</b> yield + <span class="az">✦ Stardust</span> while staked</span></span>
   <span class="hiw-arrow">→</span>
-  <span class="hiw-step"><span class="hiw-n">03</span><span class="hiw-t"><b>Win</b> — Stardust is your weight in every onchain prize draw</span></span>
+  <span class="hiw-step"><span class="hiw-n">03</span><span class="hiw-t"><b>Win</b> — Stardust weights every draw</span></span>
 </div></div>
 
 <!-- ===================== XP · platform-wide (visible on all tabs) ===================== -->
-<div class="wrap" style="margin-top:10px;margin-bottom:10px">
-  <div class="panel" style="display:flex;align-items:center;gap:20px;padding:9px 20px;flex-wrap:wrap">
+<div class="wrap" style="margin-top:8px;margin-bottom:8px">
+  <div class="panel" style="display:flex;align-items:center;gap:20px;padding:8px 18px;flex-wrap:wrap">
     <span class="eyebrow uc" style="font-size:14px;letter-spacing:.6px"><span class="b">[ </span><span class="az">✦ Stardust</span> <span class="sep">//</span> platform-wide<span class="b"> ]</span></span>
     <span class="pl" style="font-size:13px;letter-spacing:.3px;flex:1;min-width:240px">Stardust accrues while your stake <span class="mo">stays on StakeNova</span> — nSOL, novaSOL or nUSD. Unstake and that position's Stardust burns. <span class="mo">Stardust is your ticket weight in the draws.</span></span>
     <span class="chip" style="font-size:14px">Stardust <b class="az mono" id="stripXp">—</b></span>
@@ -647,7 +647,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
 <div class="tabpanel" id="p-nsol">
 
 <!-- ===================== nSOL (Sanctum LST) ===================== -->
-<section class="section" id="stake" style="padding:56px 0">
+<section class="section" id="stake" style="padding:24px 0 48px">
   <div class="wrap">
     <div class="sec-head">
       <div>
@@ -719,7 +719,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
 <div class="tabpanel" id="p-novasol" hidden>
 
 <!-- ===================== novaSOL (SOL -> USDC via INF) ===================== -->
-<section class="section" style="padding:56px 0 40px">
+<section class="section" style="padding:24px 0 40px">
   <div class="wrap">
     <div class="sec-head">
       <div>
@@ -792,7 +792,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
 <div class="tabpanel" id="p-nusd" hidden>
 
 <!-- ===================== nUSD (merged: no-loss prize savings) ===================== -->
-<section class="section" id="nusd"><div class="wrap">
+<section class="section" id="nusd" style="padding:24px 0 64px"><div class="wrap">
   <div class="sec-head">
     <div>
       <div class="eyebrow uc"><span class="b">[ </span><span class="plus-accent">no-loss savings</span> <span class="sep">//</span> nUSD<span class="b"> ]</span></div>
