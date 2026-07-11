@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RIFT — Mockups Comparison</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #050505;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.intro {
+  padding: 32px 40px;
+  border-bottom: 1px solid #222;
+  background: #0a0a0a;
+}
+.intro h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+.intro p {
+  color: #999;
+  font-size: 14px;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #222;
+  background: #0a0a0a;
+}
+.tab {
+  padding: 16px 24px;
+  cursor: pointer;
+  border-right: 1px solid #222;
+  font-size: 13px;
+  color: #999;
+  transition: all .15s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  text-align: left;
+  background: transparent;
+  border-top: none;
+  border-bottom: 3px solid transparent;
+  border-left: none;
+  font-family: inherit;
+}
+.tab:hover { color: #fff; background: #141414; }
+.tab.active {
+  color: #fff;
+  background: #141414;
+  border-bottom-color: #fff;
+}
+.tab-letter {
+  width: 32px;
+  height: 32px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.tab-content {
+  display: flex;
+  flex-direction: column;
+}
+.tab-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+.tab-sub {
+  font-size: 11px;
+  color: #666;
+  margin-top: 2px;
+}
+
+.frame-container {
+  height: calc(100vh - 200px);
+  position: relative;
+}
+.frame-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: none;
+}
+.frame-container iframe.active {
+  display: block;
+}
+
+.notes {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(0,0,0,0.92);
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 12px;
+  color: #ccc;
+  max-width: 320px;
+  line-height: 1.5;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: none;
+}
+.notes.visible { display: block; }
+.notes h3 {
+  font-size: 12px;
+  margin-bottom: 8px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.notes ul { list-style: none; }
+.notes li {
+  padding: 4px 0;
+  color: #aaa;
+  font-size: 11px;
+}
+.notes li::before {
+  content: '· ';
+  color: #666;
+}
+
+.tab-bar {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  background: #141414;
+  border-bottom: 1px solid #222;
+  gap: 12px;
+}
+.tab-bar-info {
+  flex: 1;
+  font-size: 12px;
+  color: #888;
+}
+.tab-bar-info strong { color: #fff; }
+.btn-info {
+  background: #1f1f1f;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: inherit;
+}
+.btn-info:hover { background: #2a2a2a; }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <h1>RIFT — 3 directions visuelles</h1>
+  <p>Trois variations strictement monochromes (noir/blanc/gris). Toutes utilisent les mêmes données et la même structure (sidebar, KPIs, treasury, machines). La différence est dans le ton, la typographie, les animations et le mouvement. Clique sur les onglets pour comparer. Bouge ta souris dans B pour voir le cursor follower. Hover les cards/items dans A pour voir les line-traces. Regarde le typing effect au load dans C.</p>
+</div>
+
+<div class="tabs">
+  <button class="tab active" data-target="A">
+    <span class="tab-letter">A</span>
+    <span class="tab-content">
+      <span class="tab-title">Refined Minimal</span>
+      <span class="tab-sub">Linear/Resend · serif italic + sans + mono</span>
+    </span>
+  </button>
+  <button class="tab" data-target="B">
+    <span class="tab-letter">B</span>
+    <span class="tab-content">
+      <span class="tab-title">Brutalist Tech</span>
+      <span class="tab-sub">Vercel/Phantom · cursor + particles + glitch</span>
+    </span>
+  </button>
+  <button class="tab" data-target="C">
+    <span class="tab-letter">C</span>
+    <span class="tab-content">
+      <span class="tab-title">Editorial Mono</span>
+      <span class="tab-sub">Terminal · scanlines + typing + dev-first</span>
+    </span>
+  </button>
+</div>
+
+<div class="tab-bar">
+  <div class="tab-bar-info">
+    Survol : <strong id="hover-info">A — Linear/Resend refined minimal</strong>
+  </div>
+  <button class="btn-info" onclick="document.querySelector('.notes').classList.toggle('visible')">
+    Notes design ↗
+  </button>
+</div>
+
+<div class="frame-container">
+  <iframe class="active" src="A_refined_minimal.html" id="frame-A"></iframe>
+  <iframe src="B_brutalist_tech.html" id="frame-B"></iframe>
+  <iframe src="C_editorial_mono.html" id="frame-C"></iframe>
+</div>
+
+<div class="notes">
+  <h3>Choix design</h3>
+  <ul id="notes-content">
+  </ul>
+</div>
+
+<script>
+const NOTES = {
+  A: {
+    title: 'A — Refined Minimal',
+    items: [
+      'Typo : Instrument Serif italic (titres) + Geist (UI) + JetBrains Mono (data)',
+      'Animations : reveal staggered au load, gradient mesh drift en bg, line-trace sur hover',
+      'Ambiance : Linear, Resend, Mercury Bank — premium, financier, qui inspire confiance',
+      'Effets clés : grain subtil, top-glow blanc sur cards au hover, radial glow sur machines suivant la souris',
+      'Plus adapté : ATM client (rassurant) et admin pour utilisateur non-tech',
+      'Référence : linear.app, resend.com, mercury.com'
+    ]
+  },
+  B: {
+    title: 'B — Brutalist Tech',
+    items: [
+      'Typo : Space Grotesk bold + JetBrains Mono · contrastes extrêmes',
+      'Animations : cursor glow follower, 60 particules canvas, glitch text au hover, number tickers',
+      'Ambiance : Vercel, Phantom Wallet, Backpack — underground, techy, identité forte',
+      'Effets clés : pattern diagonal en bg, cursor follower (bouge ta souris !), big numbers en filigrane sur les machines',
+      'Plus adapté : admin opérateur tech, utilisateurs habitués aux interfaces crypto',
+      'Référence : vercel.com, phantom.app, paragraph.xyz'
+    ]
+  },
+  C: {
+    title: 'C — Editorial Mono',
+    items: [
+      'Typo : JetBrains Mono PARTOUT · weight variable (300 → 800)',
+      'Animations : typing effect au load, scanlines CRT, cursor blink, hover slide',
+      'Ambiance : terminal/REPL, IBM Plex, hacker news, Bloomberg legacy — dev-first, austère',
+      'Effets clés : prompt $ devant les sections, log levels colorés, vignette CRT, structure type code-blocks',
+      'Plus adapté : utilisateur dev/tech avancé · TROP austère pour client kiosk',
+      'Référence : warp.dev, raycast.com, perplexity terminal'
+    ]
+  }
+};
+
+const tabs = document.querySelectorAll('.tab');
+const frames = document.querySelectorAll('.frame-container iframe');
+const hoverInfo = document.getElementById('hover-info');
+const notesContent = document.getElementById('notes-content');
+
+function updateNotes(key) {
+  const note = NOTES[key];
+  notesContent.innerHTML = note.items.map(i => `<li>${i}</li>`).join('');
+}
+
+function activate(key) {
+  tabs.forEach(t => t.classList.toggle('active', t.dataset.target === key));
+  frames.forEach(f => f.classList.toggle('active', f.id === 'frame-' + key));
+  hoverInfo.textContent = NOTES[key].title;
+  updateNotes(key);
+}
+
+tabs.forEach(t => {
+  t.addEventListener('click', () => activate(t.dataset.target));
+});
+
+updateNotes('A');
+</script>
+
+</body>
+</html>
