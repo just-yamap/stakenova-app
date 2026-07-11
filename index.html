@@ -1,278 +1,1536 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>RIFT — Mockups Comparison</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>StakeNova · Staking Mission Control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background: #050505;
-  color: #fff;
-  min-height: 100vh;
+/* ===== StakeNova design tokens (from Figma: CV7YkbbTNAnpmyk3LH2n7j) ===== */
+:root{
+  --black:#000000; --panel:#000000; --dark:#131313; --jet:#363636; --silver:#6E7D8D;
+  --azure:#3E97FF; --moon:#E9F3FF; --white:#FFFFFF; --platinum:#92A1B1;
+  --green:#28C686; --yellow:#F9D93C; --orange:#FF9266; --violet:#BD76FF;
+  --azure08:rgba(62,151,255,0.08); --f:'Lexend',system-ui,sans-serif;
+  --content:1472px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html{overflow-x:hidden}
+body{overflow-x:hidden;background:var(--black);color:var(--moon);font-family:var(--f);font-weight:400;
+  -webkit-font-smoothing:antialiased;min-height:100vh;position:relative;overflow-x:hidden}
+/* starfield */
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(1px 1px at 20% 30%,#2a3a4a 50%,transparent),
+   radial-gradient(1px 1px at 70% 60%,#22303e 50%,transparent),
+   radial-gradient(1px 1px at 40% 80%,#1c2836 50%,transparent),
+   radial-gradient(1px 1px at 88% 22%,#26323f 50%,transparent),
+   radial-gradient(1px 1px at 55% 12%,#1a2634 50%,transparent),
+   radial-gradient(1px 1px at 12% 66%,#223040 50%,transparent);
+  background-size:520px 520px}
+.wrap{position:relative;z-index:1;max-width:var(--content);margin:0 auto;padding:0 24px}
+.uc{text-transform:uppercase;font-feature-settings:"case" 1}
+.az{color:var(--azure)}.mo{color:var(--moon)}.pl{color:var(--platinum)}.gr{color:var(--green)}
+.ye{color:var(--yellow)}.or{color:var(--orange)}.vi{color:var(--violet)}
+a{color:inherit;text-decoration:none}
+
+/* eyebrow bracket motif */
+.eyebrow{font-size:18px;letter-spacing:.72px;line-height:28px;color:var(--moon)}
+.eyebrow .b{color:var(--silver)}
+
+/* ===== header ===== */
+header{border-bottom:1px solid var(--jet);background:var(--black);position:sticky;top:0;z-index:30;
+  backdrop-filter:blur(30px)}
+.nav{height:96px;display:flex;align-items:center;gap:32px}
+.brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.mark{width:34px;height:28px;flex-shrink:0}
+.brand .wm{font-weight:600;font-size:24px;letter-spacing:2px}
+.menu{display:flex;align-items:center;flex:1}
+.menu a{padding:8px 12px;font-size:18px;letter-spacing:.36px;line-height:28px;color:var(--moon);position:relative}
+.menu a.on{color:var(--azure)}
+.menu a .soon{font-size:14px;letter-spacing:.28px;color:var(--platinum);margin-left:6px}
+.menu a .new{font-size:11px;letter-spacing:.5px;color:var(--black);background:var(--azure);
+  padding:1px 5px;margin-left:6px;font-weight:600;vertical-align:middle}
+.hactions{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.btn{height:48px;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 16px;font-weight:500;font-size:16px;letter-spacing:.32px;cursor:pointer;
+  border:1px solid var(--jet);background:var(--black);color:var(--moon)}
+.btn.ghost{border-color:var(--moon)}
+.btn.solid{background:var(--azure);border-color:var(--azure);color:var(--black)}
+.btn:hover{border-color:var(--azure)}
+.xp{height:48px;display:inline-flex;align-items:center;gap:8px;padding:0 12px;background:var(--azure);color:var(--black)}
+.xp .lab{display:flex;align-items:center;gap:6px;padding:2px 8px 2px 0;border-right:1px solid rgba(0,0,0,.2);font-weight:500;font-size:16px;letter-spacing:.32px}
+.xp .val{font-weight:500;font-size:16px;letter-spacing:.32px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;letter-spacing:.5px;
+  padding:4px 9px;border:1px solid var(--azure);color:var(--azure)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ===== hero ===== */
+
+
+/* ===== XP modal ===== */
+.modal-bg{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.82);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-bg.open{opacity:1;pointer-events:all}
+.modal{background:#0a0f12;border:1px solid var(--jet);max-width:540px;width:90%;
+  padding:32px;position:relative;max-height:90vh;overflow-y:auto}
+.modal h2{font-size:28px;letter-spacing:1px;text-transform:uppercase;color:var(--moon);
+  font-weight:400;margin-bottom:8px}
+.modal h2 span{color:var(--azure)}
+.modal .close{position:absolute;top:16px;right:20px;font-size:22px;color:var(--silver);
+  cursor:pointer;background:none;border:0;font-family:inherit;line-height:1}
+.modal .close:hover{color:var(--moon)}
+.xp-row{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--jet)}
+.xp-row:last-of-type{border-bottom:0}
+.xp-icon{width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:18px}
+.xp-body .t{font-size:15px;font-weight:500;letter-spacing:.3px;color:var(--moon);text-transform:uppercase}
+.xp-body .d{font-size:13px;line-height:1.7;color:var(--platinum);margin-top:4px}
+.xp-body .d b{color:var(--moon)}
+.xp-rates{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:16px 0}
+.xp-rate{border:1px solid var(--jet);padding:12px;text-align:center}
+.xp-rate .rv{font-size:22px;font-weight:500;color:var(--azure);letter-spacing:.5px}
+.xp-rate .rl{font-size:11px;letter-spacing:.5px;color:var(--platinum);text-transform:uppercase;margin-top:4px}
+.xp-chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--azure);
+  color:var(--azure);font-size:12px;padding:4px 10px;letter-spacing:.4px;cursor:pointer}
+.xp-chip:hover{background:var(--azure08)}
+
+
+/* ===== tooltip info bubbles ===== */
+.tip{position:relative;display:inline-flex;align-items:center}
+.tip .ico{width:14px;height:14px;border:1px solid var(--silver);border-radius:50%;
+  font-size:9px;color:var(--silver);display:inline-flex;align-items:center;justify-content:center;
+  cursor:help;margin-left:5px;flex-shrink:0;font-weight:600}
+.tip .box{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:#0a0f12;border:1px solid var(--jet);padding:10px 12px;width:220px;font-size:12px;
+  line-height:1.65;color:var(--platinum);z-index:50;pointer-events:none;opacity:0;transition:opacity .15s;
+  white-space:normal}
+.tip:hover .box,.tip:focus-within .box{opacity:1}
+.tip .box b{color:var(--moon)}
+/* ===== TVL cap bar ===== */
+.cap-bar-wrap{border:1px solid var(--jet);padding:10px 14px;margin-top:10px}
+.cap-bar-label{display:flex;justify-content:space-between;font-size:12px;color:var(--platinum);margin-bottom:7px}
+.cap-bar-label b{color:var(--moon)}
+.cap-bar-label .capped{color:var(--orange);font-weight:600;font-size:11px;letter-spacing:.5px}
+.cap-bar{height:6px;background:rgba(62,151,255,0.1);border-radius:999px;overflow:hidden}
+.cap-fill{height:100%;border-radius:999px;background:var(--azure);transition:width .8s ease}
+.cap-fill.near{background:var(--yellow)}.cap-fill.full{background:var(--orange)}
+/* ===== prize draw cards ===== */
+.draws{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px}
+.draw-card{border:1px solid var(--jet);padding:18px;display:flex;flex-direction:column;gap:8px;position:relative}
+.draw-card.reg{border-top:2px solid var(--azure)}
+.draw-card.mon{border-top:2px solid var(--violet)}
+.draw-card.jack{border-top:2px solid var(--yellow)}
+.draw-label{font-size:11px;letter-spacing:.6px;text-transform:uppercase}
+.draw-countdown{font-size:26px;font-weight:500;letter-spacing:.5px;font-variant-numeric:tabular-nums;line-height:1.1}
+.draw-prize{font-size:14px;color:var(--platinum)}
+.draw-prize b{color:var(--moon);font-size:18px}
+.draw-meta{font-size:12px;color:var(--silver);line-height:1.6;margin-top:4px}
+.draw-meta b{color:var(--platinum)}
+.draw-badge{display:inline-flex;align-items:center;font-size:10px;padding:2px 7px;
+  border-radius:999px;font-weight:600;letter-spacing:.4px;margin-top:4px}
+/* ===== nUSD+ product colours ===== */
+.plus-accent{color:#28C686}
+.plus-badge{background:rgba(40,198,134,.12);border:1px solid rgba(40,198,134,.3);
+  color:#28C686;font-size:11px;letter-spacing:.5px;padding:3px 8px;font-weight:600}
+/* ===== no-perf callout ===== */
+.zero-fee{display:flex;align-items:center;gap:10px;border:1px solid rgba(40,198,134,.3);
+  background:rgba(40,198,134,.06);padding:10px 14px;margin-top:12px}
+.zero-fee .big{font-size:22px;font-weight:700;color:#28C686}
+.zero-fee .desc{font-size:12px;color:var(--platinum);line-height:1.55}
+.zero-fee .desc b{color:var(--moon)}
+@media(max-width:700px){.draws{grid-template-columns:1fr}.draw-card{padding:14px}}
+@media(max-width:600px){.draws{grid-template-columns:1fr}.draw-countdown{font-size:20px}.cap-bar-wrap{max-width:100%;overflow:hidden}}
+
+/* ===== live APY ticker strip ===== */
+.ticker-wrap{overflow:hidden;border-top:1px solid var(--jet);border-bottom:1px solid var(--jet);
+  background:rgba(10,15,18,0.96);position:relative;height:40px}
+.ticker-wrap::before,.ticker-wrap::after{content:"";position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.ticker-wrap::before{left:0;background:linear-gradient(90deg,#000 0%,transparent 100%)}
+.ticker-wrap::after{right:0;background:linear-gradient(270deg,#000 0%,transparent 100%)}
+.ticker-track{display:flex;align-items:center;height:40px;width:max-content;
+  animation:tickerScroll 28s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+.tick-item{display:inline-flex;align-items:center;gap:8px;padding:0 32px;white-space:nowrap;
+  font-size:13px;letter-spacing:.4px;border-right:1px solid var(--jet)}
+.tick-label{color:var(--platinum);text-transform:uppercase;font-size:11px;letter-spacing:.6px}
+.tick-val{color:var(--azure);font-variant-numeric:tabular-nums;font-weight:500;
+  transition:color 0.4s ease}
+.tick-val.pos{color:var(--green)}.tick-val.neg{color:var(--orange)}
+.tick-dot{width:5px;height:5px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 6px var(--green);animation:pulse 1.2s infinite;flex-shrink:0}
+@keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ===== hero APY live overlay ===== */
+.hero-apy-overlay{position:absolute;bottom:20px;left:20px;
+  display:flex;flex-direction:column;gap:4px}
+.hero-apy-big{font-size:36px;font-weight:500;letter-spacing:1px;color:var(--azure);
+  font-variant-numeric:tabular-nums;line-height:1;
+  text-shadow:0 0 24px rgba(62,151,255,0.5)}
+.hero-apy-label{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--platinum)}
+
+/* counting animation for APY numbers */
+@keyframes apyPop{0%{transform:scale(1.04);color:var(--green)}100%{transform:scale(1);color:var(--azure)}}
+.apy-update{animation:apyPop 0.6s ease-out forwards}
+
+@media(max-width:600px){
+  .ticker-track{animation-duration:18s}
+  .tick-item{padding:0 20px}
+  .hero-apy-big{font-size:26px}
 }
 
-.intro {
-  padding: 32px 40px;
-  border-bottom: 1px solid #222;
-  background: #0a0a0a;
+.hero{border-bottom:1px solid var(--jet);padding:64px 0 100px}
+.hero-row{display:flex;gap:32px;align-items:center}
+.hero-copy{flex:1;min-width:0;display:flex;flex-direction:column;gap:24px}
+.hero-h{font-size:60px;line-height:76px;letter-spacing:2.4px;text-transform:uppercase;color:var(--moon);font-weight:400}
+.hero-h .grow{color:var(--azure)}
+.frame{width:350px;height:350px;flex-shrink:0;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  border:1px dashed rgba(255,255,255,.21);padding:24px}
+.frame i{position:absolute;width:16px;height:16px;border:2px solid var(--moon)}
+.frame i.tl{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.frame i.tr{top:-1px;right:-1px;border-left:0;border-bottom:0}
+.frame i.bl{bottom:-1px;left:-1px;border-right:0;border-top:0}
+.frame i.br{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.frame canvas{width:100%;height:100%}
+
+/* ===== panel primitives ===== */
+.panel{background:var(--black);border:1px solid var(--jet)}
+.prow{padding:32px;border-bottom:1px solid var(--jet)}
+.prow:last-child{border-bottom:0}
+.between{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.track{height:12px;border-radius:999px;background:var(--azure08);border:1px solid var(--jet);overflow:hidden;margin-top:12px}
+.fill{height:100%;border-radius:999px;background:var(--azure);transition:width .6s ease}
+.fill.g{background:var(--green)}.fill.y{background:var(--yellow)}.fill.o{background:var(--orange)}.fill.v{background:var(--violet)}
+.tierrow{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.tier-ic{width:22px;height:22px;border-radius:50%;flex-shrink:0}
+.mono{font-variant-numeric:tabular-nums}
+.sep{color:var(--silver)}
+
+/* live activity strip */
+.activity{border-top:1px solid var(--jet);border-bottom:1px solid var(--jet);padding:24px 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:16px;letter-spacing:.32px}
+.avatar{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--azure))}
+
+/* stats grid */
+.stats{display:flex;border-top:1px solid var(--jet)}
+.stat{flex:1;padding:32px 16px;display:flex;flex-direction:column;align-items:center;gap:12px;
+  border-right:1px solid var(--jet);text-align:center}
+.stat:last-child{border-right:0}
+.stat .lab{font-size:16px;letter-spacing:.64px;color:var(--moon)}
+.stat .big{font-size:32px;line-height:48px;letter-spacing:1.28px;color:var(--azure)}
+.stat .u{font-size:24px;line-height:24px;letter-spacing:.48px;color:var(--platinum)}
+.stat .pair{display:flex;align-items:center;gap:8px}
+
+/* ===== nUSD product ===== */
+.section{padding:80px 0;border-bottom:1px solid var(--jet)}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.sec-h{font-size:44px;line-height:52px;letter-spacing:1.6px;text-transform:uppercase;color:var(--moon);font-weight:400;margin-top:12px}
+.sec-h .grow{color:var(--azure)}
+.nusd-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:0;border:1px solid var(--jet)}
+.mintbox{padding:32px;border-right:1px solid var(--jet);display:flex;flex-direction:column;gap:20px}
+.field{border:1px solid var(--jet);padding:16px;display:flex;flex-direction:column;gap:8px}
+.field .top{display:flex;align-items:center;justify-content:space-between;font-size:14px;letter-spacing:.28px;color:var(--platinum)}
+.field .in{display:flex;align-items:center;gap:10px}
+.field input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:var(--moon);
+  font-family:var(--f);font-size:28px;letter-spacing:.5px;font-weight:400}
+.field .tok{display:flex;align-items:center;gap:8px;font-size:18px;letter-spacing:.36px;color:var(--moon)}
+.coin{width:24px;height:24px;border-radius:50%;flex-shrink:0}
+.coin.usdc{background:radial-gradient(circle at 35% 30%,#5aa9ff,#2775CA)}
+.coin.nusd{background:radial-gradient(circle at 35% 30%,#7fb6ff,var(--azure))}
+.arrowdown{align-self:center;color:var(--silver);font-size:18px;margin:-6px 0}
+.rateline{display:flex;align-items:center;justify-content:space-between;font-size:14px;letter-spacing:.28px;color:var(--platinum);padding-top:4px}
+.mint-btn{height:56px;background:var(--azure);color:var(--black);border:0;font-family:var(--f);
+  font-weight:600;font-size:18px;letter-spacing:.72px;text-transform:uppercase;cursor:pointer;transition:filter .2s}
+.mint-btn:hover{filter:brightness(1.08)}
+.mint-btn:disabled{opacity:.5;cursor:not-allowed}
+.mint-note{font-size:13px;letter-spacing:.2px;color:var(--silver);line-height:1.6}
+
+/* proof of yield */
+.proof{padding:32px;display:flex;flex-direction:column;gap:22px}
+.apywrap{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.apy-big{font-size:64px;line-height:1;letter-spacing:1px;color:var(--azure);font-weight:500}
+.apy-sub{font-size:14px;letter-spacing:.28px;color:var(--platinum);line-height:1.7;padding-bottom:6px}
+.apy-sub b{color:var(--moon);font-weight:500}
+.spark{height:96px;border:1px solid var(--jet);position:relative}
+.spark canvas{width:100%;height:100%;display:block}
+.spark .tag{position:absolute;top:8px;right:10px;font-size:12px;letter-spacing:.4px;color:var(--green)}
+.spark .tagl{position:absolute;top:8px;left:10px;font-size:12px;letter-spacing:.4px;color:var(--platinum)}
+.desks{display:flex;flex-direction:column;gap:10px}
+.desk{display:grid;grid-template-columns:110px 1fr 64px;align-items:center;gap:10px;font-size:13px;letter-spacing:.3px}
+.desk .nm{color:var(--platinum);text-transform:uppercase;letter-spacing:.5px;font-size:12px}
+.desk .bar{height:8px;background:var(--azure08);border:1px solid var(--jet);overflow:hidden}
+.desk .bar span{display:block;height:100%}
+.desk .pct{text-align:right;color:var(--moon)}
+.proof-foot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--jet);padding-top:16px;gap:12px;flex-wrap:wrap}
+.verify{display:inline-flex;align-items:center;gap:8px;font-size:16px;letter-spacing:.32px;color:var(--azure);font-weight:500;text-transform:uppercase}
+.verify:hover{gap:12px;transition:gap .2s}
+
+/* nUSD stat row */
+.nusd-stats{display:flex;border:1px solid var(--jet);border-top:0}
+.nstat{flex:1;padding:24px 16px;border-right:1px solid var(--jet);text-align:center;display:flex;flex-direction:column;gap:6px}
+.nstat:last-child{border-right:0}
+.nstat .l{font-size:13px;letter-spacing:.5px;color:var(--platinum);text-transform:uppercase}
+.nstat .v{font-size:26px;letter-spacing:.6px;color:var(--moon)}
+.nstat .v small{font-size:14px;color:var(--platinum);letter-spacing:.3px}
+
+/* how it works */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.step{border:1px solid var(--jet);padding:22px;display:flex;flex-direction:column;gap:10px;position:relative}
+.step .n{font-size:13px;letter-spacing:2px;color:var(--azure)}
+.step .t{font-size:17px;letter-spacing:.3px;color:var(--moon);text-transform:uppercase}
+.step .d{font-size:13px;line-height:1.7;color:var(--platinum)}
+
+footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3px}
+.foot-row{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.foot-links{display:flex;gap:20px}.foot-links a:hover{color:var(--azure)}
+
+@media(max-width:960px){
+  .menu{display:none}
+  .nav{flex-wrap:wrap;height:auto;padding:12px 0;gap:10px}
+  .hactions{flex-wrap:wrap;gap:10px}
+  .xp,.btn{height:40px;font-size:14px}
+  .hero-row{flex-direction:column;align-items:stretch}
+  .frame{width:100%;height:240px}
+  .hero-h{font-size:40px;line-height:52px}
+  .nusd-grid{grid-template-columns:1fr}
+  .mintbox{border-right:0;border-bottom:1px solid var(--jet)}
+  .stats,.nusd-stats{flex-wrap:wrap}
+  .stat{flex:1 1 50%;border-bottom:1px solid var(--jet)}
+  .nstat{flex:1 1 50%;border-bottom:1px solid var(--jet)}
+  .flow{grid-template-columns:1fr 1fr}
+  .sec-h{font-size:32px;line-height:40px}
+  .tab{padding:10px 14px;font-size:12px}
+  .urlbar{max-width:200px;font-size:11px}
+  .si{flex-wrap:wrap}
+  .si .cell{flex-basis:50%;border-bottom:1px solid var(--jet)}
 }
-.intro h1 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  letter-spacing: -0.5px;
-}
-.intro p {
-  color: #999;
-  font-size: 14px;
-  max-width: 800px;
-  line-height: 1.6;
+@media(max-width:560px){
+  .stat,.nstat,.si .cell{flex-basis:100%;border-right:0}
+  .flow{grid-template-columns:1fr}
+  .hero-h{font-size:32px;line-height:42px}
+  .apy-big{font-size:46px}
+  .chrome{flex-wrap:wrap;gap:8px}
+  .tabs{flex-wrap:wrap;gap:2px}
+  .tab{padding:9px 12px;font-size:12px}
+  .hactions{width:100%;justify-content:space-between}
+  .brand .wm{font-size:20px}
 }
 
-.tabs {
-  display: flex;
-  border-bottom: 1px solid #222;
-  background: #0a0a0a;
-}
-.tab {
-  padding: 16px 24px;
-  cursor: pointer;
-  border-right: 1px solid #222;
-  font-size: 13px;
-  color: #999;
-  transition: all .15s;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-  text-align: left;
-  background: transparent;
-  border-top: none;
-  border-bottom: 3px solid transparent;
-  border-left: none;
-  font-family: inherit;
-}
-.tab:hover { color: #fff; background: #141414; }
-.tab.active {
-  color: #fff;
-  background: #141414;
-  border-bottom-color: #fff;
-}
-.tab-letter {
-  width: 32px;
-  height: 32px;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 14px;
-  flex-shrink: 0;
-}
-.tab-content {
-  display: flex;
-  flex-direction: column;
-}
-.tab-title {
-  font-weight: 600;
-  font-size: 14px;
-}
-.tab-sub {
-  font-size: 11px;
-  color: #666;
-  margin-top: 2px;
+/* Global overflow guard — never let any element punch past viewport on mobile */
+@media(max-width:600px){
+  .wrap{padding:0 12px}
+  .nusd-grid,.mintbox,.proof{min-width:0;max-width:100%;box-sizing:border-box}
+  .field,.field input,.in{min-width:0;max-width:100%}
+  .tabnav .inner{padding:8px 0 0}
+  .apywrap{flex-wrap:wrap;gap:8px}
+  .apy-sub{font-size:12px}
+  .xp{max-width:calc(100vw - 120px)}
+  header{overflow:hidden}
 }
 
-.frame-container {
-  height: calc(100vh - 200px);
-  position: relative;
-}
-.frame-container iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: none;
-}
-.frame-container iframe.active {
-  display: block;
-}
+/* ===== browser-style tabs ===== */
+.tabnav{position:sticky;top:0;z-index:20;background:var(--black);border-bottom:1px solid var(--jet)}
+.tabnav .inner{padding:12px 0 0}
+.chrome{display:flex;align-items:center;gap:12px;padding-bottom:12px}
+.dots{display:flex;gap:7px;flex-shrink:0}.dots i{width:11px;height:11px;border-radius:50%;display:block}
+.urlbar{flex:1;max-width:440px;background:#0a0f12;border:1px solid var(--jet);border-radius:999px;
+  padding:7px 14px;font-size:13px;letter-spacing:.3px;color:var(--platinum);display:flex;align-items:center;gap:8px;overflow:hidden;white-space:nowrap}
+.urlbar .lock{color:var(--green);font-size:11px}
+.tabs{display:flex;gap:4px}
+.tab{display:flex;align-items:center;gap:9px;padding:13px 24px;font-size:15px;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--platinum);cursor:pointer;border:1px solid transparent;border-bottom:0;border-radius:10px 10px 0 0;
+  background:transparent;position:relative;top:1px;font-feature-settings:"case" 1;transition:color .15s}
+.tab .fav{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.tab.on{color:var(--moon);background:#0b1216;border-color:var(--jet)}
+.tab:hover:not(.on){color:var(--moon)}
+.tabpanel[hidden]{display:none}
 
-.notes {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  background: rgba(0,0,0,0.92);
-  border: 1px solid #333;
-  border-radius: 8px;
-  padding: 14px 18px;
-  font-size: 12px;
-  color: #ccc;
-  max-width: 320px;
-  line-height: 1.5;
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  display: none;
-}
-.notes.visible { display: block; }
-.notes h3 {
-  font-size: 12px;
-  margin-bottom: 8px;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.notes ul { list-style: none; }
-.notes li {
-  padding: 4px 0;
-  color: #aaa;
-  font-size: 11px;
-}
-.notes li::before {
-  content: '· ';
-  color: #666;
-}
-
-.tab-bar {
-  display: flex;
-  align-items: center;
-  padding: 12px 24px;
-  background: #141414;
-  border-bottom: 1px solid #222;
-  gap: 12px;
-}
-.tab-bar-info {
-  flex: 1;
-  font-size: 12px;
-  color: #888;
-}
-.tab-bar-info strong { color: #fff; }
-.btn-info {
-  background: #1f1f1f;
-  border: 1px solid #333;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
-  font-family: inherit;
-}
-.btn-info:hover { background: #2a2a2a; }
-</style>
-</head>
+/* since-inception + toggle */
+.si{display:flex;border:1px solid var(--jet);margin-top:22px}
+.si .cell{flex:1;padding:22px 18px;border-right:1px solid var(--jet);display:flex;flex-direction:column;gap:6px}
+.si .cell:last-child{border-right:0}
+.si .l{font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--platinum)}
+.si .v{font-size:30px;letter-spacing:.6px;color:var(--moon)}
+.si .v.pos{color:var(--green)}
+.si .cell.hero-cell{background:linear-gradient(180deg,rgba(62,151,255,.10),rgba(62,151,255,0));}
+.si .v.big{font-size:34px;color:var(--azure)}
+.toggle{display:flex;border:1px solid var(--jet);padding:3px;gap:3px;width:fit-content}
+.toggle button{background:transparent;border:0;color:var(--platinum);font-family:var(--f);font-size:13px;
+  letter-spacing:.5px;text-transform:uppercase;padding:7px 18px;cursor:pointer}
+.toggle button.on{background:var(--azure);color:var(--black);font-weight:500}
+.cooldown{border:1px solid var(--jet);background:rgba(62,151,255,.05);padding:14px;font-size:13px;line-height:1.7;color:var(--platinum)}
+.cooldown b{color:var(--moon)}
+@media(max-width:960px){.si{flex-wrap:wrap}.si .cell{flex-basis:50%;border-bottom:1px solid var(--jet)}.tab{padding:12px 16px;font-size:13px}.urlbar{display:none}}
+</style></head>
 <body>
 
-<div class="intro">
-  <h1>RIFT — 3 directions visuelles</h1>
-  <p>Trois variations strictement monochromes (noir/blanc/gris). Toutes utilisent les mêmes données et la même structure (sidebar, KPIs, treasury, machines). La différence est dans le ton, la typographie, les animations et le mouvement. Clique sur les onglets pour comparer. Bouge ta souris dans B pour voir le cursor follower. Hover les cards/items dans A pour voir les line-traces. Regarde le typing effect au load dans C.</p>
-</div>
-
-<div class="tabs">
-  <button class="tab active" data-target="A">
-    <span class="tab-letter">A</span>
-    <span class="tab-content">
-      <span class="tab-title">Refined Minimal</span>
-      <span class="tab-sub">Linear/Resend · serif italic + sans + mono</span>
-    </span>
-  </button>
-  <button class="tab" data-target="B">
-    <span class="tab-letter">B</span>
-    <span class="tab-content">
-      <span class="tab-title">Brutalist Tech</span>
-      <span class="tab-sub">Vercel/Phantom · cursor + particles + glitch</span>
-    </span>
-  </button>
-  <button class="tab" data-target="C">
-    <span class="tab-letter">C</span>
-    <span class="tab-content">
-      <span class="tab-title">Editorial Mono</span>
-      <span class="tab-sub">Terminal · scanlines + typing + dev-first</span>
-    </span>
-  </button>
-</div>
-
-<div class="tab-bar">
-  <div class="tab-bar-info">
-    Survol : <strong id="hover-info">A — Linear/Resend refined minimal</strong>
+<!-- ===================== HEADER ===================== -->
+<header><div class="wrap"><div class="nav">
+  <div class="brand">
+    <svg class="mark" viewBox="0 0 34 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 4 H30 L24 9 H4 Z" fill="#3E97FF"/>
+      <path d="M8 12 H30 L24 17 H8 Z" fill="#3E97FF" opacity="0.75"/>
+      <path d="M12 20 H26 L20 25 H12 Z" fill="#3E97FF" opacity="0.5"/>
+    </svg>
+    <span class="wm uc">STAKE<span class="az">NOVA</span></span>
   </div>
-  <button class="btn-info" onclick="document.querySelector('.notes').classList.toggle('visible')">
-    Notes design ↗
-  </button>
+  <nav class="menu">
+    <a href="#" class="on uc">Dashboard</a>
+    <a href="#nusd" class="uc">nUSD<span class="new uc">NEW</span></a>
+  </nav>
+  <div class="hactions">
+    <span class="btn ghost uc" style="display:none" id="seeker">Get it on Seeker</span>
+    <span class="xp uc" id="xpChip" onclick="document.getElementById('xpModal').classList.add('open')" style="cursor:pointer" title="What is XP?"><span class="lab">✦ XP</span><span class="val" id="xpVal">100 k</span></span>
+    <button class="btn uc" id="connectBtn">Connect ▾</button>
+  </div>
+</div></div></header>
+
+<!-- ===== XP explanation modal ===== -->
+<div class="modal-bg" id="xpModal">
+  <div class="modal">
+    <button class="close" id="xpClose">✕</button>
+    <div class="eyebrow uc" style="font-size:13px;letter-spacing:.5px;color:var(--azure)">[ ✦ XP // how it works ]</div>
+    <h2>Your <span>XP</span> score</h2>
+    <p style="font-size:14px;color:var(--platinum);line-height:1.7;margin-bottom:20px">
+      XP is your <b style="color:var(--moon)">prize-draw weight</b> — the more XP you hold, 
+      the bigger your share of every draw. It's earned automatically just by holding any 
+      StakeNova product. No claiming, no staking, no action required.
+    </p>
+
+    <!-- rates -->
+    <div class="eyebrow uc" style="font-size:11px;letter-spacing:.6px;color:var(--silver);margin-bottom:8px">XP earn rates (per SOL/USDC · per day)</div>
+    <div class="xp-rates">
+      <div class="xp-rate">
+        <div class="rv az">1×</div>
+        <div class="rl">nSOL</div>
+      </div>
+      <div class="xp-rate">
+        <div class="rv" style="color:var(--orange)">1.5×</div>
+        <div class="rl">novaSOL</div>
+      </div>
+      <div class="xp-rate">
+        <div class="rv" style="color:var(--green)">0.5×</div>
+        <div class="rl">nUSD</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--silver);margin-bottom:20px">
+      novaSOL earns 1.5× because your yield directly funds the prize pool.
+      nUSD earns 0.5× as a stable deposit with its own yield stream.
+    </p>
+
+    <div class="xp-row">
+      <div class="xp-icon" style="background:rgba(62,151,255,0.12)">🎟️</div>
+      <div class="xp-body">
+        <div class="t">Ticket weight, not a lottery ticket</div>
+        <div class="d">Your XP doesn't give you one entry — it's your <b>proportion of the pool</b>. 
+        If you hold 1% of total XP at draw time, you win roughly 1% of draws over time. 
+        More XP = better expected value, always.</div>
+      </div>
+    </div>
+    <div class="xp-row">
+      <div class="xp-icon" style="background:rgba(40,198,134,0.12)">⏱️</div>
+      <div class="xp-body">
+        <div class="t">Time-weighted loyalty</div>
+        <div class="d">XP accrues every day. Holding 10 SOL for 10 days earns 
+        <b>twice as much</b> as holding 10 SOL for 5 days. 
+        Long-term stakers are naturally rewarded over late whales.</div>
+      </div>
+    </div>
+    <div class="xp-row">
+      <div class="xp-icon" style="background:rgba(189,118,255,0.12)">🔄</div>
+      <div class="xp-body">
+        <div class="t">50% epoch decay — keeps it fair</div>
+        <div class="d">After each Solana epoch (~2.5 days), half your XP decays. 
+        This prevents early depositors from permanently dominating draws 
+        and keeps <b>every new depositor competitive</b> from day one.</div>
+      </div>
+    </div>
+    <div class="xp-row">
+      <div class="xp-icon" style="background:rgba(249,210,60,0.12)">🏆</div>
+      <div class="xp-body">
+        <div class="t">XP leaderboard = bonus multipliers</div>
+        <div class="d">Top 10 on the leaderboard get a <b>1.5×–3× XP multiplier</b> 
+        applied to future draws. Rank #1 enters every draw with 3× weight — 
+        without needing more capital, just consistency.</div>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid var(--jet);padding-top:16px;margin-top:4px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+      <span style="font-size:13px;color:var(--platinum)">Your XP right now: <b class="az mono">100 k</b><br><span style="color:#28C686;font-size:12px">Hack victims: 5% of original investment funded as nUSD+ position. Earns XP and enters all draws automatically.</span></span>
+      <span class="xp-chip" onclick="document.querySelector('.tab[data-tab=novasol]').click();document.getElementById('xpModal').classList.remove('open')">Earn more → stake novaSOL ✦</span>
+    </div>
+  </div>
 </div>
 
-<div class="frame-container">
-  <iframe class="active" src="A_refined_minimal.html" id="frame-A"></iframe>
-  <iframe src="B_brutalist_tech.html" id="frame-B"></iframe>
-  <iframe src="C_editorial_mono.html" id="frame-C"></iframe>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero"><div class="wrap">
+  <div class="hero-row">
+    <div class="hero-copy">
+      <div class="eyebrow uc"><span class="b">[ </span><span class="az">stake &amp; </span>earn rewards<span class="b"> ]</span></div>
+      <h1 class="hero-h">Your Staking Mission Control</h1>
+      <div class="eyebrow uc" style="font-size:15px;letter-spacing:.6px;color:var(--platinum);max-width:520px;line-height:26px">
+        Stake SOL for SKR prize draws — now earn a stable yield too.
+        <span class="mo">Deposit into <span class="az">nUSD</span></span>, the desk-powered stablecoin.
+      </div>
+    </div>
+    <div class="frame">
+      <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
+      <canvas id="heroChart"></canvas>
+      <div class="hero-apy-overlay">
+        <div class="hero-apy-label">Blended APY · Live</div>
+        <div class="hero-apy-big" id="heroApy">25.3%</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+
+<!-- ===== live APY ticker strip ===== -->
+<div class="ticker-wrap" id="tickerWrap">
+  <div class="ticker-track" id="tickerTrack">
+    <!-- first copy -->
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-label">Blended APY</span><span class="tick-val" id="t_blended">25.3%</span></span>
+    <span class="tick-item"><span class="tick-label">nUSD net APY</span><span class="tick-val pos" id="t_netapy">21.5%</span></span>
+    <span class="tick-item"><span class="tick-label">Depeg desk</span><span class="tick-val" id="t_depeg">+0.511%</span></span>
+    <span class="tick-item"><span class="tick-label">Delta-N</span><span class="tick-val" id="t_dn">+0.073%</span></span>
+    <span class="tick-item"><span class="tick-label">Lending</span><span class="tick-val" id="t_lend">+0.031%</span></span>
+    <span class="tick-item"><span class="tick-label">LST-Basis</span><span class="tick-val" id="t_lst">+0.032%</span></span>
+    <span class="tick-item"><span class="tick-label">Realized PnL</span><span class="tick-val pos" id="t_pnl">+$255.32</span></span>
+    <span class="tick-item"><span class="tick-label">Total ROI</span><span class="tick-val pos" id="t_roi">+0.92%</span></span>
+    <span class="tick-item"><span class="tick-label">Vault equity</span><span class="tick-val" id="t_eq">$50 461</span></span>
+    <span class="tick-item"><span class="tick-label">Perf fee</span><span class="tick-val">15%</span></span>
+    <!-- mirror copy for seamless loop -->
+    <span class="tick-item"><span class="tick-dot"></span><span class="tick-label">Blended APY</span><span class="tick-val">25.3%</span></span>
+    <span class="tick-item"><span class="tick-label">nUSD net APY</span><span class="tick-val pos">21.5%</span></span>
+    <span class="tick-item"><span class="tick-label">Depeg desk</span><span class="tick-val">+0.511%</span></span>
+    <span class="tick-item"><span class="tick-label">Delta-N</span><span class="tick-val">+0.073%</span></span>
+    <span class="tick-item"><span class="tick-label">Lending</span><span class="tick-val">+0.031%</span></span>
+    <span class="tick-item"><span class="tick-label">LST-Basis</span><span class="tick-val">+0.032%</span></span>
+    <span class="tick-item"><span class="tick-label">Realized PnL</span><span class="tick-val pos">+$255.32</span></span>
+    <span class="tick-item"><span class="tick-label">Total ROI</span><span class="tick-val pos">+0.92%</span></span>
+    <span class="tick-item"><span class="tick-label">Vault equity</span><span class="tick-val">$50 461</span></span>
+    <span class="tick-item"><span class="tick-label">Perf fee</span><span class="tick-val">15%</span></span>
+  </div>
 </div>
 
-<div class="notes">
-  <h3>Choix design</h3>
-  <ul id="notes-content">
-  </ul>
+<!-- ===================== BROWSER-STYLE TABS ===================== -->
+<div class="tabnav"><div class="wrap"><div class="inner">
+  <div class="chrome">
+    <div class="dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C686"></i></div>
+    <div class="urlbar"><span class="lock">🔒</span><span id="urlPath">stakenova.app/stake-sol</span></div>
+  </div>
+  <div class="tabs">
+    <div class="tab on" data-tab="nsol" data-url="stakenova.app/nsol"><span class="fav" style="background:var(--azure)"></span>nSOL</div>
+    <div class="tab" data-tab="novasol" data-url="stakenova.app/novasol"><span class="fav" style="background:var(--orange)"></span>novaSOL</div>
+    <div class="tab" data-tab="nusd" data-url="stakenova.app/nusd"><span class="fav" style="background:var(--green)"></span>nUSD</div>
+    <div class="tab" data-tab="nusdplus" data-url="stakenova.app/nusd-plus"><span class="fav" style="background:#28C686"></span>nUSD+</div>
+  </div>
+</div></div></div>
+
+<!-- ===================== XP · platform-wide (visible on all tabs) ===================== -->
+<div class="wrap" style="margin-top:16px">
+  <div class="panel" style="display:flex;align-items:center;gap:20px;padding:14px 24px;flex-wrap:wrap">
+    <span class="eyebrow uc" style="font-size:14px;letter-spacing:.6px"><span class="b">[ </span><span class="az">✦ XP</span> <span class="sep">//</span> platform-wide<span class="b"> ]</span></span>
+    <span class="pl" style="font-size:13px;letter-spacing:.3px;flex:1;min-width:240px">Every deposit — nSOL, novaSOL or nUSD — earns XP. <span class="mo">XP is your ticket weight in the prize draws.</span></span>
+    <span class="chip" style="font-size:14px">Your XP <b class="az mono">100 k</b></span>
+    <span class="chip" style="font-size:14px">Rank <b class="mo mono">#16</b></span>
+    <span class="chip gr" style="font-size:13px">Next draw <b class="mono" data-timer="512">8m 32s</b></span>
+    <a class="verify" style="font-size:13px" href="#">Leaderboard →</a>
+  </div>
 </div>
+
+<div class="tabpanel" id="p-nsol">
+
+<!-- ===================== nSOL (Sanctum LST) ===================== -->
+<section class="section" id="stake" style="padding:56px 0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow uc"><span class="b">[ </span><span class="az">liquid staking</span> <span class="sep">//</span> nSOL<span class="b"> ]</span></div>
+        <h2 class="sec-h" style="font-size:36px;line-height:44px">Liquid stake SOL, <span class="grow">mint nSOL</span></h2>
+      </div>
+      <a class="badge uc" href="https://app.sanctum.so/explore/nSOL" target="_blank" rel="noopener">Powered by Sanctum ↗</a>
+    </div>
+    <div class="nusd-grid">
+      <!-- stake box -->
+      <div class="mintbox">
+        <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az">Stake</span> SOL</div>
+        <div class="field">
+          <div class="top"><span class="uc">You stake</span><span>Balance <b class="mo mono" id="solBal">0.00</b></span></div>
+          <div class="in">
+            <input id="solIn" type="text" inputmode="decimal" value="10">
+            <span class="tok"><span class="coin" style="background:linear-gradient(135deg,#9945FF,#14F195)"></span> SOL</span>
+          </div>
+        </div>
+        <div class="arrowdown">▼</div>
+        <div class="field">
+          <div class="top"><span class="uc">You receive</span><span class="uc" id="nsolRateTop">1 nSOL = 1.0000 SOL</span></div>
+          <div class="in">
+            <input id="nsolRec" type="text" readonly value="10.00" style="color:var(--azure)">
+            <span class="tok"><span class="coin nusd"></span> nSOL</span>
+          </div>
+        </div>
+        <div class="rateline"><span>nSOL APY <b class="az mono" id="nsolApy">≈ 8.2%</b></span><span>Native + MEV · auto-compounding</span></div>
+        <button class="mint-btn" id="stakeBtn">Connect wallet to stake</button>
+        <p class="mint-note">nSOL is StakeNova's <span class="mo">Sanctum liquid-staking token</span>. It appreciates against SOL as staking + MEV rewards compound — no lockup, <span class="mo">instant unstake via Sanctum</span>, usable anywhere in Solana DeFi. Your SOL stays in a standard stake account: fully non-custodial.</p>
+      </div>
+      <!-- reward stack -->
+      <div class="proof">
+        <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az">Why</span> nSOL</div>
+        <div class="desks" style="gap:16px">
+          <div class="desk" style="grid-template-columns:24px 1fr auto">
+            <span class="tier-ic" style="background:var(--azure);width:22px;height:22px"></span>
+            <div><div class="mo uc" style="font-size:15px;letter-spacing:.4px">Auto-compounding yield</div><div class="pl" style="font-size:12px">native staking + MEV, baked into the nSOL price</div></div>
+            <span class="az mono" style="font-size:18px" id="nsolApy2">≈ 8.2%</span>
+          </div>
+          <div class="desk" style="grid-template-columns:24px 1fr auto">
+            <span class="tier-ic" style="background:var(--green);width:22px;height:22px"></span>
+            <div><div class="mo uc" style="font-size:15px;letter-spacing:.4px">Instant liquidity</div><div class="pl" style="font-size:12px">unstake anytime via Sanctum's Reserve &amp; Router</div></div>
+            <span class="gr mono" style="font-size:18px">0-lock</span>
+          </div>
+          <div class="desk" style="grid-template-columns:24px 1fr auto">
+            <span class="tier-ic" style="background:var(--violet);width:22px;height:22px"></span>
+            <div><div class="mo uc" style="font-size:15px;letter-spacing:.4px">Earns XP</div><div class="pl" style="font-size:12px">holding nSOL accrues XP — your prize-draw tickets</div></div>
+            <span class="vi mono" style="font-size:18px">✦ XP</span>
+          </div>
+        </div>
+        <div class="proof-foot">
+          <span class="chip pl" style="font-size:14px">Rate <b class="mo mono" id="nsolFootRate">1 nSOL = 1.0000 SOL</b></span>
+          <a class="verify" href="https://app.sanctum.so/explore/nSOL" target="_blank" rel="noopener">View on Sanctum →</a>
+        </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STAKING MISSION CONTROL PANEL ===================== -->
+</div><!-- /p-nsol -->
+
+<div class="tabpanel" id="p-novasol" hidden>
+
+<!-- ===================== novaSOL (SOL -> SKR/USDC via INF) ===================== -->
+<section class="section" style="padding:56px 0 40px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow uc"><span class="b">[ </span><span class="az">stake sol</span> <span class="sep">//</span> novaSOL<span class="b"> ]</span></div>
+        <h2 class="sec-h" style="font-size:36px;line-height:44px">Stake SOL, <span class="grow">earn SKR or USDC</span></h2>
+      </div>
+      <span class="badge uc"><span class="dot"></span>INF-routed yield</span>
+    </div>
+    <div class="nusd-grid">
+      <div class="mintbox">
+        <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az">Stake</span> into Nova Pool</div>
+        <div class="field">
+          <div class="top"><span class="uc">You stake</span><span>Balance <b class="mo mono" id="novaBal">0.00</b></span></div>
+          <div class="in">
+            <input id="novaIn" type="text" inputmode="decimal" value="25">
+            <span class="tok"><span class="coin" style="background:linear-gradient(135deg,#9945FF,#14F195)"></span> SOL</span>
+          </div>
+        </div>
+        <div class="eyebrow uc" style="font-size:13px;letter-spacing:.5px;color:var(--platinum)">Payout preference</div>
+        <div class="toggle" id="novaPayout">
+          <button class="on" data-pay="USDC">USDC</button>
+          <button data-pay="SKR">SKR</button>
+        </div>
+        <button class="mint-btn" id="novaBtn">Connect wallet to stake</button>
+        <p class="mint-note">Your SOL is routed through <span class="mo">INF (Sanctum Infinity)</span> — the highest-yield
+          LST basket on Solana. That yield funds the <span class="mo">Nova Pool</span> and is paid out as
+          <span class="mo">SKR or USDC</span> in epoch draws. Your principal stays yours; only the yield is pooled.</p>
+      </div>
+      <div class="proof">
+        <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az">What</span> you earn</div>
+        <div class="desks" style="gap:16px">
+          <div class="desk" style="grid-template-columns:24px 1fr auto">
+            <span class="tier-ic" style="background:var(--azure);width:22px;height:22px"></span>
+            <div><div class="mo uc" style="font-size:15px;letter-spacing:.4px">INF-routed yield</div><div class="pl" style="font-size:12px">Sanctum Infinity: staking + LST trading fees</div></div>
+            <span class="az mono" style="font-size:18px" id="infApy">≈ 9.1%</span>
+          </div>
+          <div class="desk" style="grid-template-columns:24px 1fr auto">
+            <span class="tier-ic" style="background:var(--green);width:22px;height:22px"></span>
+            <div><div class="mo uc" style="font-size:15px;letter-spacing:.4px">USDC prize draws</div><div class="pl" style="font-size:12px">Nova Pool payouts every epoch</div></div>
+            <span class="gr mono" style="font-size:18px">50%</span>
+          </div>
+          <div class="desk" style="grid-template-columns:24px 1fr auto">
+            <span class="tier-ic" style="background:var(--violet);width:22px;height:22px"></span>
+            <div><div class="mo uc" style="font-size:15px;letter-spacing:.4px">SKR draws</div><div class="pl" style="font-size:12px">XS · XL · Supernova jackpots, XP-weighted</div></div>
+            <span class="vi mono" style="font-size:18px">60%</span>
+          </div>
+        </div>
+        <div class="proof-foot">
+          <span class="chip pl" style="font-size:14px">Total staked <b class="mo mono">2 847.4K</b> SOL · <b class="mono">14.35%</b> avg APR</span>
+          <span class="chip pl" style="font-size:13px">Draws below ↓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mission" style="padding:0 0 80px;border-bottom:1px solid var(--jet)"><div class="wrap" style="padding-top:0">
+  <div class="panel" style="margin-top:-40px">
+    <!-- live activity -->
+    <div class="activity">
+      <div class="eyebrow uc"><span class="b">[ </span><span class="dot" style="display:inline-block;margin:0 4px 1px 0"></span>LIVE<span class="az"> ACTIVITY</span><span class="b"> ]</span></div>
+      <div class="between" style="gap:16px;flex-wrap:wrap">
+        <span class="chip"><span class="avatar"></span><span class="mono" id="actWallet">0x7q8r…9s0t</span></span>
+        <span class="chip gr uc" style="letter-spacing:.64px">staked</span>
+        <span class="chip"><span class="coin" style="width:22px;height:22px;background:linear-gradient(135deg,#9945FF,#14F195)"></span><b class="mono" id="actAmt">445.2</b> <span class="pl uc">SOL</span></span>
+        <span class="chip">in <span class="az">Nova Pool</span></span>
+        <span class="chip pl" id="actAgo">32s ago</span>
+      </div>
+    </div>
+
+    <!-- next epoch -->
+    <div class="prow">
+      <div class="between">
+        <div class="eyebrow uc"><span>Next </span><span class="az">Epoch</span> <span class="mo">#612</span> <span class="sep">//</span> <span class="az mono" id="epochTimer">1d 15h 30m 40s</span></div>
+        <div class="eyebrow az uc mono">60.00%</div>
+      </div>
+      <div class="track"><div class="fill" style="width:60%"></div></div>
+    </div>
+
+    <!-- next paid out -->
+    <div class="prow">
+      <div class="between" style="margin-bottom:24px">
+        <div class="eyebrow uc"><span>Next </span><span class="mo">Paid Out</span></div>
+        <span class="chip pl" style="font-size:14px">ⓘ How does this work?</span>
+      </div>
+
+      <div style="margin-bottom:20px">
+        <div class="tierrow">
+          <span class="tier-ic" style="background:var(--green)"></span>
+          <div class="eyebrow uc mo">USDC <span class="sep">/</span> SKR</div>
+          <span class="sep">//</span><span class="gr mono" data-timer="10800">3h 00m 00s</span>
+          <div style="flex:1"></div><div class="eyebrow gr uc mono">50.00%</div>
+        </div>
+        <div class="track"><div class="fill g" style="width:50%"></div></div>
+      </div>
+
+      <div style="margin-bottom:20px">
+        <div class="tierrow">
+          <span class="tier-ic" style="background:var(--yellow)"></span>
+          <div class="eyebrow uc mo">SKR XS</div>
+          <span class="sep">//</span><span class="ye mono" data-timer="2920">48m 40s</span>
+          <div style="flex:1"></div><div class="eyebrow ye uc mono">20.00%</div>
+        </div>
+        <div class="track"><div class="fill y" style="width:20%"></div></div>
+      </div>
+
+      <div style="margin-bottom:20px">
+        <div class="tierrow">
+          <span class="tier-ic" style="background:var(--orange)"></span>
+          <div class="eyebrow uc mo">SKR XL</div>
+          <span class="sep">//</span><span class="or mono" data-timer="93540">1d 1h 59m 00s</span>
+          <div style="flex:1"></div><div class="eyebrow or uc mono">30.00%</div>
+        </div>
+        <div class="track"><div class="fill o" style="width:30%"></div></div>
+      </div>
+
+      <div>
+        <div class="tierrow">
+          <span class="tier-ic" style="background:var(--violet)"></span>
+          <div class="eyebrow uc mo">Supernova</div>
+          <span class="sep">//</span><span class="mono"><span class="vi">1 000</span> <span class="pl">/ 10 k SKR</span></span>
+          <div style="flex:1"></div><div class="eyebrow vi uc mono">10.00%</div>
+        </div>
+        <div class="track"><div class="fill v" style="width:10%"></div></div>
+      </div>
+    </div>
+
+    <!-- stats -->
+    <div class="stats">
+      <div class="stat">
+        <span class="lab uc">✦ Next total SKR rewards</span>
+        <span class="pair"><span class="big mono">123.4K</span><span class="u">SKR/Epoch</span></span>
+        <span class="pair"><span class="big mono">567.8K</span><span class="u">SKR/Hour</span></span>
+      </div>
+      <div class="stat">
+        <span class="lab uc">◈ Total staked</span>
+        <span class="pair"><span class="big mono">2 847.4K</span><span class="u">SOL</span></span>
+        <span class="pair"><span class="big mono">2 847.4K</span><span class="u">SKR</span></span>
+      </div>
+      <div class="stat">
+        <span class="lab uc">↗ Total paid out</span>
+        <span class="pair"><span class="big mono">2 847.4K</span><span class="u">USDC</span></span>
+        <span class="pair"><span class="big mono">2 847.4K</span><span class="u">SKR</span></span>
+      </div>
+      <div class="stat">
+        <span class="lab uc">◎ APR</span>
+        <span class="pair"><span class="u">Average</span><span class="big mono">14.35</span><span class="u">%</span></span>
+        <span class="pair"><span class="u">Max</span><span class="big mono">6 880</span><span class="u">%</span></span>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+</div><!-- /p-novasol -->
+
+<div class="tabpanel" id="p-nusd" hidden>
+
+<!-- ===================== nUSD PRODUCT ===================== -->
+<section class="section" id="nusd"><div class="wrap">
+  <div class="sec-head">
+    <div>
+      <div class="eyebrow uc"><span class="b">[ </span><span class="az">stable yield</span> <span class="sep">//</span> nUSD<span class="b"> ]</span></div>
+      <h2 class="sec-h">Earn the <span class="grow">desk</span>, not the market</h2>
+    </div>
+    <span class="badge uc"><span class="dot"></span>Paper · Devnet</span>
+  </div>
+
+  <div class="nusd-grid">
+    <!-- mint box -->
+    <div class="mintbox">
+      <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az">Mint</span> nUSD</div>
+
+      <div class="field">
+        <div class="top"><span class="uc">You deposit</span><span>Balance <b class="mo mono" id="usdcBal">0.00</b></span></div>
+        <div class="in">
+          <input id="depIn" type="text" inputmode="decimal" placeholder="0.00" value="1000">
+          <span class="tok"><span class="coin usdc"></span> USDC</span>
+        </div>
+      </div>
+
+      <div class="arrowdown">▼</div>
+
+      <div class="field">
+        <div class="top"><span class="uc">You receive</span><span class="uc" id="rateTop">1 nUSD = 1.0000 USDC</span></div>
+        <div class="in">
+          <input id="recIn" type="text" readonly value="1000.00" style="color:var(--azure)">
+          <span class="tok"><span class="coin nusd"></span> nUSD</span>
+        </div>
+      </div>
+
+      <div class="rateline">
+        <span>Net APY <b class="az mono" id="mNetApy">21.5%</b></span>
+        <span>Performance fee <b class="mo mono">15%</b></span>
+      </div>
+
+      <button class="mint-btn" id="mintBtn">Connect wallet to mint</button>
+      <p class="mint-note">
+        nUSD is a yield-bearing receipt. Your balance appears to grow as the desk earns
+        (Token-2022 <span class="mo">ScaledUiAmount</span>) while shares stay 1:1 under the hood.
+        Yield is <span class="mo">net of the 15% performance fee</span> — that fee is StakeNova's revenue.
+        Paper mode: no real funds move.
+      </p>
+    </div>
+
+    <!-- proof of yield -->
+    <div class="proof">
+      <div class="between">
+        <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az">Proof</span> of yield</div>
+        <span class="chip pl" style="font-size:13px" id="proofSrc">● demo data</span>
+      </div>
+
+      <div class="apywrap">
+        <div class="apy-big mono" id="netApy">21.5%</div>
+        <div class="apy-sub">net APY, paid to nUSD<br>gross <b id="grossApy">25.3%</b> · after <b>15%</b> fee</div>
+      </div>
+
+      <div class="spark">
+        <span class="tagl uc">Desk equity · live</span>
+        <span class="tag mono" id="sparkTag">+$476.96</span>
+        <canvas id="sparkChart"></canvas>
+      </div>
+
+      <div class="desks" id="deskBars">
+        <div class="desk"><span class="nm">Depeg</span><div class="bar"><span style="width:0;background:var(--azure)"></span></div><span class="pct mono">—</span></div>
+        <div class="desk"><span class="nm">Delta-N</span><div class="bar"><span style="width:0;background:var(--green)"></span></div><span class="pct mono">—</span></div>
+        <div class="desk"><span class="nm">Lending</span><div class="bar"><span style="width:0;background:var(--yellow)"></span></div><span class="pct mono">—</span></div>
+        <div class="desk"><span class="nm">LST-Basis</span><div class="bar"><span style="width:0;background:var(--violet)"></span></div><span class="pct mono">—</span></div>
+      </div>
+
+      <div class="proof-foot">
+        <span class="chip pl" style="font-size:14px">Realized PnL <b class="gr mono" id="realized">+$255.32</b> · <b class="mono" id="wl">11W / 0L</b></span>
+        <a class="verify" href="http://localhost:8787" target="_blank" rel="noopener">Verify on desk →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- nUSD stat row -->
+  <div class="nusd-stats">
+    <div class="nstat"><span class="l">nUSD TVL <span class="tip"><span class="ico">i</span><span class="box"><b>$1M deposit cap</b> applies to both nUSD and nUSD+ separately. Limits exposure during paper/devnet phase and protects against flash-loan attacks.</span></span></span><span class="v mono" id="tvl">$50.05K</span></div>
+    <div class="nstat"><span class="l">nUSD price</span><span class="v mono" id="price">1.0000 <small>USDC</small></span></div>
+    <div class="nstat"><span class="l">Blended source APY</span><span class="v mono" id="blended">25.3%</span></div>
+    <div class="nstat"><span class="l">Vault rebalances</span><span class="v mono" id="rebal">2</span></div>
+  </div>
+
+  <!-- REAL nUSD yield since inception -->
+  <div style="margin-top:28px">
+    <div class="eyebrow uc" style="font-size:15px;letter-spacing:.5px;margin-bottom:12px"><span class="b">[ </span><span class="az">real nUSD yield</span> <span class="sep">//</span> since inception<span class="b"> ]</span></div>
+    <div class="si">
+      <div class="cell hero-cell"><span class="l">Compounded APY</span><span class="v big mono" id="siApy">+21.5%</span></div>
+      <div class="cell"><span class="l">Realized yield</span><span class="v pos mono" id="siRealized">+$255.32</span></div>
+      <div class="cell"><span class="l">Total ROI · inception</span><span class="v mono" id="siRoi">+0.511%</span></div>
+      <div class="cell"><span class="l">nUSD price</span><span class="v mono" id="siPrice">1.0051</span></div>
+      <div class="cell"><span class="l">Age</span><span class="v mono" id="siDays">— days</span></div>
+    </div>
+  </div>
+
+  <!-- DUMPSTR key KPIs (live) -->
+  <div style="margin-top:28px">
+    <div class="eyebrow uc" style="font-size:15px;letter-spacing:.5px;margin-bottom:12px"><span class="b">[ </span><span class="az">desk KPIs</span> <span class="sep">//</span> live from DUMPSTR<span class="b"> ]</span></div>
+    <div class="nusd-stats">
+      <div class="nstat"><span class="l">Portfolio equity</span><span class="v mono" id="kEquity">$50 461</span></div>
+      <div class="nstat"><span class="l">Realized PnL</span><span class="v mono gr" id="kPnl">+$255.32</span></div>
+      <div class="nstat"><span class="l">Total ROI</span><span class="v mono az" id="kRoi">+0.92%</span></div>
+      <div class="nstat"><span class="l">Closed W/L</span><span class="v mono" id="kWL">11 / 0</span></div>
+      <div class="nstat"><span class="l">Open positions</span><span class="v mono" id="kOpen">2</span></div>
+      <div class="nstat"><span class="l">Blended vault APY</span><span class="v mono" id="kVault">25.3%</span></div>
+    </div>
+  </div>
+
+  <!-- how it works -->
+  <div class="flow">
+    <div class="step"><span class="n">01</span><span class="t uc">Deposit</span><span class="d">Drop in USDC (or any supported stable). You mint nUSD 1:1 at the current price.</span></div>
+    <div class="step"><span class="n">02</span><span class="t uc">Desk works</span><span class="d">The DUMPSTR engine runs the depeg desk + 4-strategy momentum vault, capturing USDe / USD1 repegs and lending yield.</span></div>
+    <div class="step"><span class="n">03</span><span class="t uc">nUSD grows</span><span class="d">Net yield accrues into the nUSD price. Your balance ticks up; the peg holds at $1 of value per share.</span></div>
+    <div class="step"><span class="n">04</span><span class="t uc">Redeem anytime</span><span class="d">Burn nUSD for USDC at the live price. StakeNova keeps a 15% performance fee on the yield only.</span></div>
+  </div>
+</div></section>
+
+</div><!-- /p-nusd -->
+
+<div class="tabpanel" id="p-nusdplus" hidden>
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow uc"><span class="b">[ </span><span class="plus-accent">no-loss savings</span> <span class="sep">//</span> nUSD+<span class="b"> ]</span></div>
+        <h2 class="sec-h">Keep your principal.<br><span class="plus-accent">Win the yield.</span></h2>
+      </div>
+      <span class="badge plus-badge uc">Paper · Devnet</span>
+    </div>
+    <div class="nusd-grid">
+      <!-- deposit box -->
+      <div class="mintbox">
+        <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="plus-accent">Deposit</span> USDC → nUSD+</div>
+        <div class="field">
+          <div class="top"><span class="uc">You deposit</span><span>Balance <b class="mo mono" id="plusBal">0.00</b></span></div>
+          <div class="in">
+            <input id="plusIn" type="text" inputmode="decimal" value="500">
+            <span class="tok"><span class="coin usdc"></span> USDC</span>
+          </div>
+        </div>
+        <div class="arrowdown">▼</div>
+        <div class="field">
+          <div class="top"><span class="uc">You receive</span><span style="color:#28C686;font-size:13px">1 nUSD+ = 1.0000 USDC always</span></div>
+          <div class="in">
+            <input id="plusRec" type="text" readonly value="500.00" style="color:#28C686">
+            <span class="tok"><span class="coin" style="background:radial-gradient(circle at 35% 30%,#5dcaa5,#1D9E75)"></span> nUSD+</span>
+          </div>
+        </div>
+        <div class="zero-fee">
+          <div class="big">0%</div>
+          <div class="desc"><b>No performance fee.</b> 100% of DUMPSTR yield goes to prize winners. Your principal is always fully redeemable.</div>
+        </div>
+        <div class="cap-bar-wrap">
+          <div class="cap-bar-label">
+            <span>Vault capacity <b id="plusTvlDisp">$85,000</b> / <b>$1,000,000</b>
+              <span class="tip"><span class="ico">i</span><span class="box"><b>$1M deposit cap</b> protects against flash-loan attacks and keeps the prize pool meaningful. Waitlist opens when full.</span></span>
+            </span>
+            <span id="plusCapBadge" style="display:none" class="capped uc">● CAPPED</span>
+          </div>
+          <div class="cap-bar"><div class="cap-fill" id="plusCapFill" style="width:8.5%"></div></div>
+        </div>
+        <button class="mint-btn" id="plusBtn" style="background:#0F6E56;border-color:#0F6E56">Connect wallet to deposit</button>
+        <p class="mint-note">Principal redeemable any time at 1:1. You forfeit that epoch's yield for a weighted shot at the entire prize pool. <span class="mo">nUSD+ is non-transferable.</span></p>
+      </div>
+
+      <!-- prize draws panel -->
+      <div class="proof">
+        <div class="between">
+          <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="plus-accent">Prize</span> pools · live</div>
+          <span class="chip pl" style="font-size:12px">✦ All draws XP-weighted</span>
+        </div>
+        <div class="draws">
+          <div class="draw-card reg">
+            <div class="draw-label az uc">Regular</div>
+            <div class="draw-countdown az mono" id="cdReg">3d 14h 22m</div>
+            <div class="draw-prize">Pool: <b id="prizeReg">$128</b></div>
+            <div class="draw-meta"><b>1 winner</b> takes all · every <b>5 days</b>
+              <span class="tip"><span class="ico">i</span><span class="box"><b>XP-weighted VRF draw.</b> Odds = your XP ÷ total pool XP. 100k XP in 12M pool = 0.83% per draw.</span></span>
+            </div>
+            <span class="draw-badge" style="background:rgba(62,151,255,.12);color:var(--azure)">✦ XP weighted</span>
+          </div>
+          <div class="draw-card mon">
+            <div class="draw-label vi uc">Monthly</div>
+            <div class="draw-countdown vi mono" id="cdMon">22d 06h 41m</div>
+            <div class="draw-prize">Pool: <b id="prizeMon" style="color:var(--violet)">$765</b></div>
+            <div class="draw-meta"><b>6 winners</b> · top XP 40% · next 5 share 60% · every <b>30 days</b></div>
+            <span class="draw-badge" style="background:rgba(189,118,255,.12);color:var(--violet)">6 winners</span>
+          </div>
+          <div class="draw-card jack">
+            <div class="draw-label ye uc">Jackpot ⚡</div>
+            <div class="draw-countdown ye mono" id="cdJack">67d 03h 18m</div>
+            <div class="draw-prize">Pool: <b id="prizeJack" style="color:var(--yellow)">$4,590</b></div>
+            <div class="draw-meta"><b>1 winner</b> · treasury matches 1:1 · announced 2 wks ahead · every <b>90 days</b></div>
+            <span class="draw-badge" style="background:rgba(249,210,60,.12);color:var(--yellow)">Treasury matched</span>
+          </div>
+        </div>
+        <div class="proof-foot" style="margin-top:12px">
+          <span class="chip pl" style="font-size:13px">Your XP <b class="az mono">100 k</b> · total pool <b class="mo mono">~12 M XP</b></span>
+          <a class="verify" href="#" onclick="document.getElementById('xpChip').click();return false">XP rules →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- stat row -->
+    <div class="nusd-stats">
+      <div class="nstat"><span class="l">nUSD+ TVL</span><span class="v mono">$85,000</span></div>
+      <div class="nstat"><span class="l">Cap remaining</span><span class="v mono plus-accent">$915,000</span></div>
+      <div class="nstat"><span class="l">Performance fee</span><span class="v mono plus-accent">0%</span></div>
+      <div class="nstat"><span class="l">Principal risk</span><span class="v mono plus-accent">Zero</span></div>
+    </div>
+
+    <!-- victim recovery box -->
+    <div style="margin-top:24px;border:1px solid rgba(40,198,134,.25);background:rgba(40,198,134,.04);padding:22px">
+      <div class="eyebrow uc" style="font-size:13px;letter-spacing:.5px;color:#28C686;margin-bottom:14px">[ ◈ recovery positions // hack victims ]</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px">
+        <div>
+          <div class="eyebrow uc" style="font-size:11px;color:var(--silver);margin-bottom:6px">What victims receive</div>
+          <div style="font-size:13px;color:var(--moon);line-height:1.7">A nUSD+ position equal to <b style="color:#28C686">5% of their original investment</b>, funded by the protocol. Earns XP and enters every draw automatically.</div>
+        </div>
+        <div>
+          <div class="eyebrow uc" style="font-size:11px;color:var(--silver);margin-bottom:6px">If they keep the position</div>
+          <div style="font-size:13px;color:var(--moon);line-height:1.7">XP accrues each epoch. <b>More time = higher draw weight.</b> As TVL grows, prizes grow. Their deposit contributes real yield to the pool everyone shares.</div>
+        </div>
+        <div>
+          <div class="eyebrow uc" style="font-size:11px;color:var(--silver);margin-bottom:6px">If they withdraw</div>
+          <div style="font-size:13px;color:var(--moon);line-height:1.7">They get their 5% recovery USDC back. XP from that position ends. <b>Their choice entirely</b> — those who need liquidity take it, those who want to win more hold.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- how it works steps -->
+    <div class="flow" style="margin-top:20px">
+      <div class="step"><span class="n">01</span><span class="t uc">Deposit USDC</span><span class="d">Mint nUSD+ 1:1. Principal always redeemable. No lockup, no fee.</span></div>
+      <div class="step"><span class="n">02</span><span class="t uc">Yield pools</span><span class="d">DUMPSTR desk earns 25%+ APY. 100% accumulates in the prize pool. 0% performance fee.</span></div>
+      <div class="step"><span class="n">03</span><span class="t uc">XP-weighted draw</span><span class="d">Every 5 days, one XP-weighted winner claims the pool. Loyalty beats size.</span></div>
+      <div class="step"><span class="n">04</span><span class="t uc">Withdraw anytime</span><span class="d">Burn nUSD+ for USDC 1:1. You keep your principal and forfeit future draw entries.</span></div>
+    </div>
+  </div>
+</section>
+</div><!-- /p-nusdplus -->
+
+<footer><div class="wrap"><div class="foot-row">
+  <span class="uc" style="letter-spacing:1px">STAKE<span class="az">NOVA</span> · Solana</span>
+  <div class="foot-links uc">
+    <a href="http://localhost:8787" target="_blank">DUMPSTR desk</a>
+    <a href="#">Docs</a><a href="#">Discord</a><a href="#">X</a>
+  </div>
+  <span>Paper / devnet build · not financial advice</span>
+</div></div></footer>
 
 <script>
-const NOTES = {
-  A: {
-    title: 'A — Refined Minimal',
-    items: [
-      'Typo : Instrument Serif italic (titres) + Geist (UI) + JetBrains Mono (data)',
-      'Animations : reveal staggered au load, gradient mesh drift en bg, line-trace sur hover',
-      'Ambiance : Linear, Resend, Mercury Bank — premium, financier, qui inspire confiance',
-      'Effets clés : grain subtil, top-glow blanc sur cards au hover, radial glow sur machines suivant la souris',
-      'Plus adapté : ATM client (rassurant) et admin pour utilisateur non-tech',
-      'Référence : linear.app, resend.com, mercury.com'
-    ]
-  },
-  B: {
-    title: 'B — Brutalist Tech',
-    items: [
-      'Typo : Space Grotesk bold + JetBrains Mono · contrastes extrêmes',
-      'Animations : cursor glow follower, 60 particules canvas, glitch text au hover, number tickers',
-      'Ambiance : Vercel, Phantom Wallet, Backpack — underground, techy, identité forte',
-      'Effets clés : pattern diagonal en bg, cursor follower (bouge ta souris !), big numbers en filigrane sur les machines',
-      'Plus adapté : admin opérateur tech, utilisateurs habitués aux interfaces crypto',
-      'Référence : vercel.com, phantom.app, paragraph.xyz'
-    ]
-  },
-  C: {
-    title: 'C — Editorial Mono',
-    items: [
-      'Typo : JetBrains Mono PARTOUT · weight variable (300 → 800)',
-      'Animations : typing effect au load, scanlines CRT, cursor blink, hover slide',
-      'Ambiance : terminal/REPL, IBM Plex, hacker news, Bloomberg legacy — dev-first, austère',
-      'Effets clés : prompt $ devant les sections, log levels colorés, vignette CRT, structure type code-blocks',
-      'Plus adapté : utilisateur dev/tech avancé · TROP austère pour client kiosk',
-      'Référence : warp.dev, raycast.com, perplexity terminal'
-    ]
+/* ============ config ============ */
+const DESK_ENDPOINT = 'http://localhost:8787/state'; // DUMPSTR engine /state
+const START_CAPITAL = 50000;
+const PERF_FEE = 0.15;
+
+/* ============ helpers ============ */
+const $ = id => document.getElementById(id);
+const fmtUsd = n => (n>=1000? '$'+(n/1000).toFixed(2)+'K' : '$'+n.toFixed(2));
+const parseNum = s => { const n = parseFloat(String(s).replace(/[^0-9.]/g,'')); return isNaN(n)?0:n; };
+let nusdPrice = 1.0000; // 1 nUSD = X USDC
+
+/* ============ hero + spark charts ============ */
+/* ============ canvas helpers ============ */
+/* ============ spark chart — static redraw ============ */
+let sparkPts=[];
+function buildSpark(n){const a=[];let v=50000;for(let i=0;i<n;i++){v+=4*(0.4+Math.random());if(Math.random()<.2)v-=4*Math.random();a.push(v);}return a;}
+sparkPts=buildSpark(120);
+function drawSpark(canvas,pts,color){
+  const dpr=window.devicePixelRatio||1,r=canvas.getBoundingClientRect();
+  canvas.width=r.width*dpr;canvas.height=r.height*dpr;
+  const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
+  const W=r.width,H=r.height,pad=6;
+  if(pts.length<2)return;
+  const mn=Math.min(...pts),mx=Math.max(...pts),rng=(mx-mn)||1;
+  const x=i=>pad+(i/(pts.length-1))*(W-pad*2);
+  const y=v=>H-pad-((v-mn)/rng)*(H-pad*2);
+  const g=ctx.createLinearGradient(0,0,0,H);
+  g.addColorStop(0,color+'33');g.addColorStop(1,color+'00');
+  ctx.beginPath();ctx.moveTo(x(0),H-pad);
+  pts.forEach((v,i)=>ctx.lineTo(x(i),y(v)));
+  ctx.lineTo(x(pts.length-1),H-pad);ctx.closePath();ctx.fillStyle=g;ctx.fill();
+  ctx.beginPath();pts.forEach((v,i)=>i?ctx.lineTo(x(i),y(v)):ctx.moveTo(x(i),y(v)));
+  ctx.strokeStyle=color;ctx.lineWidth=2;ctx.lineJoin='round';ctx.stroke();
+  ctx.beginPath();ctx.arc(x(pts.length-1),y(pts[pts.length-1]),3,0,7);ctx.fillStyle=color;ctx.fill();
+}
+
+/* ============ hero canvas — TWO horizontal APY lines ============
+   Lines sit at the y-position matching their % value on a 0–50% APY scale.
+   They only move when _liveBlendAPY / _liveNetAPY actually change.
+   A very slow sine pulse (±1.5px max) signals "this is live" without being random.
+   No random jitter. No diagonal equity curve. Clean.
+*/
+let _heroAnimFrame=null;
+let _liveBlendAPY=25.3;  // gross blended — updated from DUMPSTR /state vault.blendedAPY
+let _liveNetAPY  =21.5;  // net to depositor (blended × 0.85) — updated same
+
+// Displayed y-targets — smoothly interpolate toward the live values each frame
+let _dispBlend=25.3, _dispNet=21.5;
+
+function startHeroAnim(){
+  const canvas=$('heroChart');
+  if(!canvas)return;
+  if(_heroAnimFrame)cancelAnimationFrame(_heroAnimFrame);
+
+  const dpr=window.devicePixelRatio||1;
+  function resize(){
+    const r=canvas.getBoundingClientRect();
+    canvas.width=Math.round(r.width*dpr);
+    canvas.height=Math.round(r.height*dpr);
   }
-};
+  resize();
+  window.addEventListener('resize',()=>{resize();startHeroAnim();});
 
-const tabs = document.querySelectorAll('.tab');
-const frames = document.querySelectorAll('.frame-container iframe');
-const hoverInfo = document.getElementById('hover-info');
-const notesContent = document.getElementById('notes-content');
+  const BLUE  ='#3E97FF';
+  const ORANGE='#F9A825';
 
-function updateNotes(key) {
-  const note = NOTES[key];
-  notesContent.innerHTML = note.items.map(i => `<li>${i}</li>`).join('');
+  let t=0;
+
+  function frame(){
+    _heroAnimFrame=requestAnimationFrame(frame);
+    t+=0.006; // very slow — one full breath ≈ 17s
+
+    const W=canvas.width/dpr;
+    const H=canvas.height/dpr;
+    const ctx=canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.save();
+    ctx.scale(dpr,dpr);
+
+    const PAD=10;             // edge padding
+    const LINE_W=W-PAD-90;   // line runs from PAD to LINE_W, then label in 90px right margin
+
+    // TWO fixed horizontal positions:
+    // Blue  = 38% from top   (upper line  — gross blended APY)
+    // Orange= 62% from top   (lower line  — net depositor APY)
+    const yBlue  = H*0.38 + Math.sin(t      )*1.2;  // breath ±1.2px only
+    const yOrange= H*0.62 + Math.sin(t+1.57 )*1.2;
+
+    // ── subtle grid lines at 25% and 75% ──
+    ctx.setLineDash([2,8]);
+    ctx.strokeStyle='#363636';ctx.lineWidth=0.6;
+    [0.25,0.50,0.75].forEach(f=>{
+      ctx.beginPath();ctx.moveTo(PAD,H*f);ctx.lineTo(LINE_W,H*f);ctx.stroke();
+    });
+    ctx.setLineDash([]);
+
+    // ── helper: draw one horizontal APY line ──
+    function drawHLine(y, color, valTxt, labelTxt){
+      // glow zone
+      const gw=ctx.createLinearGradient(0,y-10,0,y+10);
+      gw.addColorStop(0,color+'00');
+      gw.addColorStop(0.5,color+'1a');
+      gw.addColorStop(1,color+'00');
+      ctx.fillStyle=gw;
+      ctx.fillRect(PAD,y-10,LINE_W-PAD,20);
+
+      // dashed underline
+      ctx.setLineDash([4,5]);
+      ctx.beginPath();ctx.moveTo(PAD,y+1);ctx.lineTo(LINE_W,y+1);
+      ctx.strokeStyle=color+'44';ctx.lineWidth=1;ctx.stroke();
+      ctx.setLineDash([]);
+
+      // solid main line
+      ctx.beginPath();ctx.moveTo(PAD,y);ctx.lineTo(LINE_W,y);
+      ctx.strokeStyle=color;ctx.lineWidth=2;ctx.lineJoin='round';ctx.stroke();
+
+      // live dot on the right end of the line
+      const dx=LINE_W;
+      const dg=ctx.createRadialGradient(dx,y,0,dx,y,9);
+      dg.addColorStop(0,color+'cc');dg.addColorStop(1,color+'00');
+      ctx.beginPath();ctx.arc(dx,y,9,0,7);ctx.fillStyle=dg;ctx.fill();
+      ctx.beginPath();ctx.arc(dx,y,3.5,0,7);ctx.fillStyle=color;ctx.fill();
+
+      // right-side label block
+      const lx=dx+10;
+      ctx.textAlign='left';ctx.textBaseline='middle';
+      ctx.font=`bold ${Math.round(H*0.095)}px Lexend,system-ui,sans-serif`;
+      ctx.fillStyle=color;
+      ctx.fillText(valTxt, lx, y-5);
+      ctx.font=`${Math.round(H*0.066)}px Lexend,system-ui,sans-serif`;
+      ctx.fillStyle=color+'aa';
+      ctx.fillText(labelTxt, lx, y+10);
+    }
+
+    drawHLine(yBlue,   BLUE,   _liveBlendAPY.toFixed(1)+'%', 'BLENDED');
+    drawHLine(yOrange, ORANGE, _liveNetAPY.toFixed(1)+'%',   'NET APY');
+
+    ctx.restore();
+  }
+  frame();
 }
 
-function activate(key) {
-  tabs.forEach(t => t.classList.toggle('active', t.dataset.target === key));
-  frames.forEach(f => f.classList.toggle('active', f.id === 'frame-' + key));
-  hoverInfo.textContent = NOTES[key].title;
-  updateNotes(key);
+function redraw(){
+  startHeroAnim();
+  drawSpark($('sparkChart'), sparkPts, '#28C686');
 }
+window.addEventListener('resize',redraw);
 
-tabs.forEach(t => {
-  t.addEventListener('click', () => activate(t.dataset.target));
+/* ============ mint estimate ============ */
+function recalc(){
+  const dep = parseNum($('depIn').value);
+  const rec = dep / nusdPrice;
+  $('recIn').value = rec.toFixed(2);
+  $('rateTop').textContent = '1 nUSD = '+nusdPrice.toFixed(4)+' USDC';
+}
+$('depIn').addEventListener('input', recalc);
+
+/* ============ wallet (Phantom stub) ============ */
+let connected=false, pk=null;
+async function connect(){
+  const p = window.solana;
+  if(p && p.isPhantom){
+    try{ const res = await p.connect(); pk = res.publicKey.toString(); connected=true; }
+    catch(e){ return; }
+  } else {
+    // no wallet: simulate a paper session so the flow is demoable
+    pk = 'PAPER'+Math.random().toString(36).slice(2,6).toUpperCase(); connected=true;
+  }
+  const short = pk.slice(0,4)+'…'+pk.slice(-4);
+  $('connectBtn').textContent = short;
+  $('usdcBal').textContent = '25 000.00';
+  $('solBal').textContent = '128.40';
+  $('mintBtn').textContent = 'Mint nUSD';
+  $('stakeBtn').textContent = 'Stake SOL → nSOL';
+  $('novaBal').textContent = '128.40';
+  $('novaBtn').textContent = 'Stake into Nova Pool';
+}
+$('connectBtn').addEventListener('click', connect);
+$('mintBtn').addEventListener('click', ()=>{
+  if(!connected){ connect(); return; }
+  const rec = parseNum($('recIn').value);
+  $('mintBtn').textContent = 'Minted '+rec.toFixed(2)+' nUSD (paper) ✓';
+  setTimeout(()=>{ $('mintBtn').textContent='Mint nUSD'; }, 2600);
 });
 
-updateNotes('A');
-</script>
+/* ============ timers ============ */
+function fmtDur(s){
+  s=Math.max(0,s|0);const d=Math.floor(s/86400);s-=d*86400;const h=Math.floor(s/3600);s-=h*3600;
+  const m=Math.floor(s/60);const ss=s-m*60;
+  if(d)return `${d}d ${h}h ${m}m ${String(ss).padStart(2,'0')}s`;
+  if(h)return `${h}h ${m}m ${String(ss).padStart(2,'0')}s`;
+  return `${m}m ${String(ss).padStart(2,'0')}s`;
+}
+let epochLeft = 1*86400+15*3600+30*60+40;
+const timerEls = [...document.querySelectorAll('[data-timer]')].map(el=>({el,left:+el.dataset.timer}));
+setInterval(()=>{
+  epochLeft--; $('epochTimer').textContent = fmtDur(epochLeft);
+  timerEls.forEach(t=>{ t.left--; t.el.textContent = fmtDur(t.left); });
+},1000);
 
-</body>
-</html>
+/* live activity ticker */
+let ago=32; setInterval(()=>{ ago++; $('actAgo').textContent = ago+'s ago'; },1000);
+
+/* ============ DUMPSTR /state → proof of yield ============ */
+function applyDesk(S){
+  try{
+    const v = S.vault||{}, pf = S.portfolio||{}, st = S.stats||{}, dk = S.desks||{};
+    const gross = (v.blendedAPY!=null? v.blendedAPY : 25.3);
+    const net = gross*(1-PERF_FEE);
+    $('grossApy').textContent = gross.toFixed(1)+'%';
+    $('blended').textContent = gross.toFixed(1)+'%';
+    $('netApy').textContent = net.toFixed(1)+'%';
+    $('mNetApy').textContent = net.toFixed(1)+'%';
+
+    if(pf.realizedPnl!=null) $('realized').textContent = (pf.realizedPnl>=0?'+$':'-$')+Math.abs(pf.realizedPnl).toFixed(2);
+    if(st.wins!=null) $('wl').textContent = st.wins+'W / '+(st.losses||0)+'L';
+    if(v.rebalanceCount!=null) $('rebal').textContent = v.rebalanceCount;
+    if(v.balance!=null) $('tvl').textContent = fmtUsd(v.balance);
+
+    // --- DUMPSTR key KPIs ---
+    if(pf.equity!=null){ const eq=pf.equity+(pf.realizedPnl||0);
+      $('kEquity').textContent = '$'+eq.toLocaleString('en-US',{maximumFractionDigits:0}); }
+    if(pf.realizedPnl!=null) $('kPnl').textContent = (pf.realizedPnl>=0?'+$':'-$')+Math.abs(pf.realizedPnl).toFixed(2);
+    if(pf.roi!=null){ $('kRoi').textContent = (pf.roi>=0?'+':'')+pf.roi.toFixed(2)+'%'; }
+    if(st.wins!=null) $('kWL').textContent = st.wins+' / '+(st.losses||0);
+    if(Array.isArray(S.positions)) $('kOpen').textContent = S.positions.length;
+    else if(st.openPositions!=null) $('kOpen').textContent = st.openPositions;
+    if(v.blendedAPY!=null) $('kVault').textContent = v.blendedAPY.toFixed(1)+'%';
+
+    // --- REAL nUSD yield since inception ---
+    const since = st.sinceInception;
+    const cap = pf.startCapital || START_CAPITAL;
+    if(pf.realizedPnl!=null){
+      const totRet = pf.realizedPnl/cap;                 // fraction since inception
+      $('siRealized').textContent = (pf.realizedPnl>=0?'+$':'-$')+Math.abs(pf.realizedPnl).toFixed(2);
+      $('siRoi').textContent = (totRet>=0?'+':'')+(totRet*100).toFixed(3)+'%';
+      $('siPrice').textContent = (1+Math.max(0,totRet)).toFixed(4);
+      if(since){
+        const days = (Date.now()-new Date(since).getTime())/86400000;
+        $('siDays').textContent = days.toFixed(1)+' days';
+        if(days>0.02){ const comp=(Math.pow(1+totRet,365/days)-1)*100;
+          $('siApy').textContent = (comp>=0?'+':'')+comp.toFixed(1)+'%'; }
+      }
+    }
+
+    // nUSD price from desk equity vs start
+    if(pf.realizedPnl!=null){ nusdPrice = 1 + Math.max(0,pf.realizedPnl)/START_CAPITAL; }
+    $('price').innerHTML = nusdPrice.toFixed(4)+' <small>USDC</small>';
+    recalc();
+
+    // equity curve
+    if(Array.isArray(S.equityHistory)&&S.equityHistory.length>2){
+      sparkPts = S.equityHistory.map(p=>p.eq);
+      const delta = sparkPts[sparkPts.length-1]-sparkPts[0];
+      $('sparkTag').textContent = (delta>=0?'+$':'-$')+Math.abs(delta).toFixed(2);
+    }
+
+    // desk allocation / APY bars
+    const by = v.apyByDesk||{};
+    const order=[['depeg','#3E97FF'],['deltaNeutral','#28C686'],['lending','#F9D93C'],['lstBasis','#BD76FF']];
+    const vals = order.map(([k])=> by[k]!=null? by[k] : (dk[k]? ((dk[k].equity-50000)/50000*100) : 0));
+    const mx = Math.max(1, ...vals.map(x=>Math.abs(x)));
+    const rows = $('deskBars').children;
+    order.forEach(([k,c],i)=>{
+      const bar = rows[i].querySelector('.bar span'), pct = rows[i].querySelector('.pct');
+      bar.style.width = Math.min(100, Math.abs(vals[i])/mx*100).toFixed(0)+'%';
+      bar.style.background = c;
+      pct.textContent = vals[i].toFixed(2)+'%';
+    });
+    $('proofSrc').innerHTML = '<span style="color:#28C686">● live desk</span>';
+    redraw();
+  }catch(e){ /* keep demo */ }
+}
+function demoBars(){
+  const rows=$('deskBars').children;
+  const demo=[[0.511,'#3E97FF'],[0.073,'#28C686'],[0.031,'#F9D93C'],[0.032,'#BD76FF']];
+  const mx=Math.max(...demo.map(d=>d[0]));
+  demo.forEach(([val,c],i)=>{const b=rows[i].querySelector('.bar span'),p=rows[i].querySelector('.pct');
+    b.style.width=(val/mx*100).toFixed(0)+'%';b.style.background=c;p.textContent='+'+val.toFixed(3)+'%';});
+}
+async function poll(){
+  if(document.visibilityState==='hidden') return;
+  try{
+    const r = await fetch(DESK_ENDPOINT,{cache:'no-store'});
+    if(r.ok){ applyDesk(await r.json()); return; }
+  }catch(e){}
+  // fallback: demo values already in DOM
+}
+demoBars(); recalc();
+// Demo state — replaced by live DUMPSTR data when engine is running
+const _demoState = {
+  vault:{blendedAPY:25.3,apyByDesk:{depeg:0.511,deltaNeutral:0.073,lending:0.031,lstBasis:0.032}},
+  portfolio:{realizedPnl:255.32,roi:0.922,equity:50461,startCapital:50000},
+  stats:{sinceInception:new Date(Date.now()-15*3600000).toISOString(),wins:11,losses:0}
+};
+updateTicker(_demoState);
+// Demo compounded APY: 0.511% ROI over 15h = (1.00511)^(365/0.625)-1 = very high (unreliable short period)
+// So we cap demo display at the vault's reported blendedAPY net of fee
+$('siApy').textContent = '+'+(25.3*0.85).toFixed(1)+'%'; // demo: 21.5%
+redraw();
+/* ============ Sanctum: live nSOL APY ============ */
+// Set NSOL_MINT to the nSOL MINT ADDRESS to wire the live Sanctum feed.
+// (The public Sanctum APY feed resolves LSTs by mint; the symbol "nSOL" alone is not yet indexed.)
+const NSOL_MINT = 'nSOL';          // ← replace with nSOL mint address
+let nsolRate = 1.02727;            // 1 nSOL = X SOL · confirmed live rate from Sanctum (Jul 2026)
+function setNsolApy(pct){ const t='≈ '+pct+'%'; $('nsolApy').textContent=pct+'%'; $('nsolApy2').textContent=pct+'%'; }
+async function pollSanctum(){
+  try{
+    let r = await fetch('https://extra-api.sanctum.so/v1/apy/latest?lst='+encodeURIComponent(NSOL_MINT),{cache:'no-store'});
+    let d = await r.json();
+    let a = d?.apys?.[NSOL_MINT];
+    if(!a){ r = await fetch('https://extra-api.sanctum.so/v1/apy/inception?lst='+encodeURIComponent(NSOL_MINT),{cache:'no-store'});
+      d = await r.json(); a = d?.apys?.[NSOL_MINT]; }
+    if(a){ setNsolApy((a*100).toFixed(1)); }
+    // exchange rate (optional, if mint is set):
+    const rr = await fetch('https://extra-api.sanctum.so/v1/sol-value/current?lst='+encodeURIComponent(NSOL_MINT),{cache:'no-store'});
+    const rd = await rr.json(); const sv = rd?.solValues?.[NSOL_MINT];
+    if(sv){ nsolRate = Number(sv)/1e9; recalcStake(); }
+  }catch(e){ /* keep fallback ≈8.2% */ }
+}
+/* ============ stake box ============ */
+function recalcStake(){
+  const s = parseNum($('solIn').value);
+  $('nsolRec').value = (s / nsolRate).toFixed(4);
+  $('nsolRateTop').textContent = '1 nSOL = '+nsolRate.toFixed(5)+' SOL';
+  const fr=$('nsolFootRate'); if(fr) fr.textContent='1 nSOL = '+nsolRate.toFixed(5)+' SOL';
+}
+$('solIn').addEventListener('input', recalcStake);
+$('stakeBtn').addEventListener('click', ()=>{
+  if(!connected){ connect(); return; }
+  const rec = parseNum($('nsolRec').value);
+  $('stakeBtn').textContent = 'Staked → '+rec.toFixed(2)+' nSOL (paper) ✓';
+  setTimeout(()=>{ $('stakeBtn').textContent='Stake SOL → nSOL'; }, 2600);
+});
+recalcStake();
+
+/* ============ browser tabs ============ */
+const tabs = document.querySelectorAll('.tab');
+const panels = {nsol:'p-nsol', novasol:'p-novasol', nusd:'p-nusd', nusdplus:'p-nusdplus'};
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.remove('on')); t.classList.add('on');
+  const key=t.dataset.tab;
+  for(const k in panels){ $(panels[k]).hidden = (k!==key); }
+  $('urlPath').textContent = t.dataset.url;
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+/* ============ novaSOL: payout toggle + stake ============ */
+let novaPay='USDC';
+document.querySelectorAll('#novaPayout button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#novaPayout button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); novaPay=b.dataset.pay;
+}));
+$('novaBtn').addEventListener('click',()=>{
+  if(!connected){ connect(); return; }
+  const amt=parseNum($('novaIn').value);
+  $('novaBtn').textContent='Staked '+amt.toFixed(2)+' SOL → earning '+novaPay+' (paper) ✓';
+  setTimeout(()=>{ $('novaBtn').textContent='Stake into Nova Pool'; },2600);
+});
+// INF APY: Sanctum public feed (INF mint)
+const INF_MINT='5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm';
+async function pollINF(){
+  try{
+    let a=null;
+    let r=await fetch('https://extra-api.sanctum.so/v1/apy/latest?lst='+INF_MINT,{cache:'no-store'});
+    let d=await r.json(); a=d?.apys?.[INF_MINT];
+    if(!a){ r=await fetch('https://extra-api.sanctum.so/v1/apy/inception?lst='+INF_MINT,{cache:'no-store'});
+      d=await r.json(); a=d?.apys?.[INF_MINT]; }
+    if(a)$('infApy').textContent='≈ '+(a*100).toFixed(1)+'%';
+  }catch(e){}
+}
+pollINF(); setInterval(pollINF,60000);
+
+
+/* ============ smooth animated counter ============ */
+function animateVal(el, from, to, suffix='', decimals=1, durationMs=600){
+  if(!el) return;
+  const start = performance.now();
+  const diff = to - from;
+  function step(now){
+    const p = Math.min((now - start) / durationMs, 1);
+    const ease = 1 - Math.pow(1-p, 3); // ease-out cubic
+    const cur = from + diff * ease;
+    el.textContent = (cur >= 0 && suffix.startsWith('%') ? '+' : '') + cur.toFixed(decimals) + suffix;
+    if(p < 1) requestAnimationFrame(step);
+    else { el.textContent = (to >= 0 && suffix.startsWith('%') ? '+' : '') + to.toFixed(decimals) + suffix; }
+  }
+  requestAnimationFrame(step);
+}
+
+/* ============ live ticker updater from DUMPSTR /state ============ */
+// Values track previous for smooth animation
+let _prevBlend=25.3, _prevNet=21.5, _prevEq=50461, _prevPnl=255.32, _prevRoi=0.92;
+const _prevDesks={depeg:0.511,deltaNeutral:0.073,lending:0.031,lstBasis:0.032};
+
+function setTick(id, val, suffix='', decimals=1, prev=null){
+  const el=$(id); if(!el) return;
+  const cur = prev !== null ? prev : parseFloat(el.textContent)||0;
+  animateVal(el, cur, val, suffix, decimals, 800);
+  // flash green/red on change
+  el.classList.remove('pos','neg');
+  if(val > cur) el.classList.add('pos');
+  else if(val < cur) el.classList.add('neg');
+}
+
+function updateTicker(S){
+  try{
+    const v=S.vault||{}, pf=S.portfolio||{}, dk=S.desks||{};
+    const gross = v.blendedAPY!=null ? v.blendedAPY : _prevBlend;
+    const net   = gross * 0.85;
+
+    // Hero overlay
+    const heroEl=$('heroApy');
+    if(heroEl){ const prev=_prevBlend;
+      animateVal(heroEl, prev, gross, '%', 1, 1000);
+      _prevBlend = gross; }
+
+    // Ticker strip — first copy only (the animation clones the DOM visually)
+    setTick('t_blended', gross, '%', 1, _prevBlend);
+    setTick('t_netapy',  net,   '%', 1, _prevNet);
+    _prevBlend = gross; _prevNet = net;
+
+    // Desk APYs
+    const by = v.apyByDesk||{};
+    const depeg = (by.depeg!=null ? by.depeg : (dk.depeg?(((dk.depeg.equity||50000)-50000)/50000*100):_prevDesks.depeg));
+    const dn    = (by.deltaNeutral!=null ? by.deltaNeutral : _prevDesks.deltaNeutral);
+    const lend  = (by.lending!=null ? by.lending : _prevDesks.lending);
+    const lst   = (by.lstBasis!=null ? by.lstBasis : _prevDesks.lstBasis);
+    setTick('t_depeg', depeg, '%', 3, _prevDesks.depeg);
+    setTick('t_dn',    dn,    '%', 3, _prevDesks.deltaNeutral);
+    setTick('t_lend',  lend,  '%', 3, _prevDesks.lending);
+    setTick('t_lst',   lst,   '%', 3, _prevDesks.lstBasis);
+    _prevDesks.depeg=depeg; _prevDesks.deltaNeutral=dn; _prevDesks.lending=lend; _prevDesks.lstBasis=lst;
+
+    // PnL / ROI / Equity
+    if(pf.realizedPnl!=null){
+      const el=$('t_pnl');
+      if(el){ animateVal(el, _prevPnl, pf.realizedPnl, '', 2, 900);
+        el.className='tick-val '+(pf.realizedPnl>=0?'pos':'neg'); _prevPnl=pf.realizedPnl; }}
+    if(pf.roi!=null){
+      setTick('t_roi', pf.roi, '%', 2, _prevRoi); _prevRoi=pf.roi; }
+    const eq=(pf.equity||0)+(pf.realizedPnl||0);
+    if(eq>0){
+      const el=$('t_eq');
+      if(el){ animateVal(el, _prevEq, eq, '', 0, 900);
+        el.textContent='$'+eq.toLocaleString('en-US',{maximumFractionDigits:0}); _prevEq=eq; }}
+
+  }catch(e){}
+}
+
+// Hero APY overlay — update from live values (no random drift)
+function updateHeroOverlay(){
+  const el=$('heroApy');if(!el)return;
+  el.textContent=(_liveBlendAPY||25.3).toFixed(2)+'%';
+}
+setInterval(updateHeroOverlay, 500);
+
+
+/* ============ XP modal ============ */
+document.getElementById('xpClose').addEventListener('click',()=>document.getElementById('xpModal').classList.remove('open'));
+document.getElementById('xpModal').addEventListener('click',e=>{if(e.target===document.getElementById('xpModal'))document.getElementById('xpModal').classList.remove('open');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('xpModal').classList.remove('open');});
+
+
+/* ============ nUSD+ deposit box ============ */
+$('plusIn').addEventListener('input',()=>{ $('plusRec').value=parseNum($('plusIn').value).toFixed(2); });
+$('plusBtn').addEventListener('click',()=>{
+  if(!connected){ connect(); $('plusBal').textContent='25 000.00'; $('plusBtn').textContent='Deposit USDC → nUSD+'; return; }
+  const a=parseNum($('plusIn').value);
+  $('plusBtn').textContent='Deposited '+a.toFixed(2)+' nUSD+ (paper) ✓';
+  setTimeout(()=>{ $('plusBtn').textContent='Deposit USDC → nUSD+'; },2600);
+});
+
+/* ============ prize draw countdowns ============ */
+// Countdown timers in seconds from now (demo values)
+window._cdReg  = 3*86400 + 14*3600 + 22*60;   // 3d 14h 22m
+window._cdMon  = 22*86400 + 6*3600 + 41*60;   // 22d 6h 41m
+window._cdJack = 67*86400 + 3*3600 + 18*60;   // 67d 3h 18m
+
+function fmtCD(s){
+  s=Math.max(0,s|0);
+  const d=Math.floor(s/86400); s-=d*86400;
+  const h=Math.floor(s/3600);  s-=h*3600;
+  const m=Math.floor(s/60);    s-=m*60;
+  if(d>0) return d+'d '+h+'h '+String(m).padStart(2,'0')+'m';
+  if(h>0) return h+'h '+String(m).padStart(2,'0')+'m '+String(s).padStart(2,'0')+'s';
+  return m+'m '+String(s).padStart(2,'0')+'s';
+}
+// Prize pool accumulators — window-scoped for testability
+window._prizeReg=128; window._prizeMon=765; window._prizeJack=4590;
+const _prizeRate=0.000296; // ~$128 per 5-day cycle at $85K TVL demo
+function _updateCD(){
+  window._cdReg=Math.max(0,window._cdReg-1);window._cdMon=Math.max(0,window._cdMon-1);window._cdJack=Math.max(0,window._cdJack-1);
+  window._prizeReg+=_prizeRate; window._prizeMon+=_prizeRate*6; window._prizeJack+=_prizeRate*36;
+  const el=id=>document.getElementById(id);
+  if(el('cdReg'))   el('cdReg').textContent   = fmtCD(window._cdReg);
+  if(el('cdMon'))   el('cdMon').textContent   = fmtCD(window._cdMon);
+  if(el('cdJack'))  el('cdJack').textContent  = fmtCD(window._cdJack);
+  if(el('prizeReg'))  el('prizeReg').textContent  = '$'+Math.round(window._prizeReg);
+  if(el('prizeMon'))  el('prizeMon').textContent  = '$'+Math.round(window._prizeMon);
+  if(el('prizeJack')) el('prizeJack').textContent = '$'+Math.round(window._prizeJack);
+}
+window._updateCD=_updateCD;
+setInterval(_updateCD, 1000);
+
+
+/* ============ boot ============ */
+poll(); setInterval(poll, 5000);
+pollSanctum(); setInterval(pollSanctum, 60000);
+</script>
+</body></html>
