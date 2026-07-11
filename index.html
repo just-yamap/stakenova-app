@@ -1,6 +1,9 @@
 <!DOCTYPE html>
+<!-- SN-BUILD v23 : SKR purged from novaSOL (USDC only), Dust/Star classes, option A keep-on-win -->
+
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>StakeNova · Staking Mission Control</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -41,7 +44,7 @@ header{border-bottom:1px solid var(--jet);background:var(--black);position:stick
   backdrop-filter:blur(30px)}
 .nav{height:96px;display:flex;align-items:center;gap:32px}
 .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.mark{width:34px;height:28px;flex-shrink:0}
+.mark{width:32px;height:32px;flex-shrink:0;border-radius:50%}
 .brand .wm{font-weight:600;font-size:24px;letter-spacing:2px}
 .menu{display:flex;align-items:center;flex:1}
 .menu a{padding:8px 12px;font-size:18px;letter-spacing:.36px;line-height:28px;color:var(--moon);position:relative}
@@ -81,6 +84,52 @@ header{border-bottom:1px solid var(--jet);background:var(--black);position:stick
   cursor:pointer;background:none;border:0;font-family:inherit;line-height:1}
 .modal .close:hover{color:var(--moon)}
 .xp-row{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--jet)}
+/* ===== XP leaderboard ===== */
+.lb-row{display:flex;align-items:center;gap:14px;padding:11px 10px;border-bottom:1px solid var(--jet);font-size:14px}
+.lb-row .rk{width:38px;color:var(--silver);font-variant-numeric:tabular-nums}
+.lb-row.top .rk{color:var(--yellow)}
+.lb-row .who{flex:1;color:var(--moon);letter-spacing:.5px}
+.lb-row .mult{font-size:11px;letter-spacing:.5px;color:var(--green);text-transform:uppercase;margin-right:8px}
+.lb-row .pts{color:var(--azure);font-variant-numeric:tabular-nums;font-weight:500}
+.lb-row.me{background:var(--azure08);border:1px solid var(--azure);border-bottom:1px solid var(--azure)}
+.lb-row.me .who{color:var(--azure);font-weight:600}
+.lb-gap{text-align:center;color:var(--silver);font-size:12px;letter-spacing:2px;padding:6px 0}
+/* ===== stake/unstake segmented toggle ===== */
+.seg-toggle{display:inline-flex;border:1px solid var(--jet)}
+.seg-toggle .seg{background:none;border:0;color:var(--silver);font-family:var(--f);
+  font-size:11px;letter-spacing:.15em;text-transform:uppercase;padding:7px 16px;cursor:pointer}
+.seg-toggle .seg.on{background:var(--azure);color:#000;font-weight:700}
+
+/* ===== compact how-it-works strip ===== */
+.hiw{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  border:1px solid var(--jet);padding:8px 18px;margin-top:10px}
+.hiw-title{font-size:12px;letter-spacing:.6px;white-space:nowrap}
+.hiw-step{display:flex;align-items:center;gap:10px;min-width:0}
+.hiw-n{font-size:11px;color:var(--azure);border:1px solid var(--jet);padding:3px 7px;flex-shrink:0}
+.hiw-t{font-size:12.5px;color:var(--platinum);letter-spacing:.3px;line-height:17px}
+.hiw-t b{color:var(--moon);font-weight:600}
+.hiw-arrow{color:var(--silver);flex-shrink:0}
+
+/* ===== performance history panel ===== */
+.hist-panel{border:1px solid var(--jet);padding:20px 24px;margin-top:20px}
+.hist-head{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:14px}
+.hist-legend{display:flex;gap:18px;flex:1;font-size:11.5px;color:var(--platinum);text-transform:uppercase;letter-spacing:.4px}
+.hist-legend span{display:flex;align-items:center;gap:6px}
+.hist-legend i{width:14px;height:3px;display:inline-block}
+.hist-src{font-size:10px;letter-spacing:.15em}
+#histChart{width:100%;height:180px;display:block}
+.hist-foot{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;border-top:1px solid var(--jet);padding-top:14px}
+
+/* ===== winners ticker strip ===== */
+.win-ticker{border-top:0}
+.win-ticker .ticker-track{animation-duration:36s}
+.win-ticker .tick-label{color:var(--platinum)}
+.win-ticker .win-amt{color:var(--green);font-weight:600}
+.win-ticker .win-apy{color:var(--green)}
+.win-ticker .win-when{color:var(--silver);font-size:11px}
+@media(max-width:900px){.hiw-arrow{display:none}.hiw{gap:12px}}
+
+
 .xp-row:last-of-type{border-bottom:0}
 .xp-icon{width:40px;height:40px;border-radius:50%;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;font-size:18px}
@@ -161,10 +210,13 @@ header{border-bottom:1px solid var(--jet);background:var(--black);position:stick
   box-shadow:0 0 6px var(--green);animation:pulse 1.2s infinite;flex-shrink:0}
 @keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* ===== hero APY live overlay ===== */
-.hero-apy-overlay{position:absolute;bottom:20px;left:20px;
-  display:flex;flex-direction:column;gap:4px}
-.hero-apy-big{font-size:36px;font-weight:500;letter-spacing:1px;color:var(--azure);
+/* ===== hero APY live KPIs ===== */
+.hero-kpis{display:flex;flex-direction:column;justify-content:center;align-items:center;
+  height:100%;padding:16px 24px;text-align:center}
+.hero-kpi{display:flex;flex-direction:column;align-items:center;gap:12px}
+.hero-kpi .hero-apy-label{display:flex;align-items:center;gap:8px}
+.hero-apy-src{font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--silver)}
+.hero-apy-big{font-size:52px;font-weight:500;letter-spacing:1px;color:var(--azure);
   font-variant-numeric:tabular-nums;line-height:1;
   text-shadow:0 0 24px rgba(62,151,255,0.5)}
 .hero-apy-label{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--platinum)}
@@ -176,13 +228,13 @@ header{border-bottom:1px solid var(--jet);background:var(--black);position:stick
 @media(max-width:600px){
   .ticker-track{animation-duration:18s}
   .tick-item{padding:0 20px}
-  .hero-apy-big{font-size:26px}
+  .hero-apy-big{font-size:40px}
 }
 
-.hero{border-bottom:1px solid var(--jet);padding:64px 0 100px}
+.hero{border-bottom:1px solid var(--jet);padding:26px 0 32px}
 .hero-row{display:flex;gap:32px;align-items:center}
 .hero-copy{flex:1;min-width:0;display:flex;flex-direction:column;gap:24px}
-.hero-h{font-size:60px;line-height:76px;letter-spacing:2.4px;text-transform:uppercase;color:var(--moon);font-weight:400}
+.hero-h{font-size:42px;line-height:52px;letter-spacing:2px;text-transform:uppercase;color:var(--moon);font-weight:400}
 .hero-h .grow{color:var(--azure)}
 .frame{width:350px;height:350px;flex-shrink:0;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
   border:1px dashed rgba(255,255,255,.21);padding:24px}
@@ -395,11 +447,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
 <!-- ===================== HEADER ===================== -->
 <header><div class="wrap"><div class="nav">
   <div class="brand">
-    <svg class="mark" viewBox="0 0 34 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4 4 H30 L24 9 H4 Z" fill="#3E97FF"/>
-      <path d="M8 12 H30 L24 17 H8 Z" fill="#3E97FF" opacity="0.75"/>
-      <path d="M12 20 H26 L20 25 H12 Z" fill="#3E97FF" opacity="0.5"/>
-    </svg>
+    <img class="mark" alt="StakeNova" src="data:image/png;base64,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">
     <span class="wm uc">STAKE<span class="az">NOVA</span></span>
   </div>
   <nav class="menu">
@@ -408,7 +456,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
   </nav>
   <div class="hactions">
     <span class="btn ghost uc" style="display:none" id="seeker">Get it on Seeker</span>
-    <span class="xp uc" id="xpChip" onclick="document.getElementById('xpModal').classList.add('open')" style="cursor:pointer" title="What is XP?"><span class="lab">✦ XP</span><span class="val" id="xpVal">100 k</span></span>
+    <span class="xp uc" id="xpChip" onclick="document.getElementById('xpModal').classList.add('open')" style="cursor:pointer" title="What is Stardust?"><span class="lab">✦ Stardust</span><span class="val" id="xpVal">—</span></span>
     <button class="btn uc" id="connectBtn">Connect ▾</button>
   </div>
 </div></div></header>
@@ -484,8 +532,9 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
     </div>
 
     <div style="border-top:1px solid var(--jet);padding-top:16px;margin-top:4px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-      <span style="font-size:13px;color:var(--platinum)">Your XP right now: <b class="az mono">100 k</b><br><span style="color:#28C686;font-size:12px">Hack victims: 5% of original investment funded as nUSD+ position. Earns XP and enters all draws automatically.</span></span>
-      <span class="xp-chip" onclick="document.querySelector('.tab[data-tab=novasol]').click();document.getElementById('xpModal').classList.remove('open')">Earn more → stake novaSOL ✦</span>
+      <span style="font-size:13px;color:var(--platinum)">Your Stardust right now: <b class="az mono" id="modalXp">— connect wallet</b><br>
+      <span style="font-size:12px;color:var(--platinum)">✦ Stardust = <b style="color:var(--moon)">Dust</b> (legacy · grants — hard-capped, can never grow past its ceiling) + <b style="color:var(--azure)">Star</b> (earned by staking — uncapped). Winners keep their Stardust after a draw.</span><br><span style="color:#28C686;font-size:12px">Hack victims: 5% of original investment funded as an nUSD position — earns Stardust and enters all draws automatically.</span></span>
+      <span class="xp-chip" onclick="document.querySelector('.tab[data-tab=novasol]').click();document.getElementById('xpModal').classList.remove('open')">Earn more Stardust → stake novaSOL ✦</span>
     </div>
   </div>
 </div>
@@ -498,16 +547,18 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
       <div class="eyebrow uc"><span class="b">[ </span><span class="az">stake &amp; </span>earn rewards<span class="b"> ]</span></div>
       <h1 class="hero-h">Your Staking Mission Control</h1>
       <div class="eyebrow uc" style="font-size:15px;letter-spacing:.6px;color:var(--platinum);max-width:520px;line-height:26px">
-        Stake SOL for SKR prize draws — now earn a stable yield too.
-        <span class="mo">Deposit into <span class="az">nUSD</span></span>, the desk-powered stablecoin.
+        Yield should be earned, measured and verifiable — not promised.
+        <span class="mo">Every number on this page is computed on <span class="az">Solana</span>, in the open.</span>
       </div>
     </div>
     <div class="frame">
       <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
-      <canvas id="heroChart"></canvas>
-      <div class="hero-apy-overlay">
-        <div class="hero-apy-label">Blended APY · Live</div>
-        <div class="hero-apy-big" id="heroApy">25.3%</div>
+      <div class="hero-kpis">
+        <div class="hero-kpi">
+          <div class="hero-apy-label"><span class="tick-dot"></span>Highest APY on StakeNova · Live</div>
+          <div class="hero-apy-big" id="heroApy">21.5%</div>
+          <div class="hero-apy-src" id="heroApySrc">nUSD · compounded, since inception</div>
+        </div>
       </div>
     </div>
   </div>
@@ -520,10 +571,10 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
     <!-- first copy -->
     <span class="tick-item"><span class="tick-dot"></span><span class="tick-label">Blended APY</span><span class="tick-val" id="t_blended">25.3%</span></span>
     <span class="tick-item"><span class="tick-label">nUSD net APY</span><span class="tick-val pos" id="t_netapy">21.5%</span></span>
-    <span class="tick-item"><span class="tick-label">Depeg desk</span><span class="tick-val" id="t_depeg">+0.511%</span></span>
-    <span class="tick-item"><span class="tick-label">Delta-N</span><span class="tick-val" id="t_dn">+0.073%</span></span>
-    <span class="tick-item"><span class="tick-label">Lending</span><span class="tick-val" id="t_lend">+0.031%</span></span>
-    <span class="tick-item"><span class="tick-label">LST-Basis</span><span class="tick-val" id="t_lst">+0.032%</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S1</span><span class="tick-val" id="t_depeg">+0.511%</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S2</span><span class="tick-val" id="t_dn">+0.073%</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S3</span><span class="tick-val" id="t_lend">+0.031%</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S4</span><span class="tick-val" id="t_lst">+0.032%</span></span>
     <span class="tick-item"><span class="tick-label">Realized PnL</span><span class="tick-val pos" id="t_pnl">+$255.32</span></span>
     <span class="tick-item"><span class="tick-label">Total ROI</span><span class="tick-val pos" id="t_roi">+0.92%</span></span>
     <span class="tick-item"><span class="tick-label">Vault equity</span><span class="tick-val" id="t_eq">$50 461</span></span>
@@ -531,15 +582,41 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
     <!-- mirror copy for seamless loop -->
     <span class="tick-item"><span class="tick-dot"></span><span class="tick-label">Blended APY</span><span class="tick-val">25.3%</span></span>
     <span class="tick-item"><span class="tick-label">nUSD net APY</span><span class="tick-val pos">21.5%</span></span>
-    <span class="tick-item"><span class="tick-label">Depeg desk</span><span class="tick-val">+0.511%</span></span>
-    <span class="tick-item"><span class="tick-label">Delta-N</span><span class="tick-val">+0.073%</span></span>
-    <span class="tick-item"><span class="tick-label">Lending</span><span class="tick-val">+0.031%</span></span>
-    <span class="tick-item"><span class="tick-label">LST-Basis</span><span class="tick-val">+0.032%</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S1</span><span class="tick-val">+0.511%</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S2</span><span class="tick-val">+0.073%</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S3</span><span class="tick-val">+0.031%</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S4</span><span class="tick-val">+0.032%</span></span>
     <span class="tick-item"><span class="tick-label">Realized PnL</span><span class="tick-val pos">+$255.32</span></span>
     <span class="tick-item"><span class="tick-label">Total ROI</span><span class="tick-val pos">+0.92%</span></span>
     <span class="tick-item"><span class="tick-label">Vault equity</span><span class="tick-val">$50 461</span></span>
     <span class="tick-item"><span class="tick-label">Perf fee</span><span class="tick-val">15%</span></span>
   </div>
+</div>
+
+<!-- ===== compact how-it-works strip ===== -->
+<div class="wrap"><div class="hiw">
+  <span class="hiw-title uc"><span class="b">[ </span><span class="az">How it works</span><span class="b"> ]</span></span>
+  <span class="hiw-step"><span class="hiw-n">01</span><span class="hiw-t"><b>Deposit</b> SOL or USDC — stay liquid, non-custodial</span></span>
+  <span class="hiw-arrow">→</span>
+  <span class="hiw-step"><span class="hiw-n">02</span><span class="hiw-t"><b>Earn</b> verifiable yield + <span class="az">✦ Stardust</span> while your stake remains</span></span>
+  <span class="hiw-arrow">→</span>
+  <span class="hiw-step"><span class="hiw-n">03</span><span class="hiw-t"><b>Win</b> — Stardust is your weight in every onchain prize draw</span></span>
+</div></div>
+
+<!-- ===================== XP · platform-wide (visible on all tabs) ===================== -->
+<div class="wrap" style="margin-top:10px;margin-bottom:10px">
+  <div class="panel" style="display:flex;align-items:center;gap:20px;padding:9px 20px;flex-wrap:wrap">
+    <span class="eyebrow uc" style="font-size:14px;letter-spacing:.6px"><span class="b">[ </span><span class="az">✦ Stardust</span> <span class="sep">//</span> platform-wide<span class="b"> ]</span></span>
+    <span class="pl" style="font-size:13px;letter-spacing:.3px;flex:1;min-width:240px">Stardust accrues while your stake <span class="mo">stays on StakeNova</span> — nSOL, novaSOL or nUSD. Unstake and that position's Stardust burns. <span class="mo">Stardust is your ticket weight in the draws.</span></span>
+    <span class="chip" style="font-size:14px">Stardust <b class="az mono" id="stripXp">—</b></span>
+    <span class="chip" style="font-size:14px">Rank <b class="mo mono" id="stripRank">—</b></span>
+    <span class="chip gr" style="font-size:13px">Next draw <b class="mono" data-timer="512">8m 32s</b></span>
+    <a class="verify" style="font-size:13px" href="#" onclick="document.getElementById('lbModal').classList.add('open');return false">Leaderboard →</a>
+  </div>
+</div>
+<!-- ===== recent winners · ticker strip ===== -->
+<div class="ticker-wrap win-ticker" id="winTickerWrap">
+  <div class="ticker-track" id="winTickerTrack"></div>
 </div>
 
 <!-- ===================== BROWSER-STYLE TABS ===================== -->
@@ -552,19 +629,18 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
     <div class="tab on" data-tab="nsol" data-url="stakenova.app/nsol"><span class="fav" style="background:var(--azure)"></span>nSOL</div>
     <div class="tab" data-tab="novasol" data-url="stakenova.app/novasol"><span class="fav" style="background:var(--orange)"></span>novaSOL</div>
     <div class="tab" data-tab="nusd" data-url="stakenova.app/nusd"><span class="fav" style="background:var(--green)"></span>nUSD</div>
-    <div class="tab" data-tab="nusdplus" data-url="stakenova.app/nusd-plus"><span class="fav" style="background:#28C686"></span>nUSD+</div>
   </div>
 </div></div></div>
 
-<!-- ===================== XP · platform-wide (visible on all tabs) ===================== -->
-<div class="wrap" style="margin-top:16px">
-  <div class="panel" style="display:flex;align-items:center;gap:20px;padding:14px 24px;flex-wrap:wrap">
-    <span class="eyebrow uc" style="font-size:14px;letter-spacing:.6px"><span class="b">[ </span><span class="az">✦ XP</span> <span class="sep">//</span> platform-wide<span class="b"> ]</span></span>
-    <span class="pl" style="font-size:13px;letter-spacing:.3px;flex:1;min-width:240px">Every deposit — nSOL, novaSOL or nUSD — earns XP. <span class="mo">XP is your ticket weight in the prize draws.</span></span>
-    <span class="chip" style="font-size:14px">Your XP <b class="az mono">100 k</b></span>
-    <span class="chip" style="font-size:14px">Rank <b class="mo mono">#16</b></span>
-    <span class="chip gr" style="font-size:13px">Next draw <b class="mono" data-timer="512">8m 32s</b></span>
-    <a class="verify" style="font-size:13px" href="#">Leaderboard →</a>
+
+<!-- ===== XP Leaderboard modal ===== -->
+<div class="modal-bg" id="lbModal">
+  <div class="modal" style="max-width:480px">
+    <button class="close" id="lbClose">&times;</button>
+    <h2>Stardust <span>Leaderboard</span></h2>
+    <div class="pl" style="font-size:12px;letter-spacing:.4px;text-transform:uppercase;margin-bottom:18px">Top 10 earn a 1.5&times;&ndash;3&times; Stardust multiplier &middot; season 1</div>
+    <div id="lbRows"></div>
+    <div class="pl" style="font-size:11px;letter-spacing:.3px;margin-top:14px;text-transform:uppercase">Updated every epoch &middot; Stardust = ticket weight in all draws</div>
   </div>
 </div>
 
@@ -583,12 +659,18 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
     <div class="nusd-grid">
       <!-- stake box -->
       <div class="mintbox">
-        <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az">Stake</span> SOL</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az" id="stakeHeadWord">Stake</span> <span id="stakeHeadTok">SOL</span></div>
+          <div class="seg-toggle" id="nsolMode">
+            <button class="seg on" data-mode="stake">Stake</button>
+            <button class="seg" data-mode="unstake">Unstake</button>
+          </div>
+        </div>
         <div class="field">
-          <div class="top"><span class="uc">You stake</span><span>Balance <b class="mo mono" id="solBal">0.00</b></span></div>
+          <div class="top"><span class="uc" id="stakeInLab">You stake</span><span>Balance <b class="mo mono" id="solBal">0.00</b></span></div>
           <div class="in">
             <input id="solIn" type="text" inputmode="decimal" value="10">
-            <span class="tok"><span class="coin" style="background:linear-gradient(135deg,#9945FF,#14F195)"></span> SOL</span>
+            <span class="tok" id="stakeInTok"><span class="coin" style="background:linear-gradient(135deg,#9945FF,#14F195)"></span> SOL</span>
           </div>
         </div>
         <div class="arrowdown">▼</div>
@@ -596,7 +678,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
           <div class="top"><span class="uc">You receive</span><span class="uc" id="nsolRateTop">1 nSOL = 1.0000 SOL</span></div>
           <div class="in">
             <input id="nsolRec" type="text" readonly value="10.00" style="color:var(--azure)">
-            <span class="tok"><span class="coin nusd"></span> nSOL</span>
+            <span class="tok" id="stakeOutTok"><span class="coin nusd"></span> nSOL</span>
           </div>
         </div>
         <div class="rateline"><span>nSOL APY <b class="az mono" id="nsolApy">≈ 8.2%</b></span><span>Native + MEV · auto-compounding</span></div>
@@ -619,7 +701,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
           </div>
           <div class="desk" style="grid-template-columns:24px 1fr auto">
             <span class="tier-ic" style="background:var(--violet);width:22px;height:22px"></span>
-            <div><div class="mo uc" style="font-size:15px;letter-spacing:.4px">Earns XP</div><div class="pl" style="font-size:12px">holding nSOL accrues XP — your prize-draw tickets</div></div>
+            <div><div class="mo uc" style="font-size:15px;letter-spacing:.4px">Earns XP</div><div class="pl" style="font-size:12px">holding nSOL accrues Stardust — your prize-draw tickets</div></div>
             <span class="vi mono" style="font-size:18px">✦ XP</span>
           </div>
         </div>
@@ -636,35 +718,36 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
 
 <div class="tabpanel" id="p-novasol" hidden>
 
-<!-- ===================== novaSOL (SOL -> SKR/USDC via INF) ===================== -->
+<!-- ===================== novaSOL (SOL -> USDC via INF) ===================== -->
 <section class="section" style="padding:56px 0 40px">
   <div class="wrap">
     <div class="sec-head">
       <div>
         <div class="eyebrow uc"><span class="b">[ </span><span class="az">stake sol</span> <span class="sep">//</span> novaSOL<span class="b"> ]</span></div>
-        <h2 class="sec-h" style="font-size:36px;line-height:44px">Stake SOL, <span class="grow">earn SKR or USDC</span></h2>
+        <h2 class="sec-h" style="font-size:36px;line-height:44px">Stake SOL, <span class="grow">earn USDC</span></h2>
       </div>
       <span class="badge uc"><span class="dot"></span>INF-routed yield</span>
     </div>
     <div class="nusd-grid">
       <div class="mintbox">
-        <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az">Stake</span> into Nova Pool</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az" id="novaHeadWord">Stake</span> <span id="novaHeadRest">into Nova Pool</span></div>
+          <div class="seg-toggle" id="novaMode">
+            <button class="seg on" data-mode="stake">Stake</button>
+            <button class="seg" data-mode="unstake">Unstake</button>
+          </div>
+        </div>
         <div class="field">
-          <div class="top"><span class="uc">You stake</span><span>Balance <b class="mo mono" id="novaBal">0.00</b></span></div>
+          <div class="top"><span class="uc" id="novaInLab">You stake</span><span><span id="novaBalLab">Balance</span> <b class="mo mono" id="novaBal">0.00</b></span></div>
           <div class="in">
             <input id="novaIn" type="text" inputmode="decimal" value="25">
             <span class="tok"><span class="coin" style="background:linear-gradient(135deg,#9945FF,#14F195)"></span> SOL</span>
           </div>
         </div>
-        <div class="eyebrow uc" style="font-size:13px;letter-spacing:.5px;color:var(--platinum)">Payout preference</div>
-        <div class="toggle" id="novaPayout">
-          <button class="on" data-pay="USDC">USDC</button>
-          <button data-pay="SKR">SKR</button>
-        </div>
         <button class="mint-btn" id="novaBtn">Connect wallet to stake</button>
         <p class="mint-note">Your SOL is routed through <span class="mo">INF (Sanctum Infinity)</span> — the highest-yield
-          LST basket on Solana. That yield funds the <span class="mo">Nova Pool</span> and is paid out as
-          <span class="mo">SKR or USDC</span> in epoch draws. Your principal stays yours; only the yield is pooled.</p>
+          LST basket on Solana. That yield funds the <span class="mo">Nova Pool</span> and is paid out in
+          <span class="mo">USDC</span> every epoch. Your principal stays yours; only the yield is pooled.</p>
       </div>
       <div class="proof">
         <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az">What</span> you earn</div>
@@ -676,17 +759,12 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
           </div>
           <div class="desk" style="grid-template-columns:24px 1fr auto">
             <span class="tier-ic" style="background:var(--green);width:22px;height:22px"></span>
-            <div><div class="mo uc" style="font-size:15px;letter-spacing:.4px">USDC prize draws</div><div class="pl" style="font-size:12px">Nova Pool payouts every epoch</div></div>
-            <span class="gr mono" style="font-size:18px">50%</span>
-          </div>
-          <div class="desk" style="grid-template-columns:24px 1fr auto">
-            <span class="tier-ic" style="background:var(--violet);width:22px;height:22px"></span>
-            <div><div class="mo uc" style="font-size:15px;letter-spacing:.4px">SKR draws</div><div class="pl" style="font-size:12px">XS · XL · Supernova jackpots, XP-weighted</div></div>
-            <span class="vi mono" style="font-size:18px">60%</span>
+            <div><div class="mo uc" style="font-size:15px;letter-spacing:.4px">USDC prize draws</div><div class="pl" style="font-size:12px">Nova Pool payouts every epoch, Stardust-weighted</div></div>
+            <span class="gr mono" style="font-size:18px">100%</span>
           </div>
         </div>
         <div class="proof-foot">
-          <span class="chip pl" style="font-size:14px">Total staked <b class="mo mono">2 847.4K</b> SOL · <b class="mono">14.35%</b> avg APR</span>
+          <span class="chip pl" style="font-size:14px">Yield source: <b class="mo">Sanctum Infinity</b> · live APY <b class="az mono" id="infApy2">≈ —</b></span>
           <span class="chip pl" style="font-size:13px">Draws below ↓</span>
         </div>
       </div>
@@ -696,17 +774,6 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
 
 <section id="mission" style="padding:0 0 80px;border-bottom:1px solid var(--jet)"><div class="wrap" style="padding-top:0">
   <div class="panel" style="margin-top:-40px">
-    <!-- live activity -->
-    <div class="activity">
-      <div class="eyebrow uc"><span class="b">[ </span><span class="dot" style="display:inline-block;margin:0 4px 1px 0"></span>LIVE<span class="az"> ACTIVITY</span><span class="b"> ]</span></div>
-      <div class="between" style="gap:16px;flex-wrap:wrap">
-        <span class="chip"><span class="avatar"></span><span class="mono" id="actWallet">0x7q8r…9s0t</span></span>
-        <span class="chip gr uc" style="letter-spacing:.64px">staked</span>
-        <span class="chip"><span class="coin" style="width:22px;height:22px;background:linear-gradient(135deg,#9945FF,#14F195)"></span><b class="mono" id="actAmt">445.2</b> <span class="pl uc">SOL</span></span>
-        <span class="chip">in <span class="az">Nova Pool</span></span>
-        <span class="chip pl" id="actAgo">32s ago</span>
-      </div>
-    </div>
 
     <!-- next epoch -->
     <div class="prow">
@@ -717,77 +784,6 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
       <div class="track"><div class="fill" style="width:60%"></div></div>
     </div>
 
-    <!-- next paid out -->
-    <div class="prow">
-      <div class="between" style="margin-bottom:24px">
-        <div class="eyebrow uc"><span>Next </span><span class="mo">Paid Out</span></div>
-        <span class="chip pl" style="font-size:14px">ⓘ How does this work?</span>
-      </div>
-
-      <div style="margin-bottom:20px">
-        <div class="tierrow">
-          <span class="tier-ic" style="background:var(--green)"></span>
-          <div class="eyebrow uc mo">USDC <span class="sep">/</span> SKR</div>
-          <span class="sep">//</span><span class="gr mono" data-timer="10800">3h 00m 00s</span>
-          <div style="flex:1"></div><div class="eyebrow gr uc mono">50.00%</div>
-        </div>
-        <div class="track"><div class="fill g" style="width:50%"></div></div>
-      </div>
-
-      <div style="margin-bottom:20px">
-        <div class="tierrow">
-          <span class="tier-ic" style="background:var(--yellow)"></span>
-          <div class="eyebrow uc mo">SKR XS</div>
-          <span class="sep">//</span><span class="ye mono" data-timer="2920">48m 40s</span>
-          <div style="flex:1"></div><div class="eyebrow ye uc mono">20.00%</div>
-        </div>
-        <div class="track"><div class="fill y" style="width:20%"></div></div>
-      </div>
-
-      <div style="margin-bottom:20px">
-        <div class="tierrow">
-          <span class="tier-ic" style="background:var(--orange)"></span>
-          <div class="eyebrow uc mo">SKR XL</div>
-          <span class="sep">//</span><span class="or mono" data-timer="93540">1d 1h 59m 00s</span>
-          <div style="flex:1"></div><div class="eyebrow or uc mono">30.00%</div>
-        </div>
-        <div class="track"><div class="fill o" style="width:30%"></div></div>
-      </div>
-
-      <div>
-        <div class="tierrow">
-          <span class="tier-ic" style="background:var(--violet)"></span>
-          <div class="eyebrow uc mo">Supernova</div>
-          <span class="sep">//</span><span class="mono"><span class="vi">1 000</span> <span class="pl">/ 10 k SKR</span></span>
-          <div style="flex:1"></div><div class="eyebrow vi uc mono">10.00%</div>
-        </div>
-        <div class="track"><div class="fill v" style="width:10%"></div></div>
-      </div>
-    </div>
-
-    <!-- stats -->
-    <div class="stats">
-      <div class="stat">
-        <span class="lab uc">✦ Next total SKR rewards</span>
-        <span class="pair"><span class="big mono">123.4K</span><span class="u">SKR/Epoch</span></span>
-        <span class="pair"><span class="big mono">567.8K</span><span class="u">SKR/Hour</span></span>
-      </div>
-      <div class="stat">
-        <span class="lab uc">◈ Total staked</span>
-        <span class="pair"><span class="big mono">2 847.4K</span><span class="u">SOL</span></span>
-        <span class="pair"><span class="big mono">2 847.4K</span><span class="u">SKR</span></span>
-      </div>
-      <div class="stat">
-        <span class="lab uc">↗ Total paid out</span>
-        <span class="pair"><span class="big mono">2 847.4K</span><span class="u">USDC</span></span>
-        <span class="pair"><span class="big mono">2 847.4K</span><span class="u">SKR</span></span>
-      </div>
-      <div class="stat">
-        <span class="lab uc">◎ APR</span>
-        <span class="pair"><span class="u">Average</span><span class="big mono">14.35</span><span class="u">%</span></span>
-        <span class="pair"><span class="u">Max</span><span class="big mono">6 880</span><span class="u">%</span></span>
-      </div>
-    </div>
   </div>
 </div></section>
 
@@ -795,208 +791,88 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
 
 <div class="tabpanel" id="p-nusd" hidden>
 
-<!-- ===================== nUSD PRODUCT ===================== -->
+<!-- ===================== nUSD (merged: no-loss prize savings) ===================== -->
 <section class="section" id="nusd"><div class="wrap">
   <div class="sec-head">
     <div>
-      <div class="eyebrow uc"><span class="b">[ </span><span class="az">stable yield</span> <span class="sep">//</span> nUSD<span class="b"> ]</span></div>
-      <h2 class="sec-h">Earn the <span class="grow">desk</span>, not the market</h2>
+      <div class="eyebrow uc"><span class="b">[ </span><span class="plus-accent">no-loss savings</span> <span class="sep">//</span> nUSD<span class="b"> ]</span></div>
+      <h2 class="sec-h">Keep your principal.<br><span class="plus-accent">Win the yield.</span></h2>
     </div>
-    <span class="badge uc"><span class="dot"></span>Paper · Devnet</span>
+    <span class="badge plus-badge uc">Paper · Devnet</span>
   </div>
 
-  <div class="nusd-grid">
-    <!-- mint box -->
-    <div class="mintbox">
-      <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az">Mint</span> nUSD</div>
-
-      <div class="field">
-        <div class="top"><span class="uc">You deposit</span><span>Balance <b class="mo mono" id="usdcBal">0.00</b></span></div>
-        <div class="in">
-          <input id="depIn" type="text" inputmode="decimal" placeholder="0.00" value="1000">
-          <span class="tok"><span class="coin usdc"></span> USDC</span>
-        </div>
-      </div>
-
-      <div class="arrowdown">▼</div>
-
-      <div class="field">
-        <div class="top"><span class="uc">You receive</span><span class="uc" id="rateTop">1 nUSD = 1.0000 USDC</span></div>
-        <div class="in">
-          <input id="recIn" type="text" readonly value="1000.00" style="color:var(--azure)">
-          <span class="tok"><span class="coin nusd"></span> nUSD</span>
-        </div>
-      </div>
-
-      <div class="rateline">
-        <span>Net APY <b class="az mono" id="mNetApy">21.5%</b></span>
-        <span>Performance fee <b class="mo mono">15%</b></span>
-      </div>
-
-      <button class="mint-btn" id="mintBtn">Connect wallet to mint</button>
-      <p class="mint-note">
-        nUSD is a yield-bearing receipt. Your balance appears to grow as the desk earns
-        (Token-2022 <span class="mo">ScaledUiAmount</span>) while shares stay 1:1 under the hood.
-        Yield is <span class="mo">net of the 15% performance fee</span> — that fee is StakeNova's revenue.
-        Paper mode: no real funds move.
-      </p>
-    </div>
-
-    <!-- proof of yield -->
-    <div class="proof">
-      <div class="between">
-        <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az">Proof</span> of yield</div>
-        <span class="chip pl" style="font-size:13px" id="proofSrc">● demo data</span>
-      </div>
-
-      <div class="apywrap">
-        <div class="apy-big mono" id="netApy">21.5%</div>
-        <div class="apy-sub">net APY, paid to nUSD<br>gross <b id="grossApy">25.3%</b> · after <b>15%</b> fee</div>
-      </div>
-
-      <div class="spark">
-        <span class="tagl uc">Desk equity · live</span>
-        <span class="tag mono" id="sparkTag">+$476.96</span>
-        <canvas id="sparkChart"></canvas>
-      </div>
-
-      <div class="desks" id="deskBars">
-        <div class="desk"><span class="nm">Depeg</span><div class="bar"><span style="width:0;background:var(--azure)"></span></div><span class="pct mono">—</span></div>
-        <div class="desk"><span class="nm">Delta-N</span><div class="bar"><span style="width:0;background:var(--green)"></span></div><span class="pct mono">—</span></div>
-        <div class="desk"><span class="nm">Lending</span><div class="bar"><span style="width:0;background:var(--yellow)"></span></div><span class="pct mono">—</span></div>
-        <div class="desk"><span class="nm">LST-Basis</span><div class="bar"><span style="width:0;background:var(--violet)"></span></div><span class="pct mono">—</span></div>
-      </div>
-
-      <div class="proof-foot">
-        <span class="chip pl" style="font-size:14px">Realized PnL <b class="gr mono" id="realized">+$255.32</b> · <b class="mono" id="wl">11W / 0L</b></span>
-        <a class="verify" href="http://localhost:8787" target="_blank" rel="noopener">Verify on desk →</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- nUSD stat row -->
-  <div class="nusd-stats">
-    <div class="nstat"><span class="l">nUSD TVL <span class="tip"><span class="ico">i</span><span class="box"><b>$1M deposit cap</b> applies to both nUSD and nUSD+ separately. Limits exposure during paper/devnet phase and protects against flash-loan attacks.</span></span></span><span class="v mono" id="tvl">$50.05K</span></div>
-    <div class="nstat"><span class="l">nUSD price</span><span class="v mono" id="price">1.0000 <small>USDC</small></span></div>
-    <div class="nstat"><span class="l">Blended source APY</span><span class="v mono" id="blended">25.3%</span></div>
-    <div class="nstat"><span class="l">Vault rebalances</span><span class="v mono" id="rebal">2</span></div>
-  </div>
-
-  <!-- REAL nUSD yield since inception -->
-  <div style="margin-top:28px">
-    <div class="eyebrow uc" style="font-size:15px;letter-spacing:.5px;margin-bottom:12px"><span class="b">[ </span><span class="az">real nUSD yield</span> <span class="sep">//</span> since inception<span class="b"> ]</span></div>
-    <div class="si">
-      <div class="cell hero-cell"><span class="l">Compounded APY</span><span class="v big mono" id="siApy">+21.5%</span></div>
-      <div class="cell"><span class="l">Realized yield</span><span class="v pos mono" id="siRealized">+$255.32</span></div>
-      <div class="cell"><span class="l">Total ROI · inception</span><span class="v mono" id="siRoi">+0.511%</span></div>
-      <div class="cell"><span class="l">nUSD price</span><span class="v mono" id="siPrice">1.0051</span></div>
-      <div class="cell"><span class="l">Age</span><span class="v mono" id="siDays">— days</span></div>
-    </div>
-  </div>
-
-  <!-- DUMPSTR key KPIs (live) -->
-  <div style="margin-top:28px">
-    <div class="eyebrow uc" style="font-size:15px;letter-spacing:.5px;margin-bottom:12px"><span class="b">[ </span><span class="az">desk KPIs</span> <span class="sep">//</span> live from DUMPSTR<span class="b"> ]</span></div>
-    <div class="nusd-stats">
-      <div class="nstat"><span class="l">Portfolio equity</span><span class="v mono" id="kEquity">$50 461</span></div>
-      <div class="nstat"><span class="l">Realized PnL</span><span class="v mono gr" id="kPnl">+$255.32</span></div>
-      <div class="nstat"><span class="l">Total ROI</span><span class="v mono az" id="kRoi">+0.92%</span></div>
-      <div class="nstat"><span class="l">Closed W/L</span><span class="v mono" id="kWL">11 / 0</span></div>
-      <div class="nstat"><span class="l">Open positions</span><span class="v mono" id="kOpen">2</span></div>
-      <div class="nstat"><span class="l">Blended vault APY</span><span class="v mono" id="kVault">25.3%</span></div>
-    </div>
-  </div>
-
-  <!-- how it works -->
-  <div class="flow">
-    <div class="step"><span class="n">01</span><span class="t uc">Deposit</span><span class="d">Drop in USDC (or any supported stable). You mint nUSD 1:1 at the current price.</span></div>
-    <div class="step"><span class="n">02</span><span class="t uc">Desk works</span><span class="d">The DUMPSTR engine runs the depeg desk + 4-strategy momentum vault, capturing USDe / USD1 repegs and lending yield.</span></div>
-    <div class="step"><span class="n">03</span><span class="t uc">nUSD grows</span><span class="d">Net yield accrues into the nUSD price. Your balance ticks up; the peg holds at $1 of value per share.</span></div>
-    <div class="step"><span class="n">04</span><span class="t uc">Redeem anytime</span><span class="d">Burn nUSD for USDC at the live price. StakeNova keeps a 15% performance fee on the yield only.</span></div>
-  </div>
-</div></section>
-
-</div><!-- /p-nusd -->
-
-<div class="tabpanel" id="p-nusdplus" hidden>
-<section class="section">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <div class="eyebrow uc"><span class="b">[ </span><span class="plus-accent">no-loss savings</span> <span class="sep">//</span> nUSD+<span class="b"> ]</span></div>
-        <h2 class="sec-h">Keep your principal.<br><span class="plus-accent">Win the yield.</span></h2>
-      </div>
-      <span class="badge plus-badge uc">Paper · Devnet</span>
-    </div>
-    <div class="nusd-grid">
+<div class="nusd-grid">
       <!-- deposit box -->
       <div class="mintbox">
-        <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="plus-accent">Deposit</span> USDC → nUSD+</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="plus-accent" id="plusHeadWord">Deposit</span> <span id="plusHeadRest">USDC → nUSD</span></div>
+          <div class="seg-toggle" id="plusMode">
+            <button class="seg on" data-mode="deposit">Deposit</button>
+            <button class="seg" data-mode="withdraw">Withdraw</button>
+          </div>
+        </div>
         <div class="field">
-          <div class="top"><span class="uc">You deposit</span><span>Balance <b class="mo mono" id="plusBal">0.00</b></span></div>
+          <div class="top"><span class="uc" id="plusInLab">You deposit</span><span>Balance <b class="mo mono" id="plusBal">0.00</b></span></div>
           <div class="in">
             <input id="plusIn" type="text" inputmode="decimal" value="500">
-            <span class="tok"><span class="coin usdc"></span> USDC</span>
+            <span class="tok" id="plusInTok"><span class="coin usdc"></span> USDC</span>
           </div>
         </div>
+        <div class="cooldown" id="plusXpWarn" style="display:none;border-color:#7a3d2e;background:rgba(255,146,102,.06)"><b style="color:var(--orange)">Withdrawing resets your Stardust.</b> Exiting nUSD forfeits your accumulated Stardust weight and removes you from future draws. Principal returns 1:1, always.</div>
         <div class="arrowdown">▼</div>
         <div class="field">
-          <div class="top"><span class="uc">You receive</span><span style="color:#28C686;font-size:13px">1 nUSD+ = 1.0000 USDC always</span></div>
+          <div class="top"><span class="uc">You receive</span><span style="color:#28C686;font-size:13px">1 nUSD = 1.0000 USDC always</span></div>
           <div class="in">
             <input id="plusRec" type="text" readonly value="500.00" style="color:#28C686">
-            <span class="tok"><span class="coin" style="background:radial-gradient(circle at 35% 30%,#5dcaa5,#1D9E75)"></span> nUSD+</span>
+            <span class="tok"><span class="coin" style="background:radial-gradient(circle at 35% 30%,#5dcaa5,#1D9E75)"></span> nUSD</span>
           </div>
-        </div>
-        <div class="zero-fee">
-          <div class="big">0%</div>
-          <div class="desc"><b>No performance fee.</b> 100% of DUMPSTR yield goes to prize winners. Your principal is always fully redeemable.</div>
         </div>
         <div class="cap-bar-wrap">
           <div class="cap-bar-label">
-            <span>Vault capacity <b id="plusTvlDisp">$85,000</b> / <b>$1,000,000</b>
-              <span class="tip"><span class="ico">i</span><span class="box"><b>$1M deposit cap</b> protects against flash-loan attacks and keeps the prize pool meaningful. Waitlist opens when full.</span></span>
+            <span>Core sleeve capacity <b id="plusTvlDisp">$85,000</b> / <b>$300,000</b> <span class="pl uc" style="font-size:10px;letter-spacing:.12em">soft cap</span>
+              <span class="tip"><span class="ico">i</span><span class="box"><b>$300k soft cap.</b> The first $300k routes to the core high-edge strategy (S1). Deposits beyond it route to the scalable overflow sleeves (S2–S4) — lower yield, no hard limit. Also protects against flash-loan attacks.</span></span>
             </span>
             <span id="plusCapBadge" style="display:none" class="capped uc">● CAPPED</span>
           </div>
-          <div class="cap-bar"><div class="cap-fill" id="plusCapFill" style="width:8.5%"></div></div>
+          <div class="cap-bar"><div class="cap-fill" id="plusCapFill" style="width:28.3%"></div></div>
         </div>
         <button class="mint-btn" id="plusBtn" style="background:#0F6E56;border-color:#0F6E56">Connect wallet to deposit</button>
-        <p class="mint-note">Principal redeemable any time at 1:1. You forfeit that epoch's yield for a weighted shot at the entire prize pool. <span class="mo">nUSD+ is non-transferable.</span></p>
+        <p class="mint-note">Principal redeemable any time at 1:1. You forfeit that epoch's yield for a weighted shot at the entire prize pool. <span class="mo">nUSD is non-transferable.</span></p>
       </div>
 
       <!-- prize draws panel -->
       <div class="proof">
         <div class="between">
           <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="plus-accent">Prize</span> pools · live</div>
-          <span class="chip pl" style="font-size:12px">✦ All draws XP-weighted</span>
+          <span class="chip pl" style="font-size:12px">✦ All draws Stardust-weighted</span>
         </div>
         <div class="draws">
           <div class="draw-card reg">
-            <div class="draw-label az uc">Regular</div>
+            <div class="draw-label az uc">Regular · <span style="opacity:.75">50% of yield</span></div>
             <div class="draw-countdown az mono" id="cdReg">3d 14h 22m</div>
             <div class="draw-prize">Pool: <b id="prizeReg">$128</b></div>
             <div class="draw-meta"><b>1 winner</b> takes all · every <b>5 days</b>
-              <span class="tip"><span class="ico">i</span><span class="box"><b>XP-weighted VRF draw.</b> Odds = your XP ÷ total pool XP. 100k XP in 12M pool = 0.83% per draw.</span></span>
+              <span class="tip"><span class="ico">i</span><span class="box"><b>Stardust-weighted VRF draw.</b> Odds = your Stardust ÷ total pool Stardust. 100k ✦ in a 12M pool = 0.83% per draw.</span></span>
             </div>
-            <span class="draw-badge" style="background:rgba(62,151,255,.12);color:var(--azure)">✦ XP weighted</span>
+            <span class="draw-badge" style="background:rgba(62,151,255,.12);color:var(--azure)">✦ Stardust weighted</span>
           </div>
           <div class="draw-card mon">
-            <div class="draw-label vi uc">Monthly</div>
+            <div class="draw-label vi uc">Monthly · <span style="opacity:.75">30% of yield</span></div>
             <div class="draw-countdown vi mono" id="cdMon">22d 06h 41m</div>
             <div class="draw-prize">Pool: <b id="prizeMon" style="color:var(--violet)">$765</b></div>
             <div class="draw-meta"><b>6 winners</b> · top XP 40% · next 5 share 60% · every <b>30 days</b></div>
             <span class="draw-badge" style="background:rgba(189,118,255,.12);color:var(--violet)">6 winners</span>
           </div>
           <div class="draw-card jack">
-            <div class="draw-label ye uc">Jackpot ⚡</div>
+            <div class="draw-label ye uc">Jackpot ⚡ · <span style="opacity:.75">20% of yield</span></div>
             <div class="draw-countdown ye mono" id="cdJack">67d 03h 18m</div>
             <div class="draw-prize">Pool: <b id="prizeJack" style="color:var(--yellow)">$4,590</b></div>
-            <div class="draw-meta"><b>1 winner</b> · treasury matches 1:1 · announced 2 wks ahead · every <b>90 days</b></div>
-            <span class="draw-badge" style="background:rgba(249,210,60,.12);color:var(--yellow)">Treasury matched</span>
+            <div class="draw-meta"><b>1 winner</b> takes all · announced 2 wks ahead · every <b>90 days</b></div>
+            <span class="draw-badge" style="background:rgba(249,210,60,.12);color:var(--yellow)">Quarterly</span>
           </div>
         </div>
         <div class="proof-foot" style="margin-top:12px">
-          <span class="chip pl" style="font-size:13px">Your XP <b class="az mono">100 k</b> · total pool <b class="mo mono">~12 M XP</b></span>
+          <span class="chip pl" style="font-size:13px">Your XP <b class="az mono" id="plusXp">—</b> · total pool <b class="mo mono">~12 M XP</b></span>
           <a class="verify" href="#" onclick="document.getElementById('xpChip').click();return false">XP rules →</a>
         </div>
       </div>
@@ -1032,13 +908,100 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
     <!-- how it works steps -->
     <div class="flow" style="margin-top:20px">
       <div class="step"><span class="n">01</span><span class="t uc">Deposit USDC</span><span class="d">Mint nUSD+ 1:1. Principal always redeemable. No lockup, no fee.</span></div>
-      <div class="step"><span class="n">02</span><span class="t uc">Yield pools</span><span class="d">DUMPSTR desk earns 25%+ APY. 100% accumulates in the prize pool. 0% performance fee.</span></div>
+      <div class="step"><span class="n">02</span><span class="t uc">Yield pools</span><span class="d">The desk engine earns the yield. It accumulates into the prize pools every epoch.</span></div>
       <div class="step"><span class="n">03</span><span class="t uc">XP-weighted draw</span><span class="d">Every 5 days, one XP-weighted winner claims the pool. Loyalty beats size.</span></div>
-      <div class="step"><span class="n">04</span><span class="t uc">Withdraw anytime</span><span class="d">Burn nUSD+ for USDC 1:1. You keep your principal and forfeit future draw entries.</span></div>
+      <div class="step"><span class="n">04</span><span class="t uc">Withdraw anytime</span><span class="d">Burn nUSD for USDC 1:1. You keep your principal and forfeit future draw entries.</span></div>
+    </div>
+
+
+  <div style="margin-top:20px">
+    <!-- proof of yield -->
+    <div class="proof">
+      <div class="between">
+        <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az">Proof</span> of yield</div>
+        <span class="chip pl" style="font-size:13px" id="proofSrc">● demo data</span>
+      </div>
+
+      <div class="apywrap">
+        <div class="apy-big mono" id="netApy">21.5%</div>
+        <div class="apy-sub">net APY, paid to nUSD<br>gross <b id="grossApy">25.3%</b> · after <b>15%</b> fee</div>
+      </div>
+
+      <div class="spark">
+        <span class="tagl uc">Desk equity · live</span>
+        <span class="tag mono" id="sparkTag">+$476.96</span>
+        <canvas id="sparkChart"></canvas>
+      </div>
+
+      <div class="desks" id="deskBars">
+        <div class="desk"><span class="nm">S1</span><div class="bar"><span style="width:0;background:var(--azure)"></span></div><span class="pct mono">—</span></div>
+        <div class="desk"><span class="nm">S2</span><div class="bar"><span style="width:0;background:var(--green)"></span></div><span class="pct mono">—</span></div>
+        <div class="desk"><span class="nm">S3</span><div class="bar"><span style="width:0;background:var(--yellow)"></span></div><span class="pct mono">—</span></div>
+        <div class="desk"><span class="nm">S4</span><div class="bar"><span style="width:0;background:var(--violet)"></span></div><span class="pct mono">—</span></div>
+      </div>
+
+      <div class="proof-foot">
+        <span class="chip pl" style="font-size:14px">Realized PnL <b class="gr mono" id="realized">+$255.32</b> · <b class="mono" id="wl">11W / 0L</b></span>
+        <a class="verify" href="http://localhost:8787" target="_blank" rel="noopener">Verify on desk →</a>
+      </div>
     </div>
   </div>
-</section>
-</div><!-- /p-nusdplus -->
+
+  <!-- ===== performance history (daily APY log + compounded curve) ===== -->
+  <div class="hist-panel">
+    <div class="hist-head">
+      <span class="eyebrow uc" style="font-size:14px;letter-spacing:.6px"><span class="b">[ </span><span class="az">Performance</span> history<span class="b"> ]</span></span>
+      <span class="hist-legend">
+        <span><i style="background:var(--azure)"></i>Daily APY</span>
+        <span><i style="background:var(--green)"></i>nUSD index · compounded since inception</span>
+      </span>
+      <span class="badge uc" style="font-size:10px"><span class="dot" style="background:var(--yellow)"></span>Paper trading · test USDC</span>
+      <span class="hist-src pl uc" id="histSrc">demo data</span>
+    </div>
+    <canvas id="histChart" height="180"></canvas>
+    <div class="hist-foot">
+      <span class="chip pl" style="font-size:13px">Best day <b class="az mono" id="histBest">—</b></span>
+      <span class="chip pl" style="font-size:13px">Avg daily APY <b class="az mono" id="histAvg">—</b></span>
+      <span class="chip pl" style="font-size:13px">Days logged <b class="mo mono" id="histDays">—</b></span>
+      <span class="chip pl" style="font-size:13px">Compounded <b class="gr mono" id="histComp">—</b></span>
+      <span class="chip" style="font-size:13px">Desk grade <b class="mono" id="histGrade" style="color:var(--yellow)">—</b>
+        <span class="tip"><span class="ico">i</span><span class="box"><b>Internal grade</b> — win rate × compounded APY × track length. A++ ≥ 30% APY &amp; ≥ 95% wins &amp; ≥ 30 days. Not investment advice.</span></span></span>
+    </div>
+    <div class="pl" style="font-size:11px;letter-spacing:.4px;margin-top:10px;text-transform:uppercase">All desk figures are paper-trading results — simulated (test) USDC executed against live market prices. No client funds. Logged daily to verify the thesis before mainnet.</div>
+  </div>
+
+  <!-- nUSD stat row -->
+  <!-- REAL nUSD yield since inception -->
+  <div style="margin-top:28px">
+    <div class="eyebrow uc" style="font-size:15px;letter-spacing:.5px;margin-bottom:12px"><span class="b">[ </span><span class="az">real nUSD yield</span> <span class="sep">//</span> since inception<span class="b"> ]</span></div>
+    <div class="si">
+      <div class="cell hero-cell"><span class="l">Compounded APY</span><span class="v big mono" id="siApy">+21.5%</span></div>
+      <div class="cell"><span class="l">Realized yield</span><span class="v pos mono" id="siRealized">+$255.32</span></div>
+      <div class="cell"><span class="l">Total ROI · inception</span><span class="v mono" id="siRoi">+0.511%</span></div>
+      <div class="cell"><span class="l">nUSD index <span class="tip"><span class="ico">i</span><span class="box"><b>Balances grow, not price.</b> 1 nUSD stays ≈ 1 USDC. The index is the growth multiplier applied to every holder's balance (Token-2022 ScaledUiAmount) since inception.</span></span></span><span class="v mono" id="siPrice">1.0051</span></div>
+      <div class="cell"><span class="l">Age</span><span class="v mono" id="siDays">— days</span></div>
+    </div>
+  </div>
+
+  <!-- DUMPSTR key KPIs (live) -->
+  <div style="margin-top:28px">
+    <div class="eyebrow uc" style="font-size:15px;letter-spacing:.5px;margin-bottom:12px"><span class="b">[ </span><span class="az">desk KPIs</span> <span class="sep">//</span> live from DUMPSTR<span class="b"> ]</span></div>
+    <div class="nusd-stats">
+      <div class="nstat"><span class="l">Portfolio equity</span><span class="v mono" id="kEquity">$50 461</span></div>
+      <div class="nstat"><span class="l">Realized PnL</span><span class="v mono gr" id="kPnl">+$255.32</span></div>
+      <div class="nstat"><span class="l">Total ROI</span><span class="v mono az" id="kRoi">+0.92%</span></div>
+      <div class="nstat"><span class="l">Closed W/L</span><span class="v mono" id="kWL">11 / 0</span></div>
+      <div class="nstat"><span class="l">Open positions</span><span class="v mono" id="kOpen">2</span></div>
+      <div class="nstat"><span class="l">Blended vault APY</span><span class="v mono" id="kVault">25.3%</span></div>
+    </div>
+  </div>
+
+  <!-- how it works -->
+</div></section>
+
+</div><!-- /p-nusd -->
+
+
 
 <footer><div class="wrap"><div class="foot-row">
   <span class="uc" style="letter-spacing:1px">STAKE<span class="az">NOVA</span> · Solana</span>
@@ -1095,6 +1058,9 @@ function drawSpark(canvas,pts,color){
 let _heroAnimFrame=null;
 let _liveBlendAPY=25.3;  // gross blended — updated from DUMPSTR /state vault.blendedAPY
 let _liveNetAPY  =21.5;  // net to depositor (blended × 0.85) — updated same
+let _liveCompApy =21.5;  // compounded since-inception APY — updated from DUMPSTR /state
+let _liveNsolApy =null;  // nSOL Sanctum APY
+let _liveInfApy  =null;  // novaSOL (INF) APY
 
 // Displayed y-targets — smoothly interpolate toward the live values each frame
 let _dispBlend=25.3, _dispNet=21.5;
@@ -1200,15 +1166,59 @@ window.addEventListener('resize',redraw);
 
 /* ============ mint estimate ============ */
 function recalc(){
+  if(!$('depIn')) return;
   const dep = parseNum($('depIn').value);
-  const rec = dep / nusdPrice;
-  $('recIn').value = rec.toFixed(2);
-  $('rateTop').textContent = '1 nUSD = '+nusdPrice.toFixed(4)+' USDC';
+  const rec = (typeof nusdMode!=='undefined' && nusdMode==='redeem') ? dep * nusdPrice : dep / nusdPrice;
+  if($('recIn')) $('recIn').value = rec.toFixed(2);
+  if($('rateTop')) $('rateTop').textContent = '1 nUSD = '+nusdPrice.toFixed(4)+' USDC';
 }
-$('depIn').addEventListener('input', recalc);
+let nusdMode='mint';
+const NUSD_BAL_DEMO='1 000.00';
+function setNusdMode(m){
+  nusdMode=m;
+  document.querySelectorAll('#nusdMode .seg').forEach(b=>b.classList.toggle('on',b.dataset.mode===m));
+  const mint = m==='mint';
+  if($('nusdHeadWord')) $('nusdHeadWord').textContent = mint?'Mint':'Redeem';
+  if($('nusdInLab')) $('nusdInLab').textContent    = mint?'You deposit':'You redeem';
+  if($('nusdInTok')) $('nusdInTok').innerHTML = mint ? '<span class="coin usdc"></span> USDC' : '<span class="coin nusd"></span> nUSD';
+  if($('nusdOutTok')) $('nusdOutTok').innerHTML = mint ? '<span class="coin nusd"></span> nUSD' : '<span class="coin usdc"></span> USDC';
+  if($('usdcBal')) $('usdcBal').textContent = connected ? (mint?'25 000.00':NUSD_BAL_DEMO) : '0.00';
+  const cd=$('nusdCooldown'); if(cd) cd.style.display = mint?'none':'';
+  if($('mintBtn')) $('mintBtn').textContent = connected
+    ? (mint?'Mint nUSD':'Redeem nUSD → USDC')
+    : (mint?'Connect wallet to mint':'Connect wallet to redeem');
+  recalc();
+}
+document.querySelectorAll('#nusdMode .seg').forEach(b=>b.addEventListener('click',()=>setNusdMode(b.dataset.mode))); // no-op if box removed
+if($('depIn')) $('depIn').addEventListener('input', recalc);
 
 /* ============ wallet (Phantom stub) ============ */
 let connected=false, pk=null;
+/* ============ per-wallet XP (demo DB — deterministic per pubkey; swap for backend later) ============ */
+let walletXP=null, walletRank=null;
+function xpFor(pubkey){
+  // deterministic hash → stable demo XP per wallet (0 for brand-new wallets ~30% of the time)
+  let h=0; for(let i=0;i<pubkey.length;i++){ h=(h*31+pubkey.charCodeAt(i))>>>0; }
+  if(h%10<3) return 0;
+  return 5000 + (h % 495000); // 5k – 500k demo range
+}
+function fmtXP(n){ return n>=1e6?(n/1e6).toFixed(2)+' M':n>=1e3?Math.round(n/1e3)+' k':String(n); }
+function loadWalletXP(pubkey){
+  walletXP = xpFor(pubkey);
+  walletRank = walletXP===0 ? null : 11 + (walletXP % 40); // demo rank outside top10
+  const chip=$('xpChip'); if(chip) chip.style.display='';
+  if($('xpVal'))   $('xpVal').textContent   = fmtXP(walletXP);
+  if($('stripXp')) $('stripXp').textContent = fmtXP(walletXP);
+  if($('stripRank'))$('stripRank').textContent = walletRank?('#'+walletRank):'—';
+  if($('modalXp')) $('modalXp').textContent = fmtXP(walletXP);
+  if($('plusXp'))  $('plusXp').textContent  = fmtXP(walletXP);
+  // leaderboard "You" row reflects real XP
+  const lb=document.querySelector('#lbRows .lb-row.me');
+  if(lb){ const rk=lb.querySelector('.rk'), pts=lb.querySelector('.pts');
+    if(rk) rk.textContent = walletRank?('#'+walletRank):'—';
+    if(pts) pts.textContent = fmtXP(walletXP)+' ✦'; }
+}
+
 async function connect(){
   const p = window.solana;
   if(p && p.isPhantom){
@@ -1220,18 +1230,24 @@ async function connect(){
   }
   const short = pk.slice(0,4)+'…'+pk.slice(-4);
   $('connectBtn').textContent = short;
-  $('usdcBal').textContent = '25 000.00';
+  loadWalletXP(pk);
+  if($('usdcBal')) $('usdcBal').textContent = '25 000.00';
   $('solBal').textContent = '128.40';
-  $('mintBtn').textContent = 'Mint nUSD';
-  $('stakeBtn').textContent = 'Stake SOL → nSOL';
+  if($('mintBtn')&&typeof setNusdMode==='function') setNusdMode(nusdMode);
+  if(typeof setNsolMode==='function') setNsolMode(nsolMode); else $('stakeBtn').textContent='Stake SOL → nSOL';
   $('novaBal').textContent = '128.40';
-  $('novaBtn').textContent = 'Stake into Nova Pool';
+  if(typeof setNovaMode==='function') setNovaMode(novaMode); else $('novaBtn').textContent='Stake into Nova Pool';
 }
 $('connectBtn').addEventListener('click', connect);
-$('mintBtn').addEventListener('click', ()=>{
+if($('mintBtn')) $('mintBtn').addEventListener('click', ()=>{
   if(!connected){ connect(); return; }
   const rec = parseNum($('recIn').value);
-  $('mintBtn').textContent = 'Minted '+rec.toFixed(2)+' nUSD (paper) ✓';
+  if(nusdMode==='redeem'){
+    if($('mintBtn')) $('mintBtn').textContent = 'Queued → '+rec.toFixed(2)+' USDC after cooldown (paper) ✓';
+    setTimeout(()=>{ $('mintBtn').textContent='Redeem nUSD → USDC'; }, 2600);
+    return;
+  }
+  if($('mintBtn')) $('mintBtn').textContent = 'Minted '+rec.toFixed(2)+' nUSD (paper) ✓';
   setTimeout(()=>{ $('mintBtn').textContent='Mint nUSD'; }, 2600);
 });
 
@@ -1250,8 +1266,6 @@ setInterval(()=>{
   timerEls.forEach(t=>{ t.left--; t.el.textContent = fmtDur(t.left); });
 },1000);
 
-/* live activity ticker */
-let ago=32; setInterval(()=>{ ago++; $('actAgo').textContent = ago+'s ago'; },1000);
 
 /* ============ DUMPSTR /state → proof of yield ============ */
 function applyDesk(S){
@@ -1259,15 +1273,15 @@ function applyDesk(S){
     const v = S.vault||{}, pf = S.portfolio||{}, st = S.stats||{}, dk = S.desks||{};
     const gross = (v.blendedAPY!=null? v.blendedAPY : 25.3);
     const net = gross*(1-PERF_FEE);
-    $('grossApy').textContent = gross.toFixed(1)+'%';
-    $('blended').textContent = gross.toFixed(1)+'%';
-    $('netApy').textContent = net.toFixed(1)+'%';
-    $('mNetApy').textContent = net.toFixed(1)+'%';
+    if($('grossApy')) $('grossApy').textContent = gross.toFixed(1)+'%';
+    if($('blended')) $('blended').textContent = gross.toFixed(1)+'%';
+    if($('netApy')) $('netApy').textContent = net.toFixed(1)+'%';
+    if($('mNetApy')) $('mNetApy').textContent = net.toFixed(1)+'%';
 
     if(pf.realizedPnl!=null) $('realized').textContent = (pf.realizedPnl>=0?'+$':'-$')+Math.abs(pf.realizedPnl).toFixed(2);
     if(st.wins!=null) $('wl').textContent = st.wins+'W / '+(st.losses||0)+'L';
-    if(v.rebalanceCount!=null) $('rebal').textContent = v.rebalanceCount;
-    if(v.balance!=null) $('tvl').textContent = fmtUsd(v.balance);
+    if(v.rebalanceCount!=null && $('rebal')) $('rebal').textContent = v.rebalanceCount;
+    if(v.balance!=null && $('tvl')) $('tvl').textContent = fmtUsd(v.balance);
 
     // --- DUMPSTR key KPIs ---
     if(pf.equity!=null){ const eq=pf.equity+(pf.realizedPnl||0);
@@ -1291,13 +1305,14 @@ function applyDesk(S){
         const days = (Date.now()-new Date(since).getTime())/86400000;
         $('siDays').textContent = days.toFixed(1)+' days';
         if(days>0.02){ const comp=(Math.pow(1+totRet,365/days)-1)*100;
-          $('siApy').textContent = (comp>=0?'+':'')+comp.toFixed(1)+'%'; }
+          $('siApy').textContent = (comp>=0?'+':'')+comp.toFixed(1)+'%';
+          _liveCompApy = comp; }
       }
     }
 
     // nUSD price from desk equity vs start
     if(pf.realizedPnl!=null){ nusdPrice = 1 + Math.max(0,pf.realizedPnl)/START_CAPITAL; }
-    $('price').innerHTML = nusdPrice.toFixed(4)+' <small>USDC</small>';
+    if($('price')) $('price').innerHTML = nusdPrice.toFixed(4)+' <small>USDC</small>';
     recalc();
 
     // equity curve
@@ -1355,7 +1370,7 @@ redraw();
 // (The public Sanctum APY feed resolves LSTs by mint; the symbol "nSOL" alone is not yet indexed.)
 const NSOL_MINT = 'nSOL';          // ← replace with nSOL mint address
 let nsolRate = 1.02727;            // 1 nSOL = X SOL · confirmed live rate from Sanctum (Jul 2026)
-function setNsolApy(pct){ const t='≈ '+pct+'%'; $('nsolApy').textContent=pct+'%'; $('nsolApy2').textContent=pct+'%'; }
+function setNsolApy(pct){ const t='≈ '+pct+'%'; $('nsolApy').textContent=pct+'%'; $('nsolApy2').textContent=pct+'%'; _liveNsolApy=parseFloat(pct); }
 async function pollSanctum(){
   try{
     let r = await fetch('https://extra-api.sanctum.so/v1/apy/latest?lst='+encodeURIComponent(NSOL_MINT),{cache:'no-store'});
@@ -1373,28 +1388,57 @@ async function pollSanctum(){
 /* ============ stake box ============ */
 function recalcStake(){
   const s = parseNum($('solIn').value);
-  $('nsolRec').value = (s / nsolRate).toFixed(4);
+  if(nsolMode==='stake'){ $('nsolRec').value = (s / nsolRate).toFixed(4); }
+  else                  { $('nsolRec').value = (s * nsolRate).toFixed(4); }
   $('nsolRateTop').textContent = '1 nSOL = '+nsolRate.toFixed(5)+' SOL';
   const fr=$('nsolFootRate'); if(fr) fr.textContent='1 nSOL = '+nsolRate.toFixed(5)+' SOL';
 }
+let nsolMode='stake';
+const NSOL_BAL_DEMO='9.7345';
+function setNsolMode(m){
+  nsolMode=m;
+  document.querySelectorAll('#nsolMode .seg').forEach(b=>b.classList.toggle('on',b.dataset.mode===m));
+  const stake = m==='stake';
+  $('stakeHeadWord').textContent = stake?'Stake':'Unstake';
+  $('stakeHeadTok').textContent  = stake?'SOL':'nSOL';
+  $('stakeInLab').textContent    = stake?'You stake':'You unstake';
+  $('stakeInTok').innerHTML = stake
+    ? '<span class="coin" style="background:linear-gradient(135deg,#9945FF,#14F195)"></span> SOL'
+    : '<span class="coin nusd"></span> nSOL';
+  $('stakeOutTok').innerHTML = stake
+    ? '<span class="coin nusd"></span> nSOL'
+    : '<span class="coin" style="background:linear-gradient(135deg,#9945FF,#14F195)"></span> SOL';
+  $('solBal').textContent = connected ? (stake?'128.40':NSOL_BAL_DEMO) : '0.00';
+  $('stakeBtn').textContent = connected
+    ? (stake?'Stake SOL → nSOL':'Unstake nSOL → SOL')
+    : (stake?'Connect wallet to stake':'Connect wallet to unstake');
+  recalcStake();
+}
+document.querySelectorAll('#nsolMode .seg').forEach(b=>b.addEventListener('click',()=>setNsolMode(b.dataset.mode)));
 $('solIn').addEventListener('input', recalcStake);
 $('stakeBtn').addEventListener('click', ()=>{
-  if(!connected){ connect(); return; }
+  if(!connected){ connect(); setNsolMode(nsolMode); return; }
   const rec = parseNum($('nsolRec').value);
-  $('stakeBtn').textContent = 'Staked → '+rec.toFixed(2)+' nSOL (paper) ✓';
-  setTimeout(()=>{ $('stakeBtn').textContent='Stake SOL → nSOL'; }, 2600);
+  if(nsolMode==='stake'){
+    $('stakeBtn').textContent = 'Staked → '+rec.toFixed(2)+' nSOL (paper) ✓';
+    setTimeout(()=>{ $('stakeBtn').textContent='Stake SOL → nSOL'; }, 2600);
+  } else {
+    $('stakeBtn').textContent = 'Unstaked → '+rec.toFixed(2)+' SOL via Sanctum (paper) ✓';
+    setTimeout(()=>{ $('stakeBtn').textContent='Unstake nSOL → SOL'; }, 2600);
+  }
 });
 recalcStake();
 
 /* ============ browser tabs ============ */
 const tabs = document.querySelectorAll('.tab');
-const panels = {nsol:'p-nsol', novasol:'p-novasol', nusd:'p-nusd', nusdplus:'p-nusdplus'};
+const panels = {nsol:'p-nsol', novasol:'p-novasol', nusd:'p-nusd'};
 tabs.forEach(t=>t.addEventListener('click',()=>{
   tabs.forEach(x=>x.classList.remove('on')); t.classList.add('on');
   const key=t.dataset.tab;
   for(const k in panels){ $(panels[k]).hidden = (k!==key); }
   $('urlPath').textContent = t.dataset.url;
   window.scrollTo({top:0,behavior:'smooth'});
+  if(key==='nusd'){ requestAnimationFrame(()=>{ if(typeof _histData!=='undefined'&&_histData) drawHistory(_histData); redraw&&redraw(); }); }
 }));
 
 /* ============ novaSOL: payout toggle + stake ============ */
@@ -1403,10 +1447,31 @@ document.querySelectorAll('#novaPayout button').forEach(b=>b.addEventListener('c
   document.querySelectorAll('#novaPayout button').forEach(x=>x.classList.remove('on'));
   b.classList.add('on'); novaPay=b.dataset.pay;
 }));
+let novaMode='stake';
+const NOVA_STAKED_DEMO='25.00';
+function setNovaMode(m){
+  novaMode=m;
+  document.querySelectorAll('#novaMode .seg').forEach(b=>b.classList.toggle('on',b.dataset.mode===m));
+  const stake = m==='stake';
+  $('novaHeadWord').textContent = stake?'Stake':'Unstake';
+  $('novaHeadRest').textContent = stake?'into Nova Pool':'from Nova Pool';
+  $('novaInLab').textContent    = stake?'You stake':'You unstake';
+  $('novaBalLab').textContent   = stake?'Balance':'Staked';
+  $('novaBal').textContent = connected ? (stake?'128.40':NOVA_STAKED_DEMO) : '0.00';
+  $('novaBtn').textContent = connected
+    ? (stake?'Stake into Nova Pool':'Unstake from Nova Pool')
+    : (stake?'Connect wallet to stake':'Connect wallet to unstake');
+}
+document.querySelectorAll('#novaMode .seg').forEach(b=>b.addEventListener('click',()=>setNovaMode(b.dataset.mode)));
 $('novaBtn').addEventListener('click',()=>{
   if(!connected){ connect(); return; }
   const amt=parseNum($('novaIn').value);
-  $('novaBtn').textContent='Staked '+amt.toFixed(2)+' SOL → earning '+novaPay+' (paper) ✓';
+  if(novaMode==='unstake'){
+    $('novaBtn').textContent='Unstaked '+amt.toFixed(2)+' SOL → principal returned (paper) ✓';
+    setTimeout(()=>{ $('novaBtn').textContent='Unstake from Nova Pool'; },2600);
+    return;
+  }
+  $('novaBtn').textContent='Staked '+amt.toFixed(2)+' SOL → earning USDC (paper) ✓';
   setTimeout(()=>{ $('novaBtn').textContent='Stake into Nova Pool'; },2600);
 });
 // INF APY: Sanctum public feed (INF mint)
@@ -1418,7 +1483,7 @@ async function pollINF(){
     let d=await r.json(); a=d?.apys?.[INF_MINT];
     if(!a){ r=await fetch('https://extra-api.sanctum.so/v1/apy/inception?lst='+INF_MINT,{cache:'no-store'});
       d=await r.json(); a=d?.apys?.[INF_MINT]; }
-    if(a)$('infApy').textContent='≈ '+(a*100).toFixed(1)+'%';
+    if(a){ $('infApy').textContent='≈ '+(a*100).toFixed(1)+'%'; _liveInfApy=a*100; const e2=$('infApy2'); if(e2) e2.textContent='≈ '+(a*100).toFixed(1)+'%'; }
   }catch(e){}
 }
 pollINF(); setInterval(pollINF,60000);
@@ -1439,6 +1504,122 @@ function animateVal(el, from, to, suffix='', decimals=1, durationMs=600){
   }
   requestAnimationFrame(step);
 }
+
+/* ============ recent winners ticker (simulated until draws are live) ============ */
+(function(){
+  const track=document.getElementById('winTickerTrack'); if(!track)return;
+  const W=[
+    {t:'07-11 09:04', w:'4hZx…Tn3b', prize:128,  dep:1800, sd:'184k',  draw:'Regular · 5d'},
+    {t:'07-10 21:00', w:'9dRf…kL8s', prize:96,   dep:640,  sd:'62k',   draw:'Regular · 5d'},
+    {t:'07-06 21:00', w:'Vm3c…Hf9j', prize:117,  dep:2400, sd:'240k',  draw:'Regular · 5d'},
+    {t:'07-01 18:00', w:'Bn4t…Wc2e', prize:212,  dep:5200, sd:'510k',  draw:'Monthly · 30d'},
+    {t:'06-26 21:00', w:'2sLn…Xd4q', prize:104,  dep:900,  sd:'88k',   draw:'Regular · 5d'},
+    {t:'04-12 18:00', w:'Kp8w…Ys5d', prize:1104, dep:9800, sd:'1.02M', draw:'Jackpot · 90d'}
+  ];
+  const item = x => {
+    const days = x.draw.includes('90')?90:x.draw.includes('30')?30:5;
+    const apy = (x.prize/x.dep)*(365/days)*100;
+    return '<span class="tick-item">'
+      +'<span class="win-when mono">'+x.t+'</span>'
+      +'<span class="tick-label">'+x.draw+'</span>'
+      +'<span class="mono">'+x.w+'</span>'
+      +'<span class="win-amt mono">won $'+x.prize.toLocaleString()+'</span>'
+      +'<span class="tick-label">on $'+x.dep.toLocaleString()+'</span>'
+      +'<span class="tick-label">with <b class="az mono">'+x.sd+' ✦</b></span>'
+      +'<span class="win-apy mono">+'+apy.toFixed(0)+'% APY eq.</span>'
+      +'</span>';
+  };
+  const lead='<span class="tick-item"><span class="tick-dot"></span><span class="tick-label" style="color:var(--green)">RECENT WINNERS · SIMULATED</span></span>';
+  const half = lead + W.map(item).join('');
+  track.innerHTML = half + half; // two copies for seamless loop
+})();
+
+/* ============ performance history (daily APY + compounded) ============ */
+const HIST_ENDPOINT = 'http://localhost:8787/history';
+function demoHistory(){
+  // 60 days of plausible desk history, deterministic
+  const out=[]; let comp=0; const t0=Date.now()-59*86400000;
+  for(let i=0;i<60;i++){
+    let s=Math.sin(i*12.9898)*43758.5453; s=s-Math.floor(s);
+    const daily = (s<0.25) ? 0 : (0.02 + s*0.16);              // % day: some flat days, bursts up to ~0.18%
+    comp = (1+comp/100)*(1+daily/100)*100-100;
+    out.push({date:new Date(t0+i*86400000).toISOString().slice(0,10),
+              dailyApyPct:+(daily*365).toFixed(2), compPct:+comp.toFixed(3)});
+  }
+  return out;
+}
+function drawHistory(H){
+  const cv=$('histChart'); if(!cv||!H.length) return;
+  if(cv.getBoundingClientRect().width<10) return; // tab hidden — redraw happens on tab switch
+  const dpr=window.devicePixelRatio||1, r=cv.getBoundingClientRect();
+  cv.width=r.width*dpr; cv.height=180*dpr;
+  const ctx=cv.getContext('2d'); ctx.scale(dpr,dpr);
+  const W=r.width, Hh=180, PAD_L=8, PAD_R=52, PAD_T=10, PAD_B=18;
+  const iw=W-PAD_L-PAD_R, ih=Hh-PAD_T-PAD_B;
+  const maxA=Math.max(...H.map(d=>d.dailyApyPct),1);
+  const maxC=Math.max(...H.map(d=>d.compPct),0.1);
+  ctx.clearRect(0,0,W,Hh);
+  // grid
+  ctx.strokeStyle='#1c1c1c'; ctx.lineWidth=1; ctx.setLineDash([2,6]);
+  [0.25,0.5,0.75].forEach(f=>{ctx.beginPath();ctx.moveTo(PAD_L,PAD_T+ih*f);ctx.lineTo(PAD_L+iw,PAD_T+ih*f);ctx.stroke();});
+  ctx.setLineDash([]);
+  // daily APY bars (azure)
+  const bw=Math.max(2, iw/H.length*0.55);
+  H.forEach((d,i)=>{
+    const x=PAD_L+iw*(i/(H.length-1||1));
+    const h=ih*(d.dailyApyPct/maxA);
+    ctx.fillStyle='rgba(62,151,255,0.75)';
+    ctx.fillRect(x-bw/2, PAD_T+ih-h, bw, h);
+  });
+  // compounded line (green)
+  ctx.beginPath();
+  H.forEach((d,i)=>{
+    const x=PAD_L+iw*(i/(H.length-1||1));
+    const y=PAD_T+ih*(1-d.compPct/maxC);
+    i?ctx.lineTo(x,y):ctx.moveTo(x,y);
+  });
+  ctx.strokeStyle='#28C686'; ctx.lineWidth=2; ctx.lineJoin='round'; ctx.stroke();
+  // right-axis labels
+  ctx.font='10px Lexend,sans-serif'; ctx.textAlign='left'; ctx.textBaseline='middle';
+  ctx.fillStyle='#28C686'; ctx.fillText((1+maxC/100).toFixed(4), PAD_L+iw+6, PAD_T+4);
+  ctx.fillStyle='#3E97FF'; ctx.fillText(maxA.toFixed(0)+'% APY', PAD_L+iw+6, PAD_T+ih-4);
+  // dates
+  ctx.fillStyle='#6E7D8D'; ctx.textAlign='center'; ctx.textBaseline='top';
+  ctx.fillText(H[0].date.slice(5), PAD_L+20, PAD_T+ih+5);
+  ctx.fillText(H[H.length-1].date.slice(5), PAD_L+iw-20, PAD_T+ih+5);
+  // stat chips
+  const best=H.reduce((a,b)=>b.dailyApyPct>a.dailyApyPct?b:a);
+  const avg=H.reduce((s,d)=>s+d.dailyApyPct,0)/H.length;
+  $('histBest').textContent=best.dailyApyPct.toFixed(1)+'% ('+best.date.slice(5)+')';
+  $('histAvg').textContent=avg.toFixed(1)+'%';
+  $('histDays').textContent=H.length;
+  // grade: compounded APY (annualized from track) x consistency x length
+  (function(){
+    const days=H.length, comp=H[H.length-1].compPct;
+    const annComp = days>0 ? (Math.pow(1+comp/100,365/days)-1)*100 : 0;
+    const posDays = H.filter(d=>d.dailyApyPct>0).length/Math.max(days,1);
+    let g='C';
+    if(annComp>=30&&posDays>=0.6&&days>=30)g='A++';
+    else if(annComp>=20&&posDays>=0.5&&days>=21)g='A+';
+    else if(annComp>=12&&days>=14)g='A';
+    else if(annComp>=8)g='B+';
+    else if(annComp>=4)g='B';
+    const el=$('histGrade'); if(el){ el.textContent=g;
+      el.style.color = g[0]==='A' ? 'var(--green)' : g[0]==='B' ? 'var(--yellow)' : 'var(--orange)'; }
+  })();
+  $('histComp').textContent='+'+H[H.length-1].compPct.toFixed(3)+'% · index '+(1+H[H.length-1].compPct/100).toFixed(4);
+}
+let _histData=null;
+async function loadHistory(){
+  try{
+    const r=await fetch(HIST_ENDPOINT,{cache:'no-store'});
+    if(r.ok){ const j=await r.json();
+      if(Array.isArray(j)&&j.length){ _histData=j; $('histSrc').textContent='live · desk log'; drawHistory(j); return; } }
+  }catch(e){}
+  _histData=demoHistory(); $('histSrc').textContent='demo data'; drawHistory(_histData);
+}
+loadHistory(); setInterval(loadHistory, 300000);
+window.addEventListener('resize',()=>{ if(_histData) drawHistory(_histData); });
 
 /* ============ live ticker updater from DUMPSTR /state ============ */
 // Values track previous for smooth animation
@@ -1503,22 +1684,86 @@ function updateTicker(S){
 // Hero APY overlay — update from live values (no random drift)
 function updateHeroOverlay(){
   const el=$('heroApy');if(!el)return;
-  el.textContent=(_liveBlendAPY||25.3).toFixed(2)+'%';
+  const cands=[
+    {v:_liveCompApy, src:'nUSD \u00b7 compounded, since inception'},
+    {v:_liveNetAPY,  src:'nUSD \u00b7 net APY'},
+    {v:_liveInfApy,  src:'novaSOL \u00b7 Sanctum Infinity'},
+    {v:_liveNsolApy, src:'nSOL \u00b7 liquid staking'}
+  ].filter(x=>x.v!=null&&isFinite(x.v));
+  if(!cands.length)return;
+  const best=cands.reduce((a,b)=>b.v>a.v?b:a);
+  el.textContent=best.v.toFixed(2)+'%';
+  const sc=$('heroApySrc'); if(sc) sc.textContent=best.src;
 }
 setInterval(updateHeroOverlay, 500);
 
 
 /* ============ XP modal ============ */
+
+/* ============ XP leaderboard modal ============ */
+(function(){
+  const rows=[
+    {r:1,  w:'7xKq...9mPz', xp:2840000, m:'3\u00d7'},
+    {r:2,  w:'Bn4t...Wc2e', xp:2310000, m:'2.5\u00d7'},
+    {r:3,  w:'9dRf...kL8s', xp:1985000, m:'2\u00d7'},
+    {r:4,  w:'Ej2m...Qa7v', xp:1620000, m:'2\u00d7'},
+    {r:5,  w:'4hZx...Tn3b', xp:1445000, m:'1.75\u00d7'},
+    {r:6,  w:'Kp8w...Ys5d', xp:1180000, m:'1.75\u00d7'},
+    {r:7,  w:'Vm3c...Hf9j', xp:960000,  m:'1.5\u00d7'},
+    {r:8,  w:'2sLn...Xd4q', xp:815000,  m:'1.5\u00d7'},
+    {r:9,  w:'Gt6y...Ub1k', xp:702000,  m:'1.5\u00d7'},
+    {r:10, w:'Rw9a...Ce6p', xp:540000,  m:'1.5\u00d7'},
+    {gap:true},
+    {r:16, w:'You',         xp:100000,  m:'', me:true}
+  ];
+  const fmt=n=>n>=1e6?(n/1e6).toFixed(2)+'M':(n/1e3).toFixed(0)+'k';
+  const el=document.getElementById('lbRows');
+  if(el){ el.innerHTML=rows.map(x=>x.gap
+    ? '<div class="lb-gap">\u00b7\u00b7\u00b7</div>'
+    : '<div class="lb-row'+(x.r<=10?' top':'')+(x.me?' me':'')+'">'
+      +'<span class="rk">#'+x.r+'</span>'
+      +'<span class="who">'+x.w+'</span>'
+      +(x.m?'<span class="mult">'+x.m+' XP</span>':'')
+      +'<span class="pts">'+fmt(x.xp)+' \u2726</span></div>').join(''); }
+  const bg=document.getElementById('lbModal');
+  document.getElementById('lbClose').addEventListener('click',()=>bg.classList.remove('open'));
+  bg.addEventListener('click',e=>{if(e.target===bg)bg.classList.remove('open');});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')bg.classList.remove('open');});
+})();
+
 document.getElementById('xpClose').addEventListener('click',()=>document.getElementById('xpModal').classList.remove('open'));
 document.getElementById('xpModal').addEventListener('click',e=>{if(e.target===document.getElementById('xpModal'))document.getElementById('xpModal').classList.remove('open');});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('xpModal').classList.remove('open');});
 
 
 /* ============ nUSD+ deposit box ============ */
+let plusMode='deposit';
+const PLUS_BAL_DEMO='500.00';
+function setPlusMode(m){
+  plusMode=m;
+  document.querySelectorAll('#plusMode .seg').forEach(b=>b.classList.toggle('on',b.dataset.mode===m));
+  const dep = m==='deposit';
+  $('plusHeadWord').textContent = dep?'Deposit':'Withdraw';
+  $('plusHeadRest').textContent = dep?'USDC → nUSD+':'nUSD+ → USDC';
+  $('plusInLab').textContent    = dep?'You deposit':'You withdraw';
+  $('plusInTok').innerHTML = dep ? '<span class="coin usdc"></span> USDC'
+    : '<span class="coin" style="background:radial-gradient(circle at 35% 30%,#5dcaa5,#1D9E75)"></span> nUSD+';
+  $('plusBal').textContent = connected ? (dep?'25 000.00':PLUS_BAL_DEMO) : '0.00';
+  const w=$('plusXpWarn'); if(w) w.style.display = dep?'none':'';
+  $('plusBtn').textContent = connected
+    ? (dep?'Deposit USDC → nUSD+':'Withdraw nUSD+ → USDC')
+    : (dep?'Connect wallet to deposit':'Connect wallet to withdraw');
+}
+document.querySelectorAll('#plusMode .seg').forEach(b=>b.addEventListener('click',()=>setPlusMode(b.dataset.mode)));
 $('plusIn').addEventListener('input',()=>{ $('plusRec').value=parseNum($('plusIn').value).toFixed(2); });
 $('plusBtn').addEventListener('click',()=>{
-  if(!connected){ connect(); $('plusBal').textContent='25 000.00'; $('plusBtn').textContent='Deposit USDC → nUSD+'; return; }
+  if(!connected){ connect(); setPlusMode(plusMode); return; }
   const a=parseNum($('plusIn').value);
+  if(plusMode==='withdraw'){
+    $('plusBtn').textContent='Withdrawn '+a.toFixed(2)+' USDC · Stardust reset (paper) ✓';
+    setTimeout(()=>{ $('plusBtn').textContent='Withdraw nUSD+ → USDC'; },2600);
+    return;
+  }
   $('plusBtn').textContent='Deposited '+a.toFixed(2)+' nUSD+ (paper) ✓';
   setTimeout(()=>{ $('plusBtn').textContent='Deposit USDC → nUSD+'; },2600);
 });
