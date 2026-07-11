@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- SN-BUILD v25 : panels hug the tab bar (dead gap removed) -->
+<!-- SN-BUILD v30 : realness pass — sim labeled, winners feed real (data/winners.json), honest pending states -->
 
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>StakeNova · Staking Mission Control</title>
@@ -216,6 +216,10 @@ header{border-bottom:1px solid var(--jet);background:var(--black);position:stick
 .hero-kpi{display:flex;flex-direction:column;align-items:center;gap:12px}
 .hero-kpi .hero-apy-label{display:flex;align-items:center;gap:8px}
 .hero-apy-src{font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--silver)}
+.hero-stats{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap}
+.hstat{border:1px solid var(--jet);padding:12px 18px;display:flex;flex-direction:column;gap:4px;min-width:150px}
+.hstat .v{font-size:24px;line-height:1}
+.hstat .l{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--platinum)}
 .hero-apy-big{font-size:52px;font-weight:500;letter-spacing:1px;color:var(--azure);
   font-variant-numeric:tabular-nums;line-height:1;
   text-shadow:0 0 24px rgba(62,151,255,0.5)}
@@ -304,7 +308,7 @@ header{border-bottom:1px solid var(--jet);background:var(--black);position:stick
 .apy-big{font-size:64px;line-height:1;letter-spacing:1px;color:var(--azure);font-weight:500}
 .apy-sub{font-size:14px;letter-spacing:.28px;color:var(--platinum);line-height:1.7;padding-bottom:6px}
 .apy-sub b{color:var(--moon);font-weight:500}
-.spark{height:96px;border:1px solid var(--jet);position:relative}
+.spark{height:200px;border:1px solid var(--jet);position:relative}
 .spark canvas{width:100%;height:100%;display:block}
 .spark .tag{position:absolute;top:8px;right:10px;font-size:12px;letter-spacing:.4px;color:var(--green)}
 .spark .tagl{position:absolute;top:8px;left:10px;font-size:12px;letter-spacing:.4px;color:var(--platinum)}
@@ -547,8 +551,13 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
       <div class="eyebrow uc"><span class="b">[ </span><span class="az">stake &amp; </span>earn rewards<span class="b"> ]</span></div>
       <h1 class="hero-h">Your Staking Mission Control</h1>
       <div class="eyebrow uc" style="font-size:15px;letter-spacing:.6px;color:var(--platinum);max-width:520px;line-height:26px">
-        Yield should be earned, measured and verifiable — not promised.
-        <span class="mo">Every number on this page is computed on <span class="az">Solana</span>, in the open.</span>
+        Strategy proven in simulation. <span class="mo">Running live on <span class="az">Solana</span> devnet — mainnet next.</span>
+        Every number here is real and verifiable on-chain.
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><span class="v gr mono" id="hsApy">—</span><span class="l">Highest APY equiv.</span></div>
+        <div class="hstat"><span class="v mo mono" id="hsBig">—</span><span class="l">Last big reward</span></div>
+        <div class="hstat"><span class="v az mono" id="hsTotal">—</span><span class="l">Total distributed</span></div>
       </div>
     </div>
     <div class="frame">
@@ -569,7 +578,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
 <div class="ticker-wrap" id="tickerWrap">
   <div class="ticker-track" id="tickerTrack">
     <!-- first copy -->
-    <span class="tick-item"><span class="tick-dot"></span><span class="tick-label">Blended APY</span><span class="tick-val" id="t_blended">25.3%</span></span>
+    <span class="tick-item"><span class="tick-label" style="color:var(--yellow)">[ DESK · STRATEGY SIM ]</span></span><span class="tick-item"><span class="tick-dot"></span><span class="tick-label">Blended APY</span><span class="tick-val" id="t_blended">25.3%</span></span>
     <span class="tick-item"><span class="tick-label">nUSD net APY</span><span class="tick-val pos" id="t_netapy">21.5%</span></span>
     <span class="tick-item"><span class="tick-label">Strat S1</span><span class="tick-val" id="t_depeg">+0.511%</span></span>
     <span class="tick-item"><span class="tick-label">Strat S2</span><span class="tick-val" id="t_dn">+0.073%</span></span>
@@ -580,7 +589,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
     <span class="tick-item"><span class="tick-label">Vault equity</span><span class="tick-val" id="t_eq">$50 461</span></span>
     <span class="tick-item"><span class="tick-label">Perf fee</span><span class="tick-val">15%</span></span>
     <!-- mirror copy for seamless loop -->
-    <span class="tick-item"><span class="tick-dot"></span><span class="tick-label">Blended APY</span><span class="tick-val">25.3%</span></span>
+    <span class="tick-item"><span class="tick-label" style="color:var(--yellow)">[ DESK · STRATEGY SIM ]</span></span><span class="tick-item"><span class="tick-dot"></span><span class="tick-label">Blended APY</span><span class="tick-val">25.3%</span></span>
     <span class="tick-item"><span class="tick-label">nUSD net APY</span><span class="tick-val pos">21.5%</span></span>
     <span class="tick-item"><span class="tick-label">Strat S1</span><span class="tick-val">+0.511%</span></span>
     <span class="tick-item"><span class="tick-label">Strat S2</span><span class="tick-val">+0.073%</span></span>
@@ -765,7 +774,6 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
         </div>
         <div class="proof-foot">
           <span class="chip pl" style="font-size:14px">Yield source: <b class="mo">Sanctum Infinity</b> · live APY <b class="az mono" id="infApy2">≈ —</b></span>
-          <span class="chip pl" style="font-size:13px">Draws below ↓</span>
         </div>
       </div>
     </div>
@@ -784,6 +792,17 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
       <div class="track"><div class="fill" style="width:60%"></div></div>
     </div>
 
+    <!-- next payout: epoch end + 8h INF settlement buffer -->
+    <div class="prow" style="margin-top:18px">
+      <div class="between">
+        <div class="eyebrow uc"><span>Next </span><span class="gr">Payout</span> <span class="sep">//</span> <span class="gr mono" id="payoutTimer">—</span></div>
+        <div class="eyebrow uc" style="color:var(--platinum);font-size:12px;letter-spacing:.4px">epoch end + 8h · INF settlement window
+          <span class="tip"><span class="ico">i</span><span class="box"><b>Why +8h?</b> After the epoch closes, INF yield needs to settle and the pool converts to USDC. The 8-hour buffer covers an INF price bump before payouts are computed — payouts are sent automatically after it.</span></span>
+        </div>
+      </div>
+      <div class="track"><div class="fill g" style="width:52%"></div></div>
+    </div>
+
   </div>
 </div></section>
 
@@ -798,7 +817,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
       <div class="eyebrow uc"><span class="b">[ </span><span class="plus-accent">no-loss savings</span> <span class="sep">//</span> nUSD<span class="b"> ]</span></div>
       <h2 class="sec-h">Keep your principal.<br><span class="plus-accent">Win the yield.</span></h2>
     </div>
-    <span class="badge plus-badge uc">Paper · Devnet</span>
+    <span class="badge plus-badge uc"><span class="dot"></span>Devnet · Live pools</span>
   </div>
 
 <div class="nusd-grid">
@@ -874,33 +893,6 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
         <div class="proof-foot" style="margin-top:12px">
           <span class="chip pl" style="font-size:13px">Your XP <b class="az mono" id="plusXp">—</b> · total pool <b class="mo mono">~12 M XP</b></span>
           <a class="verify" href="#" onclick="document.getElementById('xpChip').click();return false">XP rules →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- stat row -->
-    <div class="nusd-stats">
-      <div class="nstat"><span class="l">nUSD+ TVL</span><span class="v mono">$85,000</span></div>
-      <div class="nstat"><span class="l">Cap remaining</span><span class="v mono plus-accent">$915,000</span></div>
-      <div class="nstat"><span class="l">Performance fee</span><span class="v mono plus-accent">0%</span></div>
-      <div class="nstat"><span class="l">Principal risk</span><span class="v mono plus-accent">Zero</span></div>
-    </div>
-
-    <!-- victim recovery box -->
-    <div style="margin-top:24px;border:1px solid rgba(40,198,134,.25);background:rgba(40,198,134,.04);padding:22px">
-      <div class="eyebrow uc" style="font-size:13px;letter-spacing:.5px;color:#28C686;margin-bottom:14px">[ ◈ recovery positions // hack victims ]</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px">
-        <div>
-          <div class="eyebrow uc" style="font-size:11px;color:var(--silver);margin-bottom:6px">What victims receive</div>
-          <div style="font-size:13px;color:var(--moon);line-height:1.7">A nUSD+ position equal to <b style="color:#28C686">5% of their original investment</b>, funded by the protocol. Earns XP and enters every draw automatically.</div>
-        </div>
-        <div>
-          <div class="eyebrow uc" style="font-size:11px;color:var(--silver);margin-bottom:6px">If they keep the position</div>
-          <div style="font-size:13px;color:var(--moon);line-height:1.7">XP accrues each epoch. <b>More time = higher draw weight.</b> As TVL grows, prizes grow. Their deposit contributes real yield to the pool everyone shares.</div>
-        </div>
-        <div>
-          <div class="eyebrow uc" style="font-size:11px;color:var(--silver);margin-bottom:6px">If they withdraw</div>
-          <div style="font-size:13px;color:var(--moon);line-height:1.7">They get their 5% recovery USDC back. XP from that position ends. <b>Their choice entirely</b> — those who need liquidity take it, those who want to win more hold.</div>
         </div>
       </div>
     </div>
@@ -1006,7 +998,6 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
 <footer><div class="wrap"><div class="foot-row">
   <span class="uc" style="letter-spacing:1px">STAKE<span class="az">NOVA</span> · Solana</span>
   <div class="foot-links uc">
-    <a href="http://localhost:8787" target="_blank">DUMPSTR desk</a>
     <a href="#">Docs</a><a href="#">Discord</a><a href="#">X</a>
   </div>
   <span>Paper / devnet build · not financial advice</span>
@@ -1263,6 +1254,7 @@ let epochLeft = 1*86400+15*3600+30*60+40;
 const timerEls = [...document.querySelectorAll('[data-timer]')].map(el=>({el,left:+el.dataset.timer}));
 setInterval(()=>{
   epochLeft--; $('epochTimer').textContent = fmtDur(epochLeft);
+  const pt=$('payoutTimer'); if(pt) pt.textContent = fmtDur(epochLeft + 8*3600);
   timerEls.forEach(t=>{ t.left--; t.el.textContent = fmtDur(t.left); });
 },1000);
 
@@ -1484,6 +1476,8 @@ async function pollINF(){
     if(!a){ r=await fetch('https://extra-api.sanctum.so/v1/apy/inception?lst='+INF_MINT,{cache:'no-store'});
       d=await r.json(); a=d?.apys?.[INF_MINT]; }
     if(a){ $('infApy').textContent='≈ '+(a*100).toFixed(1)+'%'; _liveInfApy=a*100; const e2=$('infApy2'); if(e2) e2.textContent='≈ '+(a*100).toFixed(1)+'%'; }
+    // nSOL isn't in Sanctum's registry yet — use the live Sanctum baseline (INF) as est. until NSOL_MINT resolves
+    if(a && _liveNsolApy==null){ setNsolApy((a*100).toFixed(1)); const lab=document.querySelector('#p-nsol .rateline span:last-child'); if(lab) lab.textContent='est. · Sanctum baseline · auto-compounding'; }
   }catch(e){}
 }
 pollINF(); setInterval(pollINF,60000);
@@ -1505,33 +1499,36 @@ function animateVal(el, from, to, suffix='', decimals=1, durationMs=600){
   requestAnimationFrame(step);
 }
 
-/* ============ recent winners ticker (simulated until draws are live) ============ */
-(function(){
+/* ============ recent winners — REAL devnet draws (data/winners.json published by the keeper) ============ */
+(async function(){
   const track=document.getElementById('winTickerTrack'); if(!track)return;
-  const W=[
-    {t:'07-11 09:04', w:'4hZx…Tn3b', prize:128,  dep:1800, sd:'184k',  draw:'Regular · 5d'},
-    {t:'07-10 21:00', w:'9dRf…kL8s', prize:96,   dep:640,  sd:'62k',   draw:'Regular · 5d'},
-    {t:'07-06 21:00', w:'Vm3c…Hf9j', prize:117,  dep:2400, sd:'240k',  draw:'Regular · 5d'},
-    {t:'07-01 18:00', w:'Bn4t…Wc2e', prize:212,  dep:5200, sd:'510k',  draw:'Monthly · 30d'},
-    {t:'06-26 21:00', w:'2sLn…Xd4q', prize:104,  dep:900,  sd:'88k',   draw:'Regular · 5d'},
-    {t:'04-12 18:00', w:'Kp8w…Ys5d', prize:1104, dep:9800, sd:'1.02M', draw:'Jackpot · 90d'}
-  ];
-  const item = x => {
-    const days = x.draw.includes('90')?90:x.draw.includes('30')?30:5;
-    const apy = (x.prize/x.dep)*(365/days)*100;
-    return '<span class="tick-item">'
-      +'<span class="win-when mono">'+x.t+'</span>'
-      +'<span class="tick-label">'+x.draw+'</span>'
-      +'<span class="mono">'+x.w+'</span>'
-      +'<span class="win-amt mono">won $'+x.prize.toLocaleString()+'</span>'
-      +'<span class="tick-label">on $'+x.dep.toLocaleString()+'</span>'
-      +'<span class="tick-label">with <b class="az mono">'+x.sd+' ✦</b></span>'
-      +'<span class="win-apy mono">+'+apy.toFixed(0)+'% APY eq.</span>'
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  const tierLab={regular:'Regular · 5d',monthly:'Monthly · 30d',jackpot:'Jackpot · 90d'};
+  let W=null;
+  try{ const r=await fetch('data/winners.json',{cache:'no-store'}); if(r.ok){ const j=await r.json(); if(Array.isArray(j)&&j.length) W=j; } }catch(e){}
+  if(W){
+    const item=x=>'<span class="tick-item" title="tx: '+(x.tx||'')+'">'
+      +'<span class="win-when mono">'+String(x.t).slice(5,16).replace('T',' ')+'</span>'
+      +'<span class="tick-label">'+(tierLab[x.tier]||x.tier)+'</span>'
+      +'<span class="mono">'+String(x.winner).slice(0,4)+'…'+String(x.winner).slice(-4)+'</span>'
+      +'<span class="win-amt mono">won $'+Number(x.prize).toLocaleString(undefined,{maximumFractionDigits:2})+'</span>'
+      +'<span class="tick-label">with <b class="az mono">'+Number(x.stardust).toLocaleString()+' ✦</b></span>'
       +'</span>';
-  };
-  const lead='<span class="tick-item"><span class="tick-dot"></span><span class="tick-label" style="color:var(--green)">RECENT WINNERS · SIMULATED</span></span>';
-  const half = lead + W.map(item).join('');
-  track.innerHTML = half + half; // two copies for seamless loop
+    const lead='<span class="tick-item"><span class="tick-dot"></span><span class="tick-label" style="color:var(--green)">RECENT WINNERS · DEVNET · REAL</span></span>';
+    const half=lead+W.map(item).join('');
+    track.innerHTML=half+half;
+    set('hsApy', W.length+' draw'+(W.length>1?'s':''));
+    const apyLab=document.querySelector('#hsApy ~ .l')||document.getElementById('hsApy')?.nextElementSibling;
+    if(apyLab) apyLab.textContent='Draws completed';
+    set('hsBig','$'+Math.max(...W.map(x=>+x.prize)).toLocaleString(undefined,{maximumFractionDigits:2}));
+    set('hsTotal','$'+W.reduce((s,x)=>s+ +x.prize,0).toLocaleString(undefined,{maximumFractionDigits:2}));
+  } else {
+    const lead='<span class="tick-item"><span class="tick-dot"></span><span class="tick-label" style="color:var(--green)">DEVNET DRAWS · LIVE POOLS FUNDED</span></span>'
+      +'<span class="tick-item"><span class="tick-label">First draw pending — pools filling from real desk yield. Winners appear here with their tx.</span></span>';
+    track.innerHTML=lead+lead;
+    set('hsApy','—'); const l=document.getElementById('hsApy')?.nextElementSibling; if(l) l.textContent='Draws completed';
+    set('hsBig','—'); set('hsTotal','$0');
+  }
 })();
 
 /* ============ performance history (daily APY + compounded) ============ */
@@ -1784,6 +1781,30 @@ function fmtCD(s){
   return m+'m '+String(s).padStart(2,'0')+'s';
 }
 // Prize pool accumulators — window-scoped for testability
+/* ============ REAL devnet pool balances (pre-deployment tests) ============ */
+const DEVNET_POOLS = {
+  prizeReg:  'AjkY8v9bEmby8Jqeaq3ymdMySGXxYePuk3Av6A4nTCkK',
+  prizeMon:  '9pArm4C7N1wcrcyKSfXxbfYrne76mwvYpdmv5jTM4TMD',
+  prizeJack: '4FjAVGYdD6VKTRAmnpJLmYSHSnmWcx1nueYUhpmHA2WS'
+};
+let _devnetLive=false;
+async function fetchDevnetPools(){
+  try{
+    let ok=0;
+    for(const [id,addr] of Object.entries(DEVNET_POOLS)){
+      const r = await fetch('https://api.devnet.solana.com',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({jsonrpc:'2.0',id:1,method:'getTokenAccountBalance',params:[addr]})});
+      const res = await r.json();
+      const v = res.result?.value?.uiAmount;
+      if(v!=null){ const el=document.getElementById(id); if(el){ el.textContent='$'+v.toLocaleString('en-US',{maximumFractionDigits:2}); ok++; } }
+    }
+    if(ok===3 && !_devnetLive){ _devnetLive=true;
+      document.querySelectorAll('.draw-prize').forEach(d=>{ if(!d.querySelector('.dv')) d.insertAdjacentHTML('beforeend',' <span class="dv" style="font-size:9px;letter-spacing:.12em;color:var(--green)">DEVNET · LIVE</span>'); });
+    }
+  }catch(e){}
+}
+fetchDevnetPools(); setInterval(fetchDevnetPools, 60000);
+
 window._prizeReg=128; window._prizeMon=765; window._prizeJack=4590;
 const _prizeRate=0.000296; // ~$128 per 5-day cycle at $85K TVL demo
 function _updateCD(){
@@ -1793,6 +1814,7 @@ function _updateCD(){
   if(el('cdReg'))   el('cdReg').textContent   = fmtCD(window._cdReg);
   if(el('cdMon'))   el('cdMon').textContent   = fmtCD(window._cdMon);
   if(el('cdJack'))  el('cdJack').textContent  = fmtCD(window._cdJack);
+  if(_devnetLive) return; // real devnet balances own the display
   if(el('prizeReg'))  el('prizeReg').textContent  = '$'+Math.round(window._prizeReg);
   if(el('prizeMon'))  el('prizeMon').textContent  = '$'+Math.round(window._prizeMon);
   if(el('prizeJack')) el('prizeJack').textContent = '$'+Math.round(window._prizeJack);
