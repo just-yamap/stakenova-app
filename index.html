@@ -364,6 +364,33 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
 @media(max-width:960px){.si{flex-wrap:wrap}.si .cell{flex-basis:50%;border-bottom:1px solid var(--jet)}.tab{padding:12px 16px;font-size:13px}.urlbar{display:none}}
 </style></head>
 <body>
+<!-- ======== ACCESS GATE ======== -->
+<div id="sn-gate" style="position:fixed;inset:0;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;font-family:'Lexend',sans-serif;">
+  <div style="text-align:center;max-width:320px;width:90%;">
+    <div style="color:#3E97FF;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;">[ STAKENOVA // <span style="color:#fff;">PRIVATE BETA</span> ]</div>
+    <div style="color:#fff;font-size:26px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:24px;">Access Code</div>
+    <input id="sn-gate-input" type="password" autocomplete="off" style="width:100%;box-sizing:border-box;background:#000;border:1px solid #363636;color:#fff;font-family:'Lexend',sans-serif;font-size:15px;letter-spacing:.15em;text-align:center;padding:13px;outline:none;" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;">
+    <button id="sn-gate-btn" style="width:100%;margin-top:12px;background:#3E97FF;border:none;color:#000;font-family:'Lexend',sans-serif;font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:14px;cursor:pointer;">Enter</button>
+    <div id="sn-gate-err" style="color:#FF9266;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-top:12px;visibility:hidden;">Wrong code</div>
+  </div>
+</div>
+<script>
+(function(){
+  var K='aWxvdmVZYW1hcA==', g=document.getElementById('sn-gate'),
+      i=document.getElementById('sn-gate-input'), b=document.getElementById('sn-gate-btn'),
+      e=document.getElementById('sn-gate-err');
+  if(sessionStorage.getItem('sn_unlocked')==='1'){ g.remove(); return; }
+  document.documentElement.style.overflow='hidden';
+  function tryUnlock(){
+    if(btoa(i.value)===K){ sessionStorage.setItem('sn_unlocked','1'); g.remove(); document.documentElement.style.overflow=''; }
+    else { e.style.visibility='visible'; i.value=''; i.focus(); }
+  }
+  b.addEventListener('click',tryUnlock);
+  i.addEventListener('keydown',function(ev){ if(ev.key==='Enter') tryUnlock(); });
+  i.focus();
+})();
+</script>
+<!-- ======== /ACCESS GATE ======== -->
 
 <!-- ===================== HEADER ===================== -->
 <header><div class="wrap"><div class="nav">
