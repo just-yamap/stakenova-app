@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- SN-BUILD v30 : realness pass — sim labeled, winners feed real (data/winners.json), honest pending states -->
+<!-- SN-BUILD v34 : telemetry aligned to cockpit source (vault.apyHistory.byDesk) + time axis -->
 
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>StakeNova · Staking Mission Control</title>
@@ -119,6 +119,11 @@ header{border-bottom:1px solid var(--jet);background:var(--black);position:stick
 .hist-src{font-size:10px;letter-spacing:.15em}
 #histChart{width:100%;height:180px;display:block}
 .hist-foot{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;border-top:1px solid var(--jet);padding-top:14px}
+.telewrap{height:190px;border:1px solid var(--jet);position:relative}
+.telewrap canvas{width:100%;height:100%;display:block}
+.tele-legend{display:flex;gap:22px;margin-top:10px;font-size:12.5px;color:var(--platinum);flex-wrap:wrap}
+.tele-legend i{display:inline-block;width:14px;height:3px;margin-right:7px;vertical-align:middle}
+.tele-legend b{color:var(--moon);margin-left:4px}
 
 /* ===== winners ticker strip ===== */
 .win-ticker{border-top:0}
@@ -312,6 +317,11 @@ header{border-bottom:1px solid var(--jet);background:var(--black);position:stick
 .spark canvas{width:100%;height:100%;display:block}
 .spark .tag{position:absolute;top:8px;right:10px;font-size:12px;letter-spacing:.4px;color:var(--green)}
 .spark .tagl{position:absolute;top:8px;left:10px;font-size:12px;letter-spacing:.4px;color:var(--platinum)}
+.pmetrics{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--jet)}
+.pm{padding:16px 18px;border-right:1px solid var(--jet);border-bottom:1px solid var(--jet);display:flex;flex-direction:column;gap:5px}
+.pm:nth-child(3n){border-right:0}.pm:nth-child(n+4){border-bottom:0}
+.pm .v{font-size:22px;line-height:1}
+.pm .l{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--platinum)}
 .desks{display:flex;flex-direction:column;gap:10px}
 .desk{display:grid;grid-template-columns:110px 1fr 64px;align-items:center;gap:10px;font-size:13px;letter-spacing:.3px}
 .desk .nm{color:var(--platinum);text-transform:uppercase;letter-spacing:.5px;font-size:12px}
@@ -846,6 +856,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
             <span class="tok"><span class="coin" style="background:radial-gradient(circle at 35% 30%,#5dcaa5,#1D9E75)"></span> nUSD</span>
           </div>
         </div>
+        <div class="rateline"><span>Performance fee <b class="az mono">15%</b></span><span>on yield only — never on principal</span></div>
         <div class="cap-bar-wrap">
           <div class="cap-bar-label">
             <span>Core sleeve capacity <b id="plusTvlDisp">$85,000</b> / <b>$300,000</b> <span class="pl uc" style="font-size:10px;letter-spacing:.12em">soft cap</span>
@@ -862,7 +873,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
       <!-- prize draws panel -->
       <div class="proof">
         <div class="between">
-          <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="plus-accent">Prize</span> pools · live</div>
+          <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="plus-accent">Prize</span> pools · live <span class="pl" style="font-size:11px;letter-spacing:.08em">· funded from net yield (after 15% fee)</span></div>
           <span class="chip pl" style="font-size:12px">✦ All draws Stardust-weighted</span>
         </div>
         <div class="draws">
@@ -891,15 +902,15 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
           </div>
         </div>
         <div class="proof-foot" style="margin-top:12px">
-          <span class="chip pl" style="font-size:13px">Your XP <b class="az mono" id="plusXp">—</b> · total pool <b class="mo mono">~12 M XP</b></span>
-          <a class="verify" href="#" onclick="document.getElementById('xpChip').click();return false">XP rules →</a>
+          <span class="chip pl" style="font-size:13px">Your Stardust <b class="az mono" id="plusXp">—</b> · total pool <b class="mo mono">~1 M ✦</b></span>
+          <a class="verify" href="#" onclick="document.getElementById('xpChip').click();return false">Stardust rules →</a>
         </div>
       </div>
     </div>
 
     <!-- how it works steps -->
     <div class="flow" style="margin-top:20px">
-      <div class="step"><span class="n">01</span><span class="t uc">Deposit USDC</span><span class="d">Mint nUSD+ 1:1. Principal always redeemable. No lockup, no fee.</span></div>
+      <div class="step"><span class="n">01</span><span class="t uc">Deposit USDC</span><span class="d">Mint nUSD 1:1. Principal always redeemable. No lockup, no deposit fee.</span></div>
       <div class="step"><span class="n">02</span><span class="t uc">Yield pools</span><span class="d">The desk engine earns the yield. It accumulates into the prize pools every epoch.</span></div>
       <div class="step"><span class="n">03</span><span class="t uc">XP-weighted draw</span><span class="d">Every 5 days, one XP-weighted winner claims the pool. Loyalty beats size.</span></div>
       <div class="step"><span class="n">04</span><span class="t uc">Withdraw anytime</span><span class="d">Burn nUSD for USDC 1:1. You keep your principal and forfeit future draw entries.</span></div>
@@ -919,10 +930,13 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
         <div class="apy-sub">net APY, paid to nUSD<br>gross <b id="grossApy">25.3%</b> · after <b>15%</b> fee</div>
       </div>
 
-      <div class="spark">
-        <span class="tagl uc">Desk equity · live</span>
-        <span class="tag mono" id="sparkTag">+$476.96</span>
-        <canvas id="sparkChart"></canvas>
+      <div class="pmetrics" id="pmetrics">
+        <div class="pm"><span class="v gr mono" id="pmPnl">+$269.19</span><span class="l">Realized PnL · since inception</span></div>
+        <div class="pm"><span class="v mo mono" id="pmWr">100% <span style="font-size:13px;color:var(--platinum)">(18W/0L)</span></span><span class="l">Win rate · closed trades</span></div>
+        <div class="pm"><span class="v az mono" id="pmAvg">+0.090%</span><span class="l">Avg daily return</span></div>
+        <div class="pm"><span class="v az mono" id="pmBest">+0.179%</span><span class="l">Best day</span></div>
+        <div class="pm"><span class="v mo mono" id="pmDd">0.00%</span><span class="l">Max drawdown · daily closes</span></div>
+        <div class="pm"><span class="v gr mono" id="pmIdx">1.0554</span><span class="l">nUSD index · compounded</span></div>
       </div>
 
       <div class="desks" id="deskBars">
@@ -934,7 +948,6 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
 
       <div class="proof-foot">
         <span class="chip pl" style="font-size:14px">Realized PnL <b class="gr mono" id="realized">+$255.32</b> · <b class="mono" id="wl">11W / 0L</b></span>
-        <a class="verify" href="http://localhost:8787" target="_blank" rel="noopener">Verify on desk →</a>
       </div>
     </div>
   </div>
@@ -960,6 +973,24 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
         <span class="tip"><span class="ico">i</span><span class="box"><b>Internal grade</b> — win rate × compounded APY × track length. A++ ≥ 30% APY &amp; ≥ 95% wins &amp; ≥ 30 days. Not investment advice.</span></span></span>
     </div>
     <div class="pl" style="font-size:11px;letter-spacing:.4px;margin-top:10px;text-transform:uppercase">All desk figures are paper-trading results — simulated (test) USDC executed against live market prices. No client funds. Logged daily to verify the thesis before mainnet.</div>
+  </div>
+
+  <!-- ===== strategy telemetry (APY per strategy + blended, from the live desk feed) ===== -->
+  <div class="hist-panel" style="margin-top:22px">
+    <div class="between" style="margin-bottom:14px;flex-wrap:wrap;gap:10px">
+      <div class="eyebrow uc" style="font-size:15px;letter-spacing:.5px"><span class="az">APY</span> per strategy · over time</div>
+      <span class="chip pl uc" id="teleSrc" style="font-size:11px">demo data</span>
+    </div>
+    <div class="telewrap"><canvas id="teleDesks"></canvas></div>
+    <div class="tele-legend mono">
+      <span><i style="background:var(--azure)"></i>S1 <b id="tlS1">—</b></span>
+      <span><i style="background:var(--green)"></i>S2 <b id="tlS2">—</b></span>
+      <span><i style="background:var(--yellow)"></i>S3 <b id="tlS3">—</b></span>
+      <span><i style="background:var(--violet)"></i>S4 <b id="tlS4">—</b></span>
+    </div>
+    <div class="eyebrow uc" style="font-size:15px;letter-spacing:.5px;margin:22px 0 14px"><span class="az">Aggregated</span> blended APY</div>
+    <div class="telewrap"><canvas id="teleBlend"></canvas></div>
+    <div class="tele-legend mono"><span><i style="background:var(--azure)"></i>Blended gross <b id="tlBl">—</b></span></div>
   </div>
 
   <!-- nUSD stat row -->
@@ -1005,7 +1036,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
 
 <script>
 /* ============ config ============ */
-const DESK_ENDPOINT = 'http://localhost:8787/state'; // DUMPSTR engine /state
+const DESK_ENDPOINT = 'data/state.json'; // published by the DUMPSTR keeper (static: no mixed content)
 const START_CAPITAL = 50000;
 const PERF_FEE = 0.15;
 
@@ -1014,6 +1045,53 @@ const $ = id => document.getElementById(id);
 const fmtUsd = n => (n>=1000? '$'+(n/1000).toFixed(2)+'K' : '$'+n.toFixed(2));
 const parseNum = s => { const n = parseFloat(String(s).replace(/[^0-9.]/g,'')); return isNaN(n)?0:n; };
 let nusdPrice = 1.0000; // 1 nUSD = X USDC
+
+/* ============ strategy telemetry charts (site-styled dashboard) ============ */
+function drawTele(cv, series, colors, labels, times){
+  if(!cv) return;
+  const dpr=window.devicePixelRatio||1, W=cv.clientWidth, H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr;
+  const x=cv.getContext('2d'); x.scale(dpr,dpr); x.clearRect(0,0,W,H);
+  const all=series.flat(); if(!all.length) return;
+  const max=Math.max(...all)*1.15||1, min=0;
+  // jet gridlines + axis labels
+  x.strokeStyle='#1E262E'; x.fillStyle='#8B98A5'; x.font='10px "JetBrains Mono",monospace'; x.setLineDash([2,4]);
+  for(let i=0;i<=4;i++){ const y=H-8-(H-24)*(i/4);
+    x.beginPath(); x.moveTo(44,y); x.lineTo(W-8,y); x.stroke();
+    x.fillText(((min+(max-min)*i/4)).toFixed(1)+'%', 4, y+3); }
+  x.setLineDash([]);
+  if(times&&times.length>1){ const f=t=>{const d=new Date(t);return String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');};
+    x.fillStyle='#8B98A5'; x.fillText(f(times[0]), 44, H-1); const et=f(times[times.length-1]); x.fillText(et, W-8-x.measureText(et).width, H-1); }
+  series.forEach((s,si)=>{
+    if(!s.length) return;
+    x.strokeStyle=colors[si]; x.lineWidth=1.6; x.beginPath();
+    s.forEach((v,i)=>{ const px=44+(W-56)*(i/Math.max(1,s.length-1)), py=H-8-(H-24)*((v-min)/(max-min)); i?x.lineTo(px,py):x.moveTo(px,py); });
+    x.stroke();
+    const last=s[s.length-1], ly=H-8-(H-24)*((last-min)/(max-min));
+    x.fillStyle=colors[si]; x.fillText(last.toFixed(1)+'%', W-46, Math.max(10,ly-4));
+    const el=document.getElementById(labels[si]); if(el) el.textContent=last.toFixed(2)+'%';
+  });
+}
+const TELE_COLORS=['#3B9DF8','#28C686','#E8C547','#B98AF7'];
+function teleDemo(){
+  const n=90, mk=(b,j)=>Array.from({length:n},(_,i)=>b+Math.sin(i/9+j)*b*0.03+ (Math.random()-.5)*b*0.02);
+  drawTele(document.getElementById('teleDesks'), [mk(38,1),mk(11,2),mk(4.4,3),mk(4.4,4)], TELE_COLORS, ['tlS1','tlS2','tlS3','tlS4']);
+  drawTele(document.getElementById('teleBlend'), [mk(20.7,5)], ['#3B9DF8'], ['tlBl']);
+}
+let _teleLive=false;
+function teleLive(apyH){
+  if(!Array.isArray(apyH)||apyH.length<3) return;
+  // same source as the desk cockpit: vault.apyHistory -> byDesk series + blended
+  const desk=k=>apyH.filter(p=>p.byDesk&&p.byDesk[k]!=null).map(p=>p.byDesk[k]);
+  const s1=desk('depeg'), s2=desk('lending'), s3=desk('deltaNeutral'), s4=desk('lstBasis');
+  const bl=apyH.map(p=>p.apy).filter(v=>v!=null);
+  const times=apyH.map(p=>p.t);
+  drawTele(document.getElementById('teleDesks'), [s1,s2,s3,s4], TELE_COLORS, ['tlS1','tlS2','tlS3','tlS4'], times);
+  if(bl.length) drawTele(document.getElementById('teleBlend'), [bl], ['#3B9DF8'], ['tlBl'], times);
+  if(!_teleLive){ _teleLive=true; const t=document.getElementById('teleSrc'); if(t){ t.textContent='\u25cf live desk feed \u00b7 per engine cycle'; t.style.color='var(--green)'; } }
+}
+teleDemo();
+window.addEventListener('resize', ()=>{ if(!_teleLive) teleDemo(); });
 
 /* ============ hero + spark charts ============ */
 /* ============ canvas helpers ============ */
@@ -1151,7 +1229,6 @@ function startHeroAnim(){
 
 function redraw(){
   startHeroAnim();
-  drawSpark($('sparkChart'), sparkPts, '#28C686');
 }
 window.addEventListener('resize',redraw);
 
@@ -1311,7 +1388,6 @@ function applyDesk(S){
     if(Array.isArray(S.equityHistory)&&S.equityHistory.length>2){
       sparkPts = S.equityHistory.map(p=>p.eq);
       const delta = sparkPts[sparkPts.length-1]-sparkPts[0];
-      $('sparkTag').textContent = (delta>=0?'+$':'-$')+Math.abs(delta).toFixed(2);
     }
 
     // desk allocation / APY bars
@@ -1327,6 +1403,34 @@ function applyDesk(S){
       pct.textContent = vals[i].toFixed(2)+'%';
     });
     $('proofSrc').innerHTML = '<span style="color:#28C686">● live desk</span>';
+    if(S.vault&&Array.isArray(S.vault.apyHistory)) teleLive(S.vault.apyHistory);
+    try{
+      const setv=(id,v)=>{const e=document.getElementById(id); if(e) e.textContent=v;};
+      if(S.portfolio){ setv('pmPnl', (S.portfolio.realizedPnl>=0?'+$':'-$')+Math.abs(S.portfolio.realizedPnl).toFixed(2)); }
+      if(S.stats){ const w=S.stats.wins??0,l=S.stats.losses??0; if(w+l>0) document.getElementById('pmWr').innerHTML=((w/(w+l))*100).toFixed(0)+'% <span style="font-size:13px;color:var(--platinum)">('+w+'W/'+l+'L)</span>'; }
+      fetch('data/history.json',{cache:'no-store'}).then(r=>r.json()).then(h=>{
+        if(!Array.isArray(h)||!h.length) return;
+        const days=h.map(x=>x.dailyPct), avg=days.reduce((a,b)=>a+b,0)/days.length;
+        setv('pmAvg', (avg>=0?'+':'')+avg.toFixed(3)+'%');
+        setv('pmBest', '+'+Math.max(...days).toFixed(3)+'%');
+        let peak=-1e9,dd=0; h.forEach(x=>{ if(x.compPct>peak)peak=x.compPct; dd=Math.max(dd,peak-x.compPct); });
+        setv('pmDd', '-'+dd.toFixed(2)+'%');
+        setv('pmIdx', (1+h[h.length-1].compPct/100).toFixed(4));
+      }).catch(()=>{});
+    }catch(e){}
+    // freshness: never claim "live" on a stale snapshot
+    try{
+      if(S.generatedAt){
+        const ageH=(Date.now()-new Date(S.generatedAt).getTime())/3600000;
+        const t=document.getElementById('teleSrc');
+        if(t){
+          if(ageH>6){ t.textContent='desk feed \u00b7 last update '+S.generatedAt.slice(0,16).replace('T',' ')+' UTC';
+                      t.style.color='var(--yellow)'; }
+          else      { t.textContent='\u25cf live desk feed \u00b7 per engine cycle';
+                      t.style.color='var(--green)'; }
+        }
+      }
+    }catch(e){}
     redraw();
   }catch(e){ /* keep demo */ }
 }
@@ -1532,7 +1636,7 @@ function animateVal(el, from, to, suffix='', decimals=1, durationMs=600){
 })();
 
 /* ============ performance history (daily APY + compounded) ============ */
-const HIST_ENDPOINT = 'http://localhost:8787/history';
+const HIST_ENDPOINT = 'data/history.json';
 function demoHistory(){
   // 60 days of plausible desk history, deterministic
   const out=[]; let comp=0; const t0=Date.now()-59*86400000;
