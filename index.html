@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- SN-BUILD v34 : telemetry aligned to cockpit source (vault.apyHistory.byDesk) + time axis -->
+<!-- SN-BUILD v36 : live epoch 2026-09-23 13:21:07 UTC, performance history from epoch, no demo values -->
 
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>StakeNova · Staking Mission Control</title>
@@ -575,8 +575,8 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
       <div class="hero-kpis">
         <div class="hero-kpi">
           <div class="hero-apy-label"><span class="tick-dot"></span>Highest APY on StakeNova · Live</div>
-          <div class="hero-apy-big" id="heroApy">21.5%</div>
-          <div class="hero-apy-src" id="heroApySrc">nUSD · compounded, since inception</div>
+          <div class="hero-apy-big" id="heroApy">—</div>
+          <div class="hero-apy-src" id="heroApySrc">awaiting live feed</div>
         </div>
       </div>
     </div>
@@ -588,26 +588,26 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
 <div class="ticker-wrap" id="tickerWrap">
   <div class="ticker-track" id="tickerTrack">
     <!-- first copy -->
-    <span class="tick-item"><span class="tick-label" style="color:var(--yellow)">[ DESK · STRATEGY SIM ]</span></span><span class="tick-item"><span class="tick-dot"></span><span class="tick-label">Blended APY</span><span class="tick-val" id="t_blended">25.3%</span></span>
-    <span class="tick-item"><span class="tick-label">nUSD net APY</span><span class="tick-val pos" id="t_netapy">21.5%</span></span>
-    <span class="tick-item"><span class="tick-label">Strat S1</span><span class="tick-val" id="t_depeg">+0.511%</span></span>
-    <span class="tick-item"><span class="tick-label">Strat S2</span><span class="tick-val" id="t_dn">+0.073%</span></span>
-    <span class="tick-item"><span class="tick-label">Strat S3</span><span class="tick-val" id="t_lend">+0.031%</span></span>
-    <span class="tick-item"><span class="tick-label">Strat S4</span><span class="tick-val" id="t_lst">+0.032%</span></span>
-    <span class="tick-item"><span class="tick-label">Realized PnL</span><span class="tick-val pos" id="t_pnl">+$255.32</span></span>
-    <span class="tick-item"><span class="tick-label">Total ROI</span><span class="tick-val pos" id="t_roi">+0.92%</span></span>
-    <span class="tick-item"><span class="tick-label">Vault equity</span><span class="tick-val" id="t_eq">$50 461</span></span>
+    <span class="tick-item"><span class="tick-label" style="color:var(--yellow)">[ DESK · STRATEGY SIM ]</span></span><span class="tick-item"><span class="tick-dot"></span><span class="tick-label">Blended APY</span><span class="tick-val" id="t_blended">—</span></span>
+    <span class="tick-item"><span class="tick-label">nUSD net APY</span><span class="tick-val" id="t_netapy">—</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S1</span><span class="tick-val" id="t_depeg">—</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S2</span><span class="tick-val" id="t_dn">—</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S3</span><span class="tick-val" id="t_lend">—</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S4</span><span class="tick-val" id="t_lst">—</span></span>
+    <span class="tick-item"><span class="tick-label">Realized PnL</span><span class="tick-val" id="t_pnl">—</span></span>
+    <span class="tick-item"><span class="tick-label">Total ROI</span><span class="tick-val" id="t_roi">—</span></span>
+    <span class="tick-item"><span class="tick-label">Vault equity</span><span class="tick-val" id="t_eq">—</span></span>
     <span class="tick-item"><span class="tick-label">Perf fee</span><span class="tick-val">15%</span></span>
-    <!-- mirror copy for seamless loop -->
-    <span class="tick-item"><span class="tick-label" style="color:var(--yellow)">[ DESK · STRATEGY SIM ]</span></span><span class="tick-item"><span class="tick-dot"></span><span class="tick-label">Blended APY</span><span class="tick-val">25.3%</span></span>
-    <span class="tick-item"><span class="tick-label">nUSD net APY</span><span class="tick-val pos">21.5%</span></span>
-    <span class="tick-item"><span class="tick-label">Strat S1</span><span class="tick-val">+0.511%</span></span>
-    <span class="tick-item"><span class="tick-label">Strat S2</span><span class="tick-val">+0.073%</span></span>
-    <span class="tick-item"><span class="tick-label">Strat S3</span><span class="tick-val">+0.031%</span></span>
-    <span class="tick-item"><span class="tick-label">Strat S4</span><span class="tick-val">+0.032%</span></span>
-    <span class="tick-item"><span class="tick-label">Realized PnL</span><span class="tick-val pos">+$255.32</span></span>
-    <span class="tick-item"><span class="tick-label">Total ROI</span><span class="tick-val pos">+0.92%</span></span>
-    <span class="tick-item"><span class="tick-label">Vault equity</span><span class="tick-val">$50 461</span></span>
+    <!-- mirror copy for seamless loop (values synced from the first copy by JS) -->
+    <span class="tick-item"><span class="tick-label" style="color:var(--yellow)">[ DESK · STRATEGY SIM ]</span></span><span class="tick-item"><span class="tick-dot"></span><span class="tick-label">Blended APY</span><span class="tick-val" data-m="t_blended">—</span></span>
+    <span class="tick-item"><span class="tick-label">nUSD net APY</span><span class="tick-val" data-m="t_netapy">—</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S1</span><span class="tick-val" data-m="t_depeg">—</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S2</span><span class="tick-val" data-m="t_dn">—</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S3</span><span class="tick-val" data-m="t_lend">—</span></span>
+    <span class="tick-item"><span class="tick-label">Strat S4</span><span class="tick-val" data-m="t_lst">—</span></span>
+    <span class="tick-item"><span class="tick-label">Realized PnL</span><span class="tick-val" data-m="t_pnl">—</span></span>
+    <span class="tick-item"><span class="tick-label">Total ROI</span><span class="tick-val" data-m="t_roi">—</span></span>
+    <span class="tick-item"><span class="tick-label">Vault equity</span><span class="tick-val" data-m="t_eq">—</span></span>
     <span class="tick-item"><span class="tick-label">Perf fee</span><span class="tick-val">15%</span></span>
   </div>
 </div>
@@ -629,7 +629,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
     <span class="pl" style="font-size:13px;letter-spacing:.3px;flex:1;min-width:240px">Stardust accrues while your stake <span class="mo">stays on StakeNova</span> — nSOL, novaSOL or nUSD. Unstake and that position's Stardust burns. <span class="mo">Stardust is your ticket weight in the draws.</span></span>
     <span class="chip" style="font-size:14px">Stardust <b class="az mono" id="stripXp">—</b></span>
     <span class="chip" style="font-size:14px">Rank <b class="mo mono" id="stripRank">—</b></span>
-    <span class="chip gr" style="font-size:13px">Next draw <b class="mono" data-timer="512">8m 32s</b></span>
+    <span class="chip gr" style="font-size:13px">Next draw <b class="mono" id="cdStrip">—</b></span>
     <a class="verify" style="font-size:13px" href="#" onclick="document.getElementById('lbModal').classList.add('open');return false">Leaderboard →</a>
   </div>
 </div>
@@ -700,7 +700,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
             <span class="tok" id="stakeOutTok"><span class="coin nusd"></span> nSOL</span>
           </div>
         </div>
-        <div class="rateline"><span>nSOL APY <b class="az mono" id="nsolApy">≈ 8.2%</b></span><span>Native + MEV · auto-compounding</span></div>
+        <div class="rateline"><span>nSOL APY <b class="az mono" id="nsolApy">—</b></span><span>Native + MEV · auto-compounding</span></div>
         <button class="mint-btn" id="stakeBtn">Connect wallet to stake</button>
         <p class="mint-note">nSOL is StakeNova's <span class="mo">Sanctum liquid-staking token</span>. It appreciates against SOL as staking + MEV rewards compound — no lockup, <span class="mo">instant unstake via Sanctum</span>, usable anywhere in Solana DeFi. Your SOL stays in a standard stake account: fully non-custodial.</p>
       </div>
@@ -711,7 +711,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
           <div class="desk" style="grid-template-columns:24px 1fr auto">
             <span class="tier-ic" style="background:var(--azure);width:22px;height:22px"></span>
             <div><div class="mo uc" style="font-size:15px;letter-spacing:.4px">Auto-compounding yield</div><div class="pl" style="font-size:12px">native staking + MEV, baked into the nSOL price</div></div>
-            <span class="az mono" style="font-size:18px" id="nsolApy2">≈ 8.2%</span>
+            <span class="az mono" style="font-size:18px" id="nsolApy2">—</span>
           </div>
           <div class="desk" style="grid-template-columns:24px 1fr auto">
             <span class="tier-ic" style="background:var(--green);width:22px;height:22px"></span>
@@ -774,7 +774,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
           <div class="desk" style="grid-template-columns:24px 1fr auto">
             <span class="tier-ic" style="background:var(--azure);width:22px;height:22px"></span>
             <div><div class="mo uc" style="font-size:15px;letter-spacing:.4px">INF-routed yield</div><div class="pl" style="font-size:12px">Sanctum Infinity: staking + LST trading fees</div></div>
-            <span class="az mono" style="font-size:18px" id="infApy">≈ 9.1%</span>
+            <span class="az mono" style="font-size:18px" id="infApy">—</span>
           </div>
           <div class="desk" style="grid-template-columns:24px 1fr auto">
             <span class="tier-ic" style="background:var(--green);width:22px;height:22px"></span>
@@ -796,10 +796,10 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
     <!-- next epoch -->
     <div class="prow">
       <div class="between">
-        <div class="eyebrow uc"><span>Next </span><span class="az">Epoch</span> <span class="mo">#612</span> <span class="sep">//</span> <span class="az mono" id="epochTimer">1d 15h 30m 40s</span></div>
-        <div class="eyebrow az uc mono">60.00%</div>
+        <div class="eyebrow uc"><span>Next </span><span class="az">Epoch</span> <span class="mo" id="epochNo">#—</span> <span class="sep">//</span> <span class="az mono" id="epochTimer">—</span></div>
+        <div class="eyebrow az uc mono" id="epochPct">—</div>
       </div>
-      <div class="track"><div class="fill" style="width:60%"></div></div>
+      <div class="track"><div class="fill" id="epochFill" style="width:0"></div></div>
     </div>
 
     <!-- next payout: epoch end + 8h INF settlement buffer -->
@@ -810,7 +810,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
           <span class="tip"><span class="ico">i</span><span class="box"><b>Why +8h?</b> After the epoch closes, INF yield needs to settle and the pool converts to USDC. The 8-hour buffer covers an INF price bump before payouts are computed — payouts are sent automatically after it.</span></span>
         </div>
       </div>
-      <div class="track"><div class="fill g" style="width:52%"></div></div>
+      <div class="track"><div class="fill g" id="payoutFill" style="width:0"></div></div>
     </div>
 
   </div>
@@ -859,12 +859,12 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
         <div class="rateline"><span>Performance fee <b class="az mono">15%</b></span><span>on yield only — never on principal</span></div>
         <div class="cap-bar-wrap">
           <div class="cap-bar-label">
-            <span>Core sleeve capacity <b id="plusTvlDisp">$85,000</b> / <b>$300,000</b> <span class="pl uc" style="font-size:10px;letter-spacing:.12em">soft cap</span>
+            <span>Core sleeve capacity <b id="plusTvlDisp">—</b> / <b>$300,000</b> <span class="pl uc" style="font-size:10px;letter-spacing:.12em">soft cap</span>
               <span class="tip"><span class="ico">i</span><span class="box"><b>$300k soft cap.</b> The first $300k routes to the core high-edge strategy (S1). Deposits beyond it route to the scalable overflow sleeves (S2–S4) — lower yield, no hard limit. Also protects against flash-loan attacks.</span></span>
             </span>
             <span id="plusCapBadge" style="display:none" class="capped uc">● CAPPED</span>
           </div>
-          <div class="cap-bar"><div class="cap-fill" id="plusCapFill" style="width:28.3%"></div></div>
+          <div class="cap-bar"><div class="cap-fill" id="plusCapFill" style="width:0"></div></div>
         </div>
         <button class="mint-btn" id="plusBtn" style="background:#0F6E56;border-color:#0F6E56">Connect wallet to deposit</button>
         <p class="mint-note">Principal redeemable any time at 1:1. You forfeit that epoch's yield for a weighted shot at the entire prize pool. <span class="mo">nUSD is non-transferable.</span></p>
@@ -879,8 +879,8 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
         <div class="draws">
           <div class="draw-card reg">
             <div class="draw-label az uc">Regular · <span style="opacity:.75">50% of yield</span></div>
-            <div class="draw-countdown az mono" id="cdReg">3d 14h 22m</div>
-            <div class="draw-prize">Pool: <b id="prizeReg">$128</b></div>
+            <div class="draw-countdown az mono" id="cdReg">—</div>
+            <div class="draw-prize">Pool: <b id="prizeReg">—</b></div>
             <div class="draw-meta"><b>1 winner</b> takes all · every <b>5 days</b>
               <span class="tip"><span class="ico">i</span><span class="box"><b>Stardust-weighted VRF draw.</b> Odds = your Stardust ÷ total pool Stardust. 100k ✦ in a 12M pool = 0.83% per draw.</span></span>
             </div>
@@ -888,21 +888,21 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
           </div>
           <div class="draw-card mon">
             <div class="draw-label vi uc">Monthly · <span style="opacity:.75">30% of yield</span></div>
-            <div class="draw-countdown vi mono" id="cdMon">22d 06h 41m</div>
-            <div class="draw-prize">Pool: <b id="prizeMon" style="color:var(--violet)">$765</b></div>
+            <div class="draw-countdown vi mono" id="cdMon">—</div>
+            <div class="draw-prize">Pool: <b id="prizeMon" style="color:var(--violet)">—</b></div>
             <div class="draw-meta"><b>6 winners</b> · top XP 40% · next 5 share 60% · every <b>30 days</b></div>
             <span class="draw-badge" style="background:rgba(189,118,255,.12);color:var(--violet)">6 winners</span>
           </div>
           <div class="draw-card jack">
             <div class="draw-label ye uc">Jackpot ⚡ · <span style="opacity:.75">20% of yield</span></div>
-            <div class="draw-countdown ye mono" id="cdJack">67d 03h 18m</div>
-            <div class="draw-prize">Pool: <b id="prizeJack" style="color:var(--yellow)">$4,590</b></div>
+            <div class="draw-countdown ye mono" id="cdJack">—</div>
+            <div class="draw-prize">Pool: <b id="prizeJack" style="color:var(--yellow)">—</b></div>
             <div class="draw-meta"><b>1 winner</b> takes all · announced 2 wks ahead · every <b>90 days</b></div>
             <span class="draw-badge" style="background:rgba(249,210,60,.12);color:var(--yellow)">Quarterly</span>
           </div>
         </div>
         <div class="proof-foot" style="margin-top:12px">
-          <span class="chip pl" style="font-size:13px">Your Stardust <b class="az mono" id="plusXp">—</b> · total pool <b class="mo mono">~1 M ✦</b></span>
+          <span class="chip pl" style="font-size:13px">Your Stardust <b class="az mono" id="plusXp">—</b> · total pool <b class="mo mono">—</b></span>
           <a class="verify" href="#" onclick="document.getElementById('xpChip').click();return false">Stardust rules →</a>
         </div>
       </div>
@@ -922,21 +922,21 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
     <div class="proof">
       <div class="between">
         <div class="eyebrow uc" style="font-size:16px;letter-spacing:.5px"><span class="az">Proof</span> of yield</div>
-        <span class="chip pl" style="font-size:13px" id="proofSrc">● demo data</span>
+        <span class="chip pl" style="font-size:13px" id="proofSrc">○ awaiting desk feed</span>
       </div>
 
       <div class="apywrap">
-        <div class="apy-big mono" id="netApy">21.5%</div>
-        <div class="apy-sub">net APY, paid to nUSD<br>gross <b id="grossApy">25.3%</b> · after <b>15%</b> fee</div>
+        <div class="apy-big mono" id="netApy">—</div>
+        <div class="apy-sub">net APY, paid to nUSD<br>gross <b id="grossApy">—</b> · after <b>15%</b> fee</div>
       </div>
 
       <div class="pmetrics" id="pmetrics">
-        <div class="pm"><span class="v gr mono" id="pmPnl">+$269.19</span><span class="l">Realized PnL · since inception</span></div>
-        <div class="pm"><span class="v mo mono" id="pmWr">100% <span style="font-size:13px;color:var(--platinum)">(18W/0L)</span></span><span class="l">Win rate · closed trades</span></div>
-        <div class="pm"><span class="v az mono" id="pmAvg">+0.090%</span><span class="l">Avg daily return</span></div>
-        <div class="pm"><span class="v az mono" id="pmBest">+0.179%</span><span class="l">Best day</span></div>
-        <div class="pm"><span class="v mo mono" id="pmDd">0.00%</span><span class="l">Max drawdown · daily closes</span></div>
-        <div class="pm"><span class="v gr mono" id="pmIdx">1.0554</span><span class="l">nUSD index · compounded</span></div>
+        <div class="pm"><span class="v gr mono" id="pmPnl">—</span><span class="l">Realized PnL · since inception</span></div>
+        <div class="pm"><span class="v mo mono" id="pmWr">—</span><span class="l">Win rate · closed trades</span></div>
+        <div class="pm"><span class="v az mono" id="pmAvg">—</span><span class="l">Avg daily return</span></div>
+        <div class="pm"><span class="v az mono" id="pmBest">—</span><span class="l">Best day</span></div>
+        <div class="pm"><span class="v mo mono" id="pmDd">—</span><span class="l">Max drawdown · daily closes</span></div>
+        <div class="pm"><span class="v gr mono" id="pmIdx">—</span><span class="l">nUSD index · compounded</span></div>
       </div>
 
       <div class="desks" id="deskBars">
@@ -945,23 +945,19 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
         <div class="desk"><span class="nm">S3</span><div class="bar"><span style="width:0;background:var(--yellow)"></span></div><span class="pct mono">—</span></div>
         <div class="desk"><span class="nm">S4</span><div class="bar"><span style="width:0;background:var(--violet)"></span></div><span class="pct mono">—</span></div>
       </div>
-
-      <div class="proof-foot">
-        <span class="chip pl" style="font-size:14px">Realized PnL <b class="gr mono" id="realized">+$255.32</b> · <b class="mono" id="wl">11W / 0L</b></span>
-      </div>
     </div>
   </div>
 
-  <!-- ===== performance history (daily APY log + compounded curve) ===== -->
+  <!-- ===== performance history (daily APY log + compounded curve, live from epoch) ===== -->
   <div class="hist-panel">
     <div class="hist-head">
       <span class="eyebrow uc" style="font-size:14px;letter-spacing:.6px"><span class="b">[ </span><span class="az">Performance</span> history<span class="b"> ]</span></span>
       <span class="hist-legend">
         <span><i style="background:var(--azure)"></i>Daily APY</span>
-        <span><i style="background:var(--green)"></i>nUSD index · compounded since inception</span>
+        <span><i style="background:var(--green)"></i>nUSD index · compounded since live epoch</span>
       </span>
       <span class="badge uc" style="font-size:10px"><span class="dot" style="background:var(--yellow)"></span>Paper trading · test USDC</span>
-      <span class="hist-src pl uc" id="histSrc">demo data</span>
+      <span class="hist-src pl uc" id="histSrc">Live since 2026-09-23 13:21:07 UTC</span>
     </div>
     <canvas id="histChart" height="180"></canvas>
     <div class="hist-foot">
@@ -979,7 +975,7 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
   <div class="hist-panel" style="margin-top:22px">
     <div class="between" style="margin-bottom:14px;flex-wrap:wrap;gap:10px">
       <div class="eyebrow uc" style="font-size:15px;letter-spacing:.5px"><span class="az">APY</span> per strategy · over time</div>
-      <span class="chip pl uc" id="teleSrc" style="font-size:11px">demo data</span>
+      <span class="chip pl uc" id="teleSrc" style="font-size:11px">awaiting desk feed</span>
     </div>
     <div class="telewrap"><canvas id="teleDesks"></canvas></div>
     <div class="tele-legend mono">
@@ -998,10 +994,10 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
   <div style="margin-top:28px">
     <div class="eyebrow uc" style="font-size:15px;letter-spacing:.5px;margin-bottom:12px"><span class="b">[ </span><span class="az">real nUSD yield</span> <span class="sep">//</span> since inception<span class="b"> ]</span></div>
     <div class="si">
-      <div class="cell hero-cell"><span class="l">Compounded APY</span><span class="v big mono" id="siApy">+21.5%</span></div>
-      <div class="cell"><span class="l">Realized yield</span><span class="v pos mono" id="siRealized">+$255.32</span></div>
-      <div class="cell"><span class="l">Total ROI · inception</span><span class="v mono" id="siRoi">+0.511%</span></div>
-      <div class="cell"><span class="l">nUSD index <span class="tip"><span class="ico">i</span><span class="box"><b>Balances grow, not price.</b> 1 nUSD stays ≈ 1 USDC. The index is the growth multiplier applied to every holder's balance (Token-2022 ScaledUiAmount) since inception.</span></span></span><span class="v mono" id="siPrice">1.0051</span></div>
+      <div class="cell hero-cell"><span class="l">Compounded APY</span><span class="v big mono" id="siApy">—</span></div>
+      <div class="cell"><span class="l">Realized yield</span><span class="v pos mono" id="siRealized">—</span></div>
+      <div class="cell"><span class="l">Total ROI · inception</span><span class="v mono" id="siRoi">—</span></div>
+      <div class="cell"><span class="l">nUSD index <span class="tip"><span class="ico">i</span><span class="box"><b>Balances grow, not price.</b> 1 nUSD stays ≈ 1 USDC. The index is the growth multiplier applied to every holder's balance (Token-2022 ScaledUiAmount) since inception.</span></span></span><span class="v mono" id="siPrice">—</span></div>
       <div class="cell"><span class="l">Age</span><span class="v mono" id="siDays">— days</span></div>
     </div>
   </div>
@@ -1010,12 +1006,12 @@ footer{padding:40px 0 60px;color:var(--silver);font-size:13px;letter-spacing:.3p
   <div style="margin-top:28px">
     <div class="eyebrow uc" style="font-size:15px;letter-spacing:.5px;margin-bottom:12px"><span class="b">[ </span><span class="az">desk KPIs</span> <span class="sep">//</span> live from DUMPSTR<span class="b"> ]</span></div>
     <div class="nusd-stats">
-      <div class="nstat"><span class="l">Portfolio equity</span><span class="v mono" id="kEquity">$50 461</span></div>
-      <div class="nstat"><span class="l">Realized PnL</span><span class="v mono gr" id="kPnl">+$255.32</span></div>
-      <div class="nstat"><span class="l">Total ROI</span><span class="v mono az" id="kRoi">+0.92%</span></div>
-      <div class="nstat"><span class="l">Closed W/L</span><span class="v mono" id="kWL">11 / 0</span></div>
-      <div class="nstat"><span class="l">Open positions</span><span class="v mono" id="kOpen">2</span></div>
-      <div class="nstat"><span class="l">Blended vault APY</span><span class="v mono" id="kVault">25.3%</span></div>
+      <div class="nstat"><span class="l">Portfolio equity</span><span class="v mono" id="kEquity">—</span></div>
+      <div class="nstat"><span class="l">Realized PnL</span><span class="v mono gr" id="kPnl">—</span></div>
+      <div class="nstat"><span class="l">Total ROI</span><span class="v mono az" id="kRoi">—</span></div>
+      <div class="nstat"><span class="l">Closed W/L</span><span class="v mono" id="kWL">—</span></div>
+      <div class="nstat"><span class="l">Open positions</span><span class="v mono" id="kOpen">—</span></div>
+      <div class="nstat"><span class="l">Blended vault APY</span><span class="v mono" id="kVault">—</span></div>
     </div>
   </div>
 
@@ -1073,14 +1069,10 @@ function drawTele(cv, series, colors, labels, times){
   });
 }
 const TELE_COLORS=['#3B9DF8','#28C686','#E8C547','#B98AF7'];
-function teleDemo(){
-  const n=90, mk=(b,j)=>Array.from({length:n},(_,i)=>b+Math.sin(i/9+j)*b*0.03+ (Math.random()-.5)*b*0.02);
-  drawTele(document.getElementById('teleDesks'), [mk(38,1),mk(11,2),mk(4.4,3),mk(4.4,4)], TELE_COLORS, ['tlS1','tlS2','tlS3','tlS4']);
-  drawTele(document.getElementById('teleBlend'), [mk(20.7,5)], ['#3B9DF8'], ['tlBl']);
-}
-let _teleLive=false;
+let _teleLive=false, _teleLast=null;
 function teleLive(apyH){
   if(!Array.isArray(apyH)||apyH.length<3) return;
+  _teleLast=apyH;
   // same source as the desk cockpit: vault.apyHistory -> byDesk series + blended
   const desk=k=>apyH.filter(p=>p.byDesk&&p.byDesk[k]!=null).map(p=>p.byDesk[k]);
   const s1=desk('depeg'), s2=desk('lending'), s3=desk('deltaNeutral'), s4=desk('lstBasis');
@@ -1090,15 +1082,12 @@ function teleLive(apyH){
   if(bl.length) drawTele(document.getElementById('teleBlend'), [bl], ['#3B9DF8'], ['tlBl'], times);
   if(!_teleLive){ _teleLive=true; const t=document.getElementById('teleSrc'); if(t){ t.textContent='\u25cf live desk feed \u00b7 per engine cycle'; t.style.color='var(--green)'; } }
 }
-teleDemo();
-window.addEventListener('resize', ()=>{ if(!_teleLive) teleDemo(); });
+window.addEventListener('resize', ()=>{ if(_teleLast) teleLive(_teleLast); });
 
 /* ============ hero + spark charts ============ */
 /* ============ canvas helpers ============ */
 /* ============ spark chart — static redraw ============ */
 let sparkPts=[];
-function buildSpark(n){const a=[];let v=50000;for(let i=0;i<n;i++){v+=4*(0.4+Math.random());if(Math.random()<.2)v-=4*Math.random();a.push(v);}return a;}
-sparkPts=buildSpark(120);
 function drawSpark(canvas,pts,color){
   const dpr=window.devicePixelRatio||1,r=canvas.getBoundingClientRect();
   canvas.width=r.width*dpr;canvas.height=r.height*dpr;
@@ -1125,14 +1114,11 @@ function drawSpark(canvas,pts,color){
    No random jitter. No diagonal equity curve. Clean.
 */
 let _heroAnimFrame=null;
-let _liveBlendAPY=25.3;  // gross blended — updated from DUMPSTR /state vault.blendedAPY
-let _liveNetAPY  =21.5;  // net to depositor (blended × 0.85) — updated same
-let _liveCompApy =21.5;  // compounded since-inception APY — updated from DUMPSTR /state
+let _liveBlendAPY=null;  // gross blended — updated from DUMPSTR /state vault.blendedAPY
+let _liveNetAPY  =null;  // net to depositor (blended × 0.85) — updated same
+let _liveCompApy =null;  // compounded since-inception APY — updated from DUMPSTR /state
 let _liveNsolApy =null;  // nSOL Sanctum APY
 let _liveInfApy  =null;  // novaSOL (INF) APY
-
-// Displayed y-targets — smoothly interpolate toward the live values each frame
-let _dispBlend=25.3, _dispNet=21.5;
 
 function startHeroAnim(){
   const canvas=$('heroChart');
@@ -1219,8 +1205,8 @@ function startHeroAnim(){
       ctx.fillText(labelTxt, lx, y+10);
     }
 
-    drawHLine(yBlue,   BLUE,   _liveBlendAPY.toFixed(1)+'%', 'BLENDED');
-    drawHLine(yOrange, ORANGE, _liveNetAPY.toFixed(1)+'%',   'NET APY');
+    drawHLine(yBlue,   BLUE,   _liveBlendAPY!=null?_liveBlendAPY.toFixed(1)+'%':'—', 'BLENDED');
+    drawHLine(yOrange, ORANGE, _liveNetAPY!=null?_liveNetAPY.toFixed(1)+'%':'—',     'NET APY');
 
     ctx.restore();
   }
@@ -1241,7 +1227,6 @@ function recalc(){
   if($('rateTop')) $('rateTop').textContent = '1 nUSD = '+nusdPrice.toFixed(4)+' USDC';
 }
 let nusdMode='mint';
-const NUSD_BAL_DEMO='1 000.00';
 function setNusdMode(m){
   nusdMode=m;
   document.querySelectorAll('#nusdMode .seg').forEach(b=>b.classList.toggle('on',b.dataset.mode===m));
@@ -1250,7 +1235,7 @@ function setNusdMode(m){
   if($('nusdInLab')) $('nusdInLab').textContent    = mint?'You deposit':'You redeem';
   if($('nusdInTok')) $('nusdInTok').innerHTML = mint ? '<span class="coin usdc"></span> USDC' : '<span class="coin nusd"></span> nUSD';
   if($('nusdOutTok')) $('nusdOutTok').innerHTML = mint ? '<span class="coin nusd"></span> nUSD' : '<span class="coin usdc"></span> USDC';
-  if($('usdcBal')) $('usdcBal').textContent = connected ? (mint?'25 000.00':NUSD_BAL_DEMO) : '0.00';
+  if($('usdcBal')) $('usdcBal').textContent = connected ? '—' : '0.00';
   const cd=$('nusdCooldown'); if(cd) cd.style.display = mint?'none':'';
   if($('mintBtn')) $('mintBtn').textContent = connected
     ? (mint?'Mint nUSD':'Redeem nUSD → USDC')
@@ -1262,49 +1247,24 @@ if($('depIn')) $('depIn').addEventListener('input', recalc);
 
 /* ============ wallet (Phantom stub) ============ */
 let connected=false, pk=null;
-/* ============ per-wallet XP (demo DB — deterministic per pubkey; swap for backend later) ============ */
-let walletXP=null, walletRank=null;
-function xpFor(pubkey){
-  // deterministic hash → stable demo XP per wallet (0 for brand-new wallets ~30% of the time)
-  let h=0; for(let i=0;i<pubkey.length;i++){ h=(h*31+pubkey.charCodeAt(i))>>>0; }
-  if(h%10<3) return 0;
-  return 5000 + (h % 495000); // 5k – 500k demo range
-}
-function fmtXP(n){ return n>=1e6?(n/1e6).toFixed(2)+' M':n>=1e3?Math.round(n/1e3)+' k':String(n); }
-function loadWalletXP(pubkey){
-  walletXP = xpFor(pubkey);
-  walletRank = walletXP===0 ? null : 11 + (walletXP % 40); // demo rank outside top10
-  const chip=$('xpChip'); if(chip) chip.style.display='';
-  if($('xpVal'))   $('xpVal').textContent   = fmtXP(walletXP);
-  if($('stripXp')) $('stripXp').textContent = fmtXP(walletXP);
-  if($('stripRank'))$('stripRank').textContent = walletRank?('#'+walletRank):'—';
-  if($('modalXp')) $('modalXp').textContent = fmtXP(walletXP);
-  if($('plusXp'))  $('plusXp').textContent  = fmtXP(walletXP);
-  // leaderboard "You" row reflects real XP
-  const lb=document.querySelector('#lbRows .lb-row.me');
-  if(lb){ const rk=lb.querySelector('.rk'), pts=lb.querySelector('.pts');
-    if(rk) rk.textContent = walletRank?('#'+walletRank):'—';
-    if(pts) pts.textContent = fmtXP(walletXP)+' ✦'; }
-}
+/* ============ per-wallet Stardust: no backend yet, so nothing is shown until real data exists ============ */
 
 async function connect(){
   const p = window.solana;
-  if(p && p.isPhantom){
-    try{ const res = await p.connect(); pk = res.publicKey.toString(); connected=true; }
-    catch(e){ return; }
-  } else {
-    // no wallet: simulate a paper session so the flow is demoable
-    pk = 'PAPER'+Math.random().toString(36).slice(2,6).toUpperCase(); connected=true;
+  if(!(p && p.isPhantom)){
+    // no wallet: no simulated session, just point the user to Phantom
+    $('connectBtn').textContent = 'Phantom not found';
+    setTimeout(()=>{ if(!connected) $('connectBtn').textContent='Connect ▾'; }, 2600);
+    return;
   }
+  try{ const res = await p.connect(); pk = res.publicKey.toString(); connected=true; }
+  catch(e){ return; }
   const short = pk.slice(0,4)+'…'+pk.slice(-4);
   $('connectBtn').textContent = short;
-  loadWalletXP(pk);
-  if($('usdcBal')) $('usdcBal').textContent = '25 000.00';
-  $('solBal').textContent = '128.40';
   if($('mintBtn')&&typeof setNusdMode==='function') setNusdMode(nusdMode);
   if(typeof setNsolMode==='function') setNsolMode(nsolMode); else $('stakeBtn').textContent='Stake SOL → nSOL';
-  $('novaBal').textContent = '128.40';
   if(typeof setNovaMode==='function') setNovaMode(novaMode); else $('novaBtn').textContent='Stake into Nova Pool';
+  if(typeof setPlusMode==='function') setPlusMode(plusMode);
 }
 $('connectBtn').addEventListener('click', connect);
 if($('mintBtn')) $('mintBtn').addEventListener('click', ()=>{
@@ -1327,12 +1287,33 @@ function fmtDur(s){
   if(h)return `${h}h ${m}m ${String(ss).padStart(2,'0')}s`;
   return `${m}m ${String(ss).padStart(2,'0')}s`;
 }
-let epochLeft = 1*86400+15*3600+30*60+40;
-const timerEls = [...document.querySelectorAll('[data-timer]')].map(el=>({el,left:+el.dataset.timer}));
+// Solana epoch: real values from the RPC (getEpochInfo), end time estimated at ~0.4 s per slot
+const SLOT_SEC = 0.4;
+let _epochEnd=null, _epochLen=null;
+async function pollEpoch(){
+  // mainnet first; the public mainnet RPC sometimes refuses browsers (403), then devnet is used and labelled
+  for(const [url,tag] of [['https://api.mainnet-beta.solana.com',''],['https://api.devnet.solana.com',' devnet']]){
+    try{
+      const r = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({jsonrpc:'2.0',id:1,method:'getEpochInfo'})});
+      if(!r.ok) continue;
+      const e = (await r.json()).result; if(!e) continue;
+      _epochLen = e.slotsInEpoch*SLOT_SEC;
+      _epochEnd = Date.now() + (e.slotsInEpoch-e.slotIndex)*SLOT_SEC*1000;
+      $('epochNo').textContent = '#'+(e.epoch+1)+tag;
+      return;
+    }catch(err){}
+  }
+}
+pollEpoch(); setInterval(pollEpoch, 300000);
 setInterval(()=>{
-  epochLeft--; $('epochTimer').textContent = fmtDur(epochLeft);
-  const pt=$('payoutTimer'); if(pt) pt.textContent = fmtDur(epochLeft + 8*3600);
-  timerEls.forEach(t=>{ t.left--; t.el.textContent = fmtDur(t.left); });
+  if(_epochEnd==null) return;
+  const left=(_epochEnd-Date.now())/1000, done=Math.min(100,Math.max(0,(1-left/_epochLen)*100));
+  $('epochTimer').textContent = fmtDur(left);
+  $('epochPct').textContent = done.toFixed(2)+'%';
+  $('epochFill').style.width = done.toFixed(2)+'%';
+  const pt=$('payoutTimer'); if(pt) pt.textContent = fmtDur(left + 8*3600);
+  const pf=$('payoutFill'); if(pf) pf.style.width = Math.min(100,Math.max(0,(1-(left+8*3600)/(_epochLen+8*3600))*100)).toFixed(2)+'%';
 },1000);
 
 
@@ -1340,20 +1321,20 @@ setInterval(()=>{
 function applyDesk(S){
   try{
     const v = S.vault||{}, pf = S.portfolio||{}, st = S.stats||{}, dk = S.desks||{};
-    const gross = (v.blendedAPY!=null? v.blendedAPY : 25.3);
-    const net = gross*(1-PERF_FEE);
-    if($('grossApy')) $('grossApy').textContent = gross.toFixed(1)+'%';
-    if($('blended')) $('blended').textContent = gross.toFixed(1)+'%';
-    if($('netApy')) $('netApy').textContent = net.toFixed(1)+'%';
-    if($('mNetApy')) $('mNetApy').textContent = net.toFixed(1)+'%';
+    if(v.blendedAPY!=null){
+      const gross = v.blendedAPY, net = gross*(1-PERF_FEE);
+      _liveBlendAPY = gross; _liveNetAPY = net;
+      if($('grossApy')) $('grossApy').textContent = gross.toFixed(1)+'%';
+      if($('blended')) $('blended').textContent = gross.toFixed(1)+'%';
+      if($('netApy')) $('netApy').textContent = net.toFixed(1)+'%';
+      if($('mNetApy')) $('mNetApy').textContent = net.toFixed(1)+'%';
+    }
 
-    if(pf.realizedPnl!=null) $('realized').textContent = (pf.realizedPnl>=0?'+$':'-$')+Math.abs(pf.realizedPnl).toFixed(2);
-    if(st.wins!=null) $('wl').textContent = st.wins+'W / '+(st.losses||0)+'L';
     if(v.rebalanceCount!=null && $('rebal')) $('rebal').textContent = v.rebalanceCount;
     if(v.balance!=null && $('tvl')) $('tvl').textContent = fmtUsd(v.balance);
 
     // --- DUMPSTR key KPIs ---
-    if(pf.equity!=null){ const eq=pf.equity+(pf.realizedPnl||0);
+    if(pf.equity!=null){ const eq=pf.equity; // already includes realized PnL
       $('kEquity').textContent = '$'+eq.toLocaleString('en-US',{maximumFractionDigits:0}); }
     if(pf.realizedPnl!=null) $('kPnl').textContent = (pf.realizedPnl>=0?'+$':'-$')+Math.abs(pf.realizedPnl).toFixed(2);
     if(pf.roi!=null){ $('kRoi').textContent = (pf.roi>=0?'+':'')+pf.roi.toFixed(2)+'%'; }
@@ -1393,14 +1374,14 @@ function applyDesk(S){
     // desk allocation / APY bars
     const by = v.apyByDesk||{};
     const order=[['depeg','#3E97FF'],['deltaNeutral','#28C686'],['lending','#F9D93C'],['lstBasis','#BD76FF']];
-    const vals = order.map(([k])=> by[k]!=null? by[k] : (dk[k]? ((dk[k].equity-50000)/50000*100) : 0));
-    const mx = Math.max(1, ...vals.map(x=>Math.abs(x)));
+    const vals = order.map(([k])=> by[k]!=null? by[k] : (dk[k]? ((dk[k].equity-50000)/50000*100) : null));
+    const mx = Math.max(1, ...vals.map(x=>Math.abs(x||0)));
     const rows = $('deskBars').children;
     order.forEach(([k,c],i)=>{
       const bar = rows[i].querySelector('.bar span'), pct = rows[i].querySelector('.pct');
-      bar.style.width = Math.min(100, Math.abs(vals[i])/mx*100).toFixed(0)+'%';
+      bar.style.width = vals[i]==null ? '0' : Math.min(100, Math.abs(vals[i])/mx*100).toFixed(0)+'%';
       bar.style.background = c;
-      pct.textContent = vals[i].toFixed(2)+'%';
+      pct.textContent = vals[i]==null ? '—' : vals[i].toFixed(2)+'%';
     });
     $('proofSrc').innerHTML = '<span style="color:#28C686">● live desk</span>';
     if(S.vault&&Array.isArray(S.vault.apyHistory)) teleLive(S.vault.apyHistory);
@@ -1432,41 +1413,24 @@ function applyDesk(S){
       }
     }catch(e){}
     redraw();
-  }catch(e){ /* keep demo */ }
-}
-function demoBars(){
-  const rows=$('deskBars').children;
-  const demo=[[0.511,'#3E97FF'],[0.073,'#28C686'],[0.031,'#F9D93C'],[0.032,'#BD76FF']];
-  const mx=Math.max(...demo.map(d=>d[0]));
-  demo.forEach(([val,c],i)=>{const b=rows[i].querySelector('.bar span'),p=rows[i].querySelector('.pct');
-    b.style.width=(val/mx*100).toFixed(0)+'%';b.style.background=c;p.textContent='+'+val.toFixed(3)+'%';});
+  }catch(e){ /* keep placeholders */ }
 }
 async function poll(){
   if(document.visibilityState==='hidden') return;
   try{
     const r = await fetch(DESK_ENDPOINT,{cache:'no-store'});
-    if(r.ok){ applyDesk(await r.json()); return; }
+    if(r.ok){ const S=await r.json(); applyDesk(S); updateTicker(S); return; }
   }catch(e){}
-  // fallback: demo values already in DOM
+  // no feed: placeholders (—) stay in the DOM
 }
-demoBars(); recalc();
-// Demo state — replaced by live DUMPSTR data when engine is running
-const _demoState = {
-  vault:{blendedAPY:25.3,apyByDesk:{depeg:0.511,deltaNeutral:0.073,lending:0.031,lstBasis:0.032}},
-  portfolio:{realizedPnl:255.32,roi:0.922,equity:50461,startCapital:50000},
-  stats:{sinceInception:new Date(Date.now()-15*3600000).toISOString(),wins:11,losses:0}
-};
-updateTicker(_demoState);
-// Demo compounded APY: 0.511% ROI over 15h = (1.00511)^(365/0.625)-1 = very high (unreliable short period)
-// So we cap demo display at the vault's reported blendedAPY net of fee
-$('siApy').textContent = '+'+(25.3*0.85).toFixed(1)+'%'; // demo: 21.5%
+recalc();
 redraw();
 /* ============ Sanctum: live nSOL APY ============ */
 // Set NSOL_MINT to the nSOL MINT ADDRESS to wire the live Sanctum feed.
 // (The public Sanctum APY feed resolves LSTs by mint; the symbol "nSOL" alone is not yet indexed.)
 const NSOL_MINT = 'nSOL';          // ← replace with nSOL mint address
 let nsolRate = 1.02727;            // 1 nSOL = X SOL · confirmed live rate from Sanctum (Jul 2026)
-function setNsolApy(pct){ const t='≈ '+pct+'%'; $('nsolApy').textContent=pct+'%'; $('nsolApy2').textContent=pct+'%'; _liveNsolApy=parseFloat(pct); }
+function setNsolApy(pct){ $('nsolApy').textContent=pct+'%'; $('nsolApy2').textContent=pct+'%'; _liveNsolApy=parseFloat(pct); }
 async function pollSanctum(){
   try{
     let r = await fetch('https://extra-api.sanctum.so/v1/apy/latest?lst='+encodeURIComponent(NSOL_MINT),{cache:'no-store'});
@@ -1479,7 +1443,7 @@ async function pollSanctum(){
     const rr = await fetch('https://extra-api.sanctum.so/v1/sol-value/current?lst='+encodeURIComponent(NSOL_MINT),{cache:'no-store'});
     const rd = await rr.json(); const sv = rd?.solValues?.[NSOL_MINT];
     if(sv){ nsolRate = Number(sv)/1e9; recalcStake(); }
-  }catch(e){ /* keep fallback ≈8.2% */ }
+  }catch(e){ /* keep placeholder */ }
 }
 /* ============ stake box ============ */
 function recalcStake(){
@@ -1490,7 +1454,6 @@ function recalcStake(){
   const fr=$('nsolFootRate'); if(fr) fr.textContent='1 nSOL = '+nsolRate.toFixed(5)+' SOL';
 }
 let nsolMode='stake';
-const NSOL_BAL_DEMO='9.7345';
 function setNsolMode(m){
   nsolMode=m;
   document.querySelectorAll('#nsolMode .seg').forEach(b=>b.classList.toggle('on',b.dataset.mode===m));
@@ -1504,7 +1467,7 @@ function setNsolMode(m){
   $('stakeOutTok').innerHTML = stake
     ? '<span class="coin nusd"></span> nSOL'
     : '<span class="coin" style="background:linear-gradient(135deg,#9945FF,#14F195)"></span> SOL';
-  $('solBal').textContent = connected ? (stake?'128.40':NSOL_BAL_DEMO) : '0.00';
+  $('solBal').textContent = connected ? '—' : '0.00';
   $('stakeBtn').textContent = connected
     ? (stake?'Stake SOL → nSOL':'Unstake nSOL → SOL')
     : (stake?'Connect wallet to stake':'Connect wallet to unstake');
@@ -1544,7 +1507,6 @@ document.querySelectorAll('#novaPayout button').forEach(b=>b.addEventListener('c
   b.classList.add('on'); novaPay=b.dataset.pay;
 }));
 let novaMode='stake';
-const NOVA_STAKED_DEMO='25.00';
 function setNovaMode(m){
   novaMode=m;
   document.querySelectorAll('#novaMode .seg').forEach(b=>b.classList.toggle('on',b.dataset.mode===m));
@@ -1553,7 +1515,7 @@ function setNovaMode(m){
   $('novaHeadRest').textContent = stake?'into Nova Pool':'from Nova Pool';
   $('novaInLab').textContent    = stake?'You stake':'You unstake';
   $('novaBalLab').textContent   = stake?'Balance':'Staked';
-  $('novaBal').textContent = connected ? (stake?'128.40':NOVA_STAKED_DEMO) : '0.00';
+  $('novaBal').textContent = connected ? '—' : '0.00';
   $('novaBtn').textContent = connected
     ? (stake?'Stake into Nova Pool':'Unstake from Nova Pool')
     : (stake?'Connect wallet to stake':'Connect wallet to unstake');
@@ -1637,29 +1599,45 @@ function animateVal(el, from, to, suffix='', decimals=1, durationMs=600){
 
 /* ============ performance history (daily APY + compounded) ============ */
 const HIST_ENDPOINT = 'data/history.json';
-function demoHistory(){
-  // 60 days of plausible desk history, deterministic
-  const out=[]; let comp=0; const t0=Date.now()-59*86400000;
-  for(let i=0;i<60;i++){
-    let s=Math.sin(i*12.9898)*43758.5453; s=s-Math.floor(s);
-    const daily = (s<0.25) ? 0 : (0.02 + s*0.16);              // % day: some flat days, bursts up to ~0.18%
+// Live epoch: the history chart only counts desk days that started at or after this instant.
+const LIVE_EPOCH = Date.parse('2026-09-23T13:21:07Z');
+function historySinceEpoch(rows){
+  // A row counts if it carries its own timestamp t >= epoch, or if its UTC day starts at/after the epoch
+  // (the epoch day itself is partial, so it is excluded). The compounded index is rebased to 1.0000 at the epoch.
+  let comp=0;
+  return rows.filter(x=>{
+    const t = x.t!=null ? +new Date(x.t) : Date.parse(x.date+'T00:00:00Z');
+    return isFinite(t) && t>=LIVE_EPOCH;
+  }).map(x=>{
+    const daily = x.dailyPct!=null ? +x.dailyPct : (+x.dailyApyPct||0)/365;
     comp = (1+comp/100)*(1+daily/100)*100-100;
-    out.push({date:new Date(t0+i*86400000).toISOString().slice(0,10),
-              dailyApyPct:+(daily*365).toFixed(2), compPct:+comp.toFixed(3)});
-  }
-  return out;
+    return {date:String(x.date||new Date(x.t).toISOString().slice(0,10)),
+            dailyApyPct:x.dailyApyPct!=null ? +x.dailyApyPct : daily*365, compPct:comp};
+  });
 }
 function drawHistory(H){
-  const cv=$('histChart'); if(!cv||!H.length) return;
+  const cv=$('histChart'); if(!cv) return;
   if(cv.getBoundingClientRect().width<10) return; // tab hidden — redraw happens on tab switch
   const dpr=window.devicePixelRatio||1, r=cv.getBoundingClientRect();
   cv.width=r.width*dpr; cv.height=180*dpr;
   const ctx=cv.getContext('2d'); ctx.scale(dpr,dpr);
   const W=r.width, Hh=180, PAD_L=8, PAD_R=52, PAD_T=10, PAD_B=18;
   const iw=W-PAD_L-PAD_R, ih=Hh-PAD_T-PAD_B;
+  ctx.clearRect(0,0,W,Hh);
+  if(!H.length){
+    // empty state: no desk day logged since the live epoch yet
+    ctx.strokeStyle='#1c1c1c'; ctx.lineWidth=1; ctx.setLineDash([2,6]);
+    [0.25,0.5,0.75].forEach(f=>{ctx.beginPath();ctx.moveTo(PAD_L,PAD_T+ih*f);ctx.lineTo(PAD_L+iw,PAD_T+ih*f);ctx.stroke();});
+    ctx.setLineDash([]);
+    ctx.fillStyle='#6E7D8D'; ctx.font='12px Lexend,sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('No desk day logged since the live epoch yet', W/2, Hh/2);
+    $('histBest').textContent='—'; $('histAvg').textContent='—'; $('histDays').textContent='0';
+    $('histComp').textContent='—'; const g=$('histGrade'); if(g){ g.textContent='—'; g.style.color='var(--yellow)'; }
+    return;
+  }
   const maxA=Math.max(...H.map(d=>d.dailyApyPct),1);
   const maxC=Math.max(...H.map(d=>d.compPct),0.1);
-  ctx.clearRect(0,0,W,Hh);
+  const minC=Math.min(...H.map(d=>d.compPct),0);
   // grid
   ctx.strokeStyle='#1c1c1c'; ctx.lineWidth=1; ctx.setLineDash([2,6]);
   [0.25,0.5,0.75].forEach(f=>{ctx.beginPath();ctx.moveTo(PAD_L,PAD_T+ih*f);ctx.lineTo(PAD_L+iw,PAD_T+ih*f);ctx.stroke();});
@@ -1668,7 +1646,7 @@ function drawHistory(H){
   const bw=Math.max(2, iw/H.length*0.55);
   H.forEach((d,i)=>{
     const x=PAD_L+iw*(i/(H.length-1||1));
-    const h=ih*(d.dailyApyPct/maxA);
+    const h=ih*(Math.max(0,d.dailyApyPct)/maxA);
     ctx.fillStyle='rgba(62,151,255,0.75)';
     ctx.fillRect(x-bw/2, PAD_T+ih-h, bw, h);
   });
@@ -1676,7 +1654,7 @@ function drawHistory(H){
   ctx.beginPath();
   H.forEach((d,i)=>{
     const x=PAD_L+iw*(i/(H.length-1||1));
-    const y=PAD_T+ih*(1-d.compPct/maxC);
+    const y=PAD_T+ih*(1-(d.compPct-minC)/(maxC-minC));
     i?ctx.lineTo(x,y):ctx.moveTo(x,y);
   });
   ctx.strokeStyle='#28C686'; ctx.lineWidth=2; ctx.lineJoin='round'; ctx.stroke();
@@ -1708,79 +1686,71 @@ function drawHistory(H){
     const el=$('histGrade'); if(el){ el.textContent=g;
       el.style.color = g[0]==='A' ? 'var(--green)' : g[0]==='B' ? 'var(--yellow)' : 'var(--orange)'; }
   })();
-  $('histComp').textContent='+'+H[H.length-1].compPct.toFixed(3)+'% · index '+(1+H[H.length-1].compPct/100).toFixed(4);
+  const lastC=H[H.length-1].compPct;
+  $('histComp').textContent=(lastC>=0?'+':'')+lastC.toFixed(3)+'% · index '+(1+lastC/100).toFixed(4);
 }
-let _histData=null;
+let _histData=[];
 async function loadHistory(){
   try{
     const r=await fetch(HIST_ENDPOINT,{cache:'no-store'});
-    if(r.ok){ const j=await r.json();
-      if(Array.isArray(j)&&j.length){ _histData=j; $('histSrc').textContent='live · desk log'; drawHistory(j); return; } }
+    if(r.ok){ const j=await r.json(); if(Array.isArray(j)) _histData=historySinceEpoch(j); }
   }catch(e){}
-  _histData=demoHistory(); $('histSrc').textContent='demo data'; drawHistory(_histData);
+  drawHistory(_histData);
 }
 loadHistory(); setInterval(loadHistory, 300000);
 window.addEventListener('resize',()=>{ if(_histData) drawHistory(_histData); });
 
 /* ============ live ticker updater from DUMPSTR /state ============ */
 // Values track previous for smooth animation
-let _prevBlend=25.3, _prevNet=21.5, _prevEq=50461, _prevPnl=255.32, _prevRoi=0.92;
-const _prevDesks={depeg:0.511,deltaNeutral:0.073,lending:0.031,lstBasis:0.032};
+// Previous values start empty: the first live snapshot is written directly, later ones animate
+let _prevBlend=null, _prevNet=null, _prevRoi=null;
+const _prevDesks={depeg:null,deltaNeutral:null,lending:null,lstBasis:null};
 
 function setTick(id, val, suffix='', decimals=1, prev=null){
-  const el=$(id); if(!el) return;
-  const cur = prev !== null ? prev : parseFloat(el.textContent)||0;
-  animateVal(el, cur, val, suffix, decimals, 800);
+  const el=$(id); if(!el||val==null||!isFinite(val)) return;
+  if(prev==null){ el.textContent=(val>=0&&suffix.startsWith('%')?'+':'')+val.toFixed(decimals)+suffix; return; }
+  animateVal(el, prev, val, suffix, decimals, 800);
   // flash green/red on change
   el.classList.remove('pos','neg');
-  if(val > cur) el.classList.add('pos');
-  else if(val < cur) el.classList.add('neg');
+  if(val > prev) el.classList.add('pos');
+  else if(val < prev) el.classList.add('neg');
 }
 
 function updateTicker(S){
   try{
-    const v=S.vault||{}, pf=S.portfolio||{}, dk=S.desks||{};
-    const gross = v.blendedAPY!=null ? v.blendedAPY : _prevBlend;
-    const net   = gross * 0.85;
+    const v=S.vault||{}, pf=S.portfolio||{};
+    if(v.blendedAPY!=null){
+      const gross=v.blendedAPY, net=gross*(1-PERF_FEE);
+      setTick('t_blended', gross, '%', 1, _prevBlend);
+      setTick('t_netapy',  net,   '%', 1, _prevNet);
+      _prevBlend = gross; _prevNet = net;
+    }
 
-    // Hero overlay
-    const heroEl=$('heroApy');
-    if(heroEl){ const prev=_prevBlend;
-      animateVal(heroEl, prev, gross, '%', 1, 1000);
-      _prevBlend = gross; }
-
-    // Ticker strip — first copy only (the animation clones the DOM visually)
-    setTick('t_blended', gross, '%', 1, _prevBlend);
-    setTick('t_netapy',  net,   '%', 1, _prevNet);
-    _prevBlend = gross; _prevNet = net;
-
-    // Desk APYs
+    // Desk APYs: only desks the feed actually reports
     const by = v.apyByDesk||{};
-    const depeg = (by.depeg!=null ? by.depeg : (dk.depeg?(((dk.depeg.equity||50000)-50000)/50000*100):_prevDesks.depeg));
-    const dn    = (by.deltaNeutral!=null ? by.deltaNeutral : _prevDesks.deltaNeutral);
-    const lend  = (by.lending!=null ? by.lending : _prevDesks.lending);
-    const lst   = (by.lstBasis!=null ? by.lstBasis : _prevDesks.lstBasis);
-    setTick('t_depeg', depeg, '%', 3, _prevDesks.depeg);
-    setTick('t_dn',    dn,    '%', 3, _prevDesks.deltaNeutral);
-    setTick('t_lend',  lend,  '%', 3, _prevDesks.lending);
-    setTick('t_lst',   lst,   '%', 3, _prevDesks.lstBasis);
-    _prevDesks.depeg=depeg; _prevDesks.deltaNeutral=dn; _prevDesks.lending=lend; _prevDesks.lstBasis=lst;
+    [['t_depeg','depeg'],['t_dn','deltaNeutral'],['t_lend','lending'],['t_lst','lstBasis']].forEach(([id,k])=>{
+      if(by[k]==null) return;
+      setTick(id, by[k], '%', 3, _prevDesks[k]); _prevDesks[k]=by[k];
+    });
 
     // PnL / ROI / Equity
     if(pf.realizedPnl!=null){
       const el=$('t_pnl');
-      if(el){ animateVal(el, _prevPnl, pf.realizedPnl, '', 2, 900);
-        el.className='tick-val '+(pf.realizedPnl>=0?'pos':'neg'); _prevPnl=pf.realizedPnl; }}
+      if(el){ el.textContent=(pf.realizedPnl>=0?'+$':'-$')+Math.abs(pf.realizedPnl).toFixed(2);
+        el.className='tick-val '+(pf.realizedPnl>=0?'pos':'neg'); }}
     if(pf.roi!=null){
       setTick('t_roi', pf.roi, '%', 2, _prevRoi); _prevRoi=pf.roi; }
-    const eq=(pf.equity||0)+(pf.realizedPnl||0);
-    if(eq>0){
-      const el=$('t_eq');
-      if(el){ animateVal(el, _prevEq, eq, '', 0, 900);
-        el.textContent='$'+eq.toLocaleString('en-US',{maximumFractionDigits:0}); _prevEq=eq; }}
-
+    if(pf.equity!=null){
+      const eq=pf.equity, el=$('t_eq'); // equity already includes realized PnL
+      if(el) el.textContent='$'+eq.toLocaleString('en-US',{maximumFractionDigits:0}); }
   }catch(e){}
 }
+// mirror copy of the ticker loop follows the first copy
+setInterval(()=>{
+  document.querySelectorAll('#tickerTrack [data-m]').forEach(m=>{
+    const src=$(m.dataset.m); if(src){ m.textContent=src.textContent; m.className=src.className; }
+  });
+}, 500);
 
 // Hero APY overlay — update from live values (no random drift)
 function updateHeroOverlay(){
@@ -1803,29 +1773,9 @@ setInterval(updateHeroOverlay, 500);
 
 /* ============ XP leaderboard modal ============ */
 (function(){
-  const rows=[
-    {r:1,  w:'7xKq...9mPz', xp:2840000, m:'3\u00d7'},
-    {r:2,  w:'Bn4t...Wc2e', xp:2310000, m:'2.5\u00d7'},
-    {r:3,  w:'9dRf...kL8s', xp:1985000, m:'2\u00d7'},
-    {r:4,  w:'Ej2m...Qa7v', xp:1620000, m:'2\u00d7'},
-    {r:5,  w:'4hZx...Tn3b', xp:1445000, m:'1.75\u00d7'},
-    {r:6,  w:'Kp8w...Ys5d', xp:1180000, m:'1.75\u00d7'},
-    {r:7,  w:'Vm3c...Hf9j', xp:960000,  m:'1.5\u00d7'},
-    {r:8,  w:'2sLn...Xd4q', xp:815000,  m:'1.5\u00d7'},
-    {r:9,  w:'Gt6y...Ub1k', xp:702000,  m:'1.5\u00d7'},
-    {r:10, w:'Rw9a...Ce6p', xp:540000,  m:'1.5\u00d7'},
-    {gap:true},
-    {r:16, w:'You',         xp:100000,  m:'', me:true}
-  ];
-  const fmt=n=>n>=1e6?(n/1e6).toFixed(2)+'M':(n/1e3).toFixed(0)+'k';
+  // no published leaderboard feed yet: show an honest empty state instead of placeholder wallets
   const el=document.getElementById('lbRows');
-  if(el){ el.innerHTML=rows.map(x=>x.gap
-    ? '<div class="lb-gap">\u00b7\u00b7\u00b7</div>'
-    : '<div class="lb-row'+(x.r<=10?' top':'')+(x.me?' me':'')+'">'
-      +'<span class="rk">#'+x.r+'</span>'
-      +'<span class="who">'+x.w+'</span>'
-      +(x.m?'<span class="mult">'+x.m+' XP</span>':'')
-      +'<span class="pts">'+fmt(x.xp)+' \u2726</span></div>').join(''); }
+  if(el) el.innerHTML='<div class="lb-gap" style="text-align:center;padding:18px 0">No ranking published yet. The leaderboard fills from the live epoch.</div>';
   const bg=document.getElementById('lbModal');
   document.getElementById('lbClose').addEventListener('click',()=>bg.classList.remove('open'));
   bg.addEventListener('click',e=>{if(e.target===bg)bg.classList.remove('open');});
@@ -1839,7 +1789,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementB
 
 /* ============ nUSD+ deposit box ============ */
 let plusMode='deposit';
-const PLUS_BAL_DEMO='500.00';
 function setPlusMode(m){
   plusMode=m;
   document.querySelectorAll('#plusMode .seg').forEach(b=>b.classList.toggle('on',b.dataset.mode===m));
@@ -1849,7 +1798,7 @@ function setPlusMode(m){
   $('plusInLab').textContent    = dep?'You deposit':'You withdraw';
   $('plusInTok').innerHTML = dep ? '<span class="coin usdc"></span> USDC'
     : '<span class="coin" style="background:radial-gradient(circle at 35% 30%,#5dcaa5,#1D9E75)"></span> nUSD+';
-  $('plusBal').textContent = connected ? (dep?'25 000.00':PLUS_BAL_DEMO) : '0.00';
+  $('plusBal').textContent = connected ? '—' : '0.00';
   const w=$('plusXpWarn'); if(w) w.style.display = dep?'none':'';
   $('plusBtn').textContent = connected
     ? (dep?'Deposit USDC → nUSD+':'Withdraw nUSD+ → USDC')
@@ -1870,10 +1819,12 @@ $('plusBtn').addEventListener('click',()=>{
 });
 
 /* ============ prize draw countdowns ============ */
-// Countdown timers in seconds from now (demo values)
-window._cdReg  = 3*86400 + 14*3600 + 22*60;   // 3d 14h 22m
-window._cdMon  = 22*86400 + 6*3600 + 41*60;   // 22d 6h 41m
-window._cdJack = 67*86400 + 3*3600 + 18*60;   // 67d 3h 18m
+// Draw schedule anchored on the live epoch: regular every 5 days, monthly every 30, jackpot every 90
+const DRAW_PERIOD = {cdReg:5, cdMon:30, cdJack:90};
+function nextDrawIn(days){
+  const p=days*86400000, since=Date.now()-LIVE_EPOCH;
+  return ((Math.floor(Math.max(0,since)/p)+1)*p - since)/1000;
+}
 
 function fmtCD(s){
   s=Math.max(0,s|0);
@@ -1909,22 +1860,13 @@ async function fetchDevnetPools(){
 }
 fetchDevnetPools(); setInterval(fetchDevnetPools, 60000);
 
-window._prizeReg=128; window._prizeMon=765; window._prizeJack=4590;
-const _prizeRate=0.000296; // ~$128 per 5-day cycle at $85K TVL demo
+// Pool amounts come only from the real devnet balances above (— until they load)
 function _updateCD(){
-  window._cdReg=Math.max(0,window._cdReg-1);window._cdMon=Math.max(0,window._cdMon-1);window._cdJack=Math.max(0,window._cdJack-1);
-  window._prizeReg+=_prizeRate; window._prizeMon+=_prizeRate*6; window._prizeJack+=_prizeRate*36;
-  const el=id=>document.getElementById(id);
-  if(el('cdReg'))   el('cdReg').textContent   = fmtCD(window._cdReg);
-  if(el('cdMon'))   el('cdMon').textContent   = fmtCD(window._cdMon);
-  if(el('cdJack'))  el('cdJack').textContent  = fmtCD(window._cdJack);
-  if(_devnetLive) return; // real devnet balances own the display
-  if(el('prizeReg'))  el('prizeReg').textContent  = '$'+Math.round(window._prizeReg);
-  if(el('prizeMon'))  el('prizeMon').textContent  = '$'+Math.round(window._prizeMon);
-  if(el('prizeJack')) el('prizeJack').textContent = '$'+Math.round(window._prizeJack);
+  for(const id in DRAW_PERIOD){ const e=document.getElementById(id); if(e) e.textContent=fmtCD(nextDrawIn(DRAW_PERIOD[id])); }
+  const s=document.getElementById('cdStrip'); if(s) s.textContent=fmtCD(nextDrawIn(DRAW_PERIOD.cdReg));
 }
 window._updateCD=_updateCD;
-setInterval(_updateCD, 1000);
+_updateCD(); setInterval(_updateCD, 1000);
 
 
 /* ============ boot ============ */
